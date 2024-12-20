@@ -1,0 +1,432 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#bmc-wbtn img {
+    display:none;
+}
+
+#bmc-wbtn::before { /* Replace .element-selector with the actual class or ID */
+  content: '';
+  display: block;
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
+  background-image: url('../racing_ticket.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+    top: 17px;
+    left: 17px;
+}
+
+.tw-embed-widget-wrap .break-words {display:none;}
+
+.content-wrapper {
+    background-size: contain;
+    background-attachment: fixed;
+    background-color: #111827;
+    flex-grow: 1;
+}
+
+.page-banner {
+    max-height: 500px;
+    min-height: 500px;
+    position: relative;
+}
+
+.page-banner-med {
+    max-height: 250px;
+    min-height: 250px;
+    position: relative;
+}
+
+.page-banner-small {
+    max-height: 200px;
+    min-height: 200px;
+    position: relative;
+}
+
+.container {
+}
+
+.page-banner::before {
+  background-color: #152540;
+  background-position: center;
+  background-size: cover;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.page-banner-bg-1::before {
+      background-image: url(../backgrounds/background-1.jpeg);
+      background-position: 0 66%;
+    
+}
+
+.page-banner-bg-2::before {
+      background-image: url(../backgrounds/background-2.jpeg);
+}
+
+.page-banner-bg-3::before {
+      background-image: url(../backgrounds/background-3.jpeg);
+}
+
+.page-banner-bg-4::before {
+      background-image: url(../backgrounds/background-4.jpeg);
+}
+
+.page-banner-bg-5::before {
+      background-image: url(../backgrounds/background-5.jpeg);
+    background-position: center;
+}
+
+.page-banner-bg-6::before {
+      background-image: url(../backgrounds/background-6.jpeg);
+}
+
+.page-banner-bg-7::before {
+      background-image: url(../backgrounds/background-7.jpeg);
+      background-position: 0 39%;
+}
+
+.page-banner-bg-8::before {
+      background-image: url(../backgrounds/background-8.jpeg);
+}
+
+
+.page-banner .container {
+  position: relative; /* Ensure the text is above the pseudo-element */
+  z-index: 1;
+}
+
+.page-section-medium-dark {
+     background-color: #152540;
+}
+
+.page-section-dark {
+    background-color:#111827;
+}
+
+.container, .crew-member-container.selected {
+    border-radius: 15px;
+}
+
+.container {
+    /* Additional .container styles if any */
+}
+
+.crew-member-container, .crew-members img {
+    margin-right: 5px;
+}
+
+.crew-member-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 15%;
+    min-width: 140px;
+}
+
+.crew-member-container {
+    border: 4px solid transparent;
+    margin-bottom: 5px;
+    /* Additional .crew-member-container.selected styles if any */
+}
+.crew-member-container.selected {
+    border: 4px solid #111827;
+    /* Additional .crew-member-container.selected styles if any */
+}
+
+.crew-member {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.stars i, .crew-members img {
+    cursor: pointer;
+    color: gold; /* Assuming this applies to both, otherwise separate */
+}
+
+.crew-members img {
+    width: 100px; /* For .crew-members img */
+}
+
+table, th, td {
+    border: 1px solid #111827;
+    font-size: 16px;
+}
+
+table.stat-table td{
+    font-size: 22px;
+}
+
+td {
+    padding: 5px;
+}
+
+table caption {
+    text-align: left;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+table.stats-per-level-upgrade-table td {
+    padding: 10px;
+}
+
+.support-me {
+    cursor: pointer;
+    background-image: url('path-to-your-image.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.support-bmc {
+    text-align: center;
+}
+
+.support-me:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.support-me-text {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
+    border-radius: 5px;
+    display: inline-block;
+    padding: 50px;
+}
+
+/* Media Queries */
+@media (max-width: 720px) {
+    body {
+        font-size: 14px; /* Adjusted for consistency, assuming you want to change the base font size on mobile */
+    }
+
+    .content-wrapper {
+        background-position: 0 100px;
+    }
+    .container {
+        border-radius: 0px;
+    }
+
+    .page-banner {
+        min-height: 300px;
+    }
+    
+    .page-banner-small {
+    max-height: 200px;
+    min-height: 200px;
+    position: relative;
+}
+
+.page-banner-bg-5::before {
+    background-position: center;
+}
+    th, td {
+        padding: 4px;
+        /* equivalent to 'py-2 px-2' in Tailwind */
+        /* other styling for mobile */
+    }
+
+    .crew-member-container {
+        width: 30%;
+        padding: 2px;
+        min-width: 98px;
+        margin-bottom: 5px;
+    }
+
+    .crew-members {
+        justify-content: space-between;
+    }
+
+    .stars i {
+        font-size: 13px;
+        margin-right: 2px;
+    }
+
+    /* support page */
+    .support-container .support-bmc {
+        order: 1;
+    }
+
+    .support-container .support-connect {
+        order: 2;
+    }
+
+    html body {
+        font-size: 16px;
+    }
+
+    .support-me {
+        padding: 5px;
+    }
+
+    .support-me-text {
+        padding: 20px;
+        width: 100%;
+
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+
+    .desktop-hide {
+        display: block;
+    }
+}
+
+/* Utility Classes */
+.mobile-hide {
+    display: block;
+}
+
+.desktop-hide {
+    display: none;
+}
+
+
+/* navigation */
+.discord a{
+    border-radius: 10px;
+}
+
+#mobileMenu a {
+    font-size: 20px;
+}
+/* Adjusts the hover background for all links within the navigation */
+ul.flex.items-center li:not(.discord) a {
+    display: block; /* Ensures the background color fills the entire area of the link */
+    padding: 10px 15px; /* Optional: Adjusts padding to make the clickable area larger */
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+/* Hover effect for the main navigation links */
+ul.flex.items-center li:not(.discord) a:hover {
+    background-color: #152540; /* A nice shade of gray as the hover background */
+    border-radius: 10px;
+}
+
+/* Special case for the dropdown menu items to override any previously set background on hover */
+.dropdown-menu a:hover {
+    transition: none;
+    background-color: #152540; /* Ensures consistency with the main navigation hover effect */
+    border-radius: 0px!important;
+}
+
+/* Adjustments for the Discord join button for consistency */
+.bg-indigo-600:hover {
+    background-color: #5a67d8; /* Slightly lighter shade of indigo on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for the background color */
+    border-radius: 10px;
+
+}
+
+
+/* homepsge carousel */
+.carousel {
+    position: relative;
+    width: 100%;
+    /* max-width: 600px; */
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel button:focus {
+    outline: none!important;
+}
+
+.carousel__slides {
+    display: flex;
+}
+
+.carousel__slide {
+    list-style: none;
+    flex: 0 0 100%;
+}
+
+/* Navigation buttons */
+.carousel__prev, .carousel__next {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    width: auto;
+    padding: 0 20px;
+    margin-top: 0;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    user-select: none;
+    align-items: center;
+    height: 100%;
+    /* background: rgba(0,0,0,0.5); */
+    border: none;
+}
+
+.carousel__next {right: 0;}
+.carousel__prev {left: 0;}
+
+
+@media (max-width: 720px) {
+    .carousel__prev, .carousel__next {
+        padding: 0;
+        font-size: 16px;
+        width: 18px;
+    }
+}
+
+/** zupa styling **/
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: rgb(17 24 39);
+    border: 1px solid rgb(17 24 39);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: rgb(17 24 39);
+    background: linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);;
+}
+
+#racerSelectionGrid::-webkit-scrollbar {
+    width: 10px;
+}
+
+#racerSelectionGrid::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: rgb(17 24 39);
+    border: 1px solid rgb(17 24 39);
+}
+#racerSelectionGrid::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: rgb(17 24 39);
+    background: linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);;
+}

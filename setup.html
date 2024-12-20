@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track Setup with Racer Selection</title>
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+<nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+
+        <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Track Setup with Racer Selection</h1>
+    </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p class="text-center mb-6">Click on the variations to select racers, or input a text format and click generate. Afterwards copy the image to clipboard to share! </p>
+
+            <!-- Textarea for Bulk Input -->
+            <div class="flex justify-between">
+                <textarea id="bulkInput" placeholder="Enter track setups here..." class="w-1/2 p-2 mb-4 rounded bg-gray-700 text-white h-40"></textarea>
+                <div class="code-example w-1/2 p-2 mb-4 ml-4 bg-black bg-opacity-50 rounded-lg">
+                    <pre>
+Accepted Format:
+TRACK_NAME VARIATION RACER1 / RACER2 / RACER3 / RACER4
+
+Example:
+Agrabah 6 Ariel
+Andy's Room 1 Goofy / Minnie
+Arbee's 3 Donald / Fear / Bo Peep / Mowgli
+Arbee's Short Circuit 4 Jack skellington
+Arendelle 1 Elsa
+                    </pre>
+                </div>
+            </div>
+<div id="errorDiv" class="hidden bg-red-900 bg-opacity-90 text-red-200 border border-red-700 rounded-md px-4 py-3 mt-4 shadow-lg">
+    <!-- Error messages will be injected here by JavaScript -->
+</div>
+
+            <button onclick="parseBulkInput()" class="bg-blue-500 text-white py-2 px-4 rounded mb-6">Generate Selections</button>
+            <button onclick="saveSetupAsImage()" class="bg-blue-500 text-white py-2 px-4 rounded mt-4">Copy image to clipboard</button>
+
+            <!-- Track and Variation List with Racer Selection Buttons -->
+            <div id="trackList" class=""></div>
+
+            <!-- Modal Popup for Racer Selection -->
+            <div id="racerSelectModal" class="fixed inset-0 hidden bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md text-white relative">
+                    <h2 class="text-xl font-semibold mb-4">Select Racers for Variation</h2>
+
+                    <!-- Search Input for Filtering Racers -->
+                    <input type="text" id="racerSearch" onkeyup="filterRacers()" placeholder="Search Racers..." 
+                           class="w-full p-2 mb-4 rounded bg-gray-700 text-white">
+
+                    <!-- Racer Selection Grid with Scrollable Area -->
+                    <div id="racerSelectionGrid" class="grid grid-cols-3 gap-2 max-h-64 overflow-y-auto">
+                        <!-- Racer selection cards will go here -->
+                    </div>
+
+                    <div class="mt-4 flex justify-end gap-4">
+                        <button onclick="closeRacerSelectModal()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Cancel</button>
+                        <button onclick="saveSelectedRacers()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Racer and track data
+const characterImages = [
+    { "Mickey": { "shards": "racer_shards/mickey_shards.png" } },
+    { "Donald": { "shards": "racer_shards/donald.png" } },
+    { "Goofy": { "shards": "racer_shards/goofy.png" } },
+    { "Daisy": { "shards": "racer_shards/daisy.png" } },
+    { "Minnie": { "shards": "racer_shards/minnie.png" } },
+    { "Steamboat Mickey": { "shards": "racer_shards/sbmickey.png" } },
+    { "Steamboat Pete": { "shards": "racer_shards/pete.png" } },
+    { "Belle": { "shards": "racer_shards/belle.png" } },
+    { "Beast": { "shards": "racer_shards/beast.png" } },
+    { "Gaston": { "shards": "racer_shards/gaston.png" } },
+    { "Hercules": { "shards": "racer_shards/hercules.png" } },
+    { "Meg": { "shards": "racer_shards/meg.png" } },
+    { "Hades": { "shards": "racer_shards/hades.png" } },
+    { "Mowgli": { "shards": "racer_shards/mowgli.png" } },
+    { "Baloo": { "shards": "racer_shards/baloo.png" } },
+    { "Swann": { "shards": "racer_shards/swann.png" } },
+    { "Jack Sparrow": { "shards": "racer_shards/jack.png" } },
+    { "Davy Jones": { "shards": "racer_shards/davy_jones.png" } },
+    { "Barbossa": { "shards": "racer_shards/barbossa.png" } },
+    { "Tia": { "shards": "racer_shards/tia.png" } },
+    { "Will": { "shards": "racer_shards/will.png" } },
+    { "Mike": { "shards": "racer_shards/mike.png" } },
+    { "Celia Mae": { "shards": "racer_shards/celia.png" } },
+    { "Sulley": { "shards": "racer_shards/sulley.png" } },
+    { "Randall": { "shards": "racer_shards/randall.png" } },
+    { "Mulan": { "shards": "racer_shards/mulan.png" } },
+    { "Shang": { "shards": "racer_shards/shang.png" } },
+    { "Figment": { "shards": "racer_shards/figment.png" } },
+    { "Oswald": { "shards": "racer_shards/oswald.png" } },
+    { "Ortensia": { "shards": "racer_shards/ortensia.png" } },
+    { "Wall-E": { "shards": "racer_shards/walle.png" } },
+    { "Eve": { "shards": "racer_shards/eve.png" } },
+    { "Jessie": { "shards": "racer_shards/jessie.png" } },
+    { "Bo Peep": { "shards": "racer_shards/bo_peep.png" } },
+    { "Woody": { "shards": "racer_shards/woody.png" } },
+    { "Buzz Lightyear": { "shards": "racer_shards/buzz.png" } },
+    { "Angel": { "shards": "racer_shards/angel.png" } },
+    { "Gantu": { "shards": "racer_shards/gantu.png" } },
+    { "Jumba": { "shards": "racer_shards/jumba.png" } },
+    { "Lilo": { "shards": "racer_shards/lilo.png" } },
+    { "Stitch": { "shards": "racer_shards/stitch.png" } },
+    { "Aladdin": { "shards": "racer_shards/aladdin.png" } },
+    { "Jasmine": { "shards": "racer_shards/jasmine.png" } },
+    { "Jafar": { "shards": "racer_shards/jafar.png" } },
+    { "Genie": { "shards": "racer_shards/genie.png" } },
+    { "Kristoff": { "shards": "racer_shards/kristoff.png" } },
+    { "Hans": { "shards": "racer_shards/hans.png" } },
+    { "Anna": { "shards": "racer_shards/anna.png" } },
+    { "Elsa": { "shards": "racer_shards/elsa.png" } },
+    { "Olaf": { "shards": "racer_shards/olaf.png" } },
+    { "Ariel": { "shards": "racer_shards/ariel.png" } },
+    { "Prins Eric": { "shards": "racer_shards/princeeric.png" } },
+    { "King Triton": { "shards": "racer_shards/king.png" } },
+    { "Ursula": { "shards": "racer_shards/ursula.png" } },
+    { "Felix": { "shards": "../racer_shards/felix.png" } },
+    { "Vanellope": { "shards": "../racer_shards/vanellope.png" } },
+    { "Ralph": { "shards": "../racer_shards/ralph.png" } },
+    { "King Candy": { "shards": "../racer_shards/kingcandy.png" } },
+    { "Calhoun": { "shards": "../racer_shards/calhoun.png" } },
+    { "Kermit the Frog": { "shards": "../racer_shards/kermit.png" } },
+    { "Piggy": { "shards": "racer_shards/piggy.png" } },
+    { "Joy": { "shards": "../racer_shards/joy.png" } },
+    { "Fear": { "shards": "../racer_shards/fear.png" } },
+    { "Disgust": { "shards": "../racer_shards/disgust.png" } },
+    { "Anger": { "shards": "../racer_shards/anger.png" } },
+    { "Sadness": { "shards": "../racer_shards/sadness.png" } },
+    { "Anxiety": { "shards": "racer_shards/anxiety.png" } },
+    { "Ennui": { "shards": "racer_shards/ennui.png" } },
+    { "Maleficent": { "shards": "racer_shards/maleficent.png" } },
+    { "Cruella": { "shards": "racer_shards/cruella.png" } },
+    { "Dr. Finkelstein": { "shards": "racer_shards/dr_finkelstein.png" } },
+    { "Jack Skellington": { "shards": "racer_shards/jack_skellington.png" } },
+    { "Oogie Boogie": { "shards": "racer_shards/oogie_boogie.png" } },
+    { "Sally": { "shards": "racer_shards/sally.png" } },
+        { "Rapunzel": { "shards": "racer_shards/rapunzel.png" } },
+            { "Dash": { "shards": "racer_shards/dash.png" } },
+    { "Ms Incredible": { "shards": "racer_shards/ms_incredible.png" } },
+    { "Violet": { "shards": "racer_shards/violet.png" } }
+    
+];
+
+    // Sample track data
+    const tracks = [
+{ "name": "Agrabah", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Andy's Room", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Arbee's", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Arbee's Short Circuit", "variations": [1, 2, 3, 4, 5] },
+    { "name": "Arendelle", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Atlantica", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Candy Kingdom", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Castle", "variations": [1, 2, 3, 4] },
+    { "name": "The Factory", "variations": [1, 2, 3, 4] },
+    { "name": "The Great Wall", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Jungle Ruins", "variations": [1, 2, 3, 4] },
+    { "name": "Kaua'i", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Mount Olympus", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "The Nightmare Festival", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Pirate's Life", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Riley's Mind", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Silver Screen", "variations": [1, 2, 3, 4, 5] },
+    { "name": "Toon Village", "variations": [1, 2, 3, 4, 5, 6] },
+        { "name": "The incredible showdown", "variations": [1, 2, 3, 4, 5, 6] },
+
+        // Add more tracks as needed
+    ];
+
+// Data storage
+const selectedRacers = new Map();
+const selectedVariation = {};
+
+// Modal open/close
+function openRacerSelectModal(track, variation) {
+    const modal = document.getElementById('racerSelectModal');
+    modal.classList.remove('hidden');
+    modal.dataset.track = track;
+    modal.dataset.variation = variation;
+    renderRacerSelectionGrid();
+}
+function closeRacerSelectModal() {
+    document.getElementById('racerSelectModal').classList.add('hidden');
+}
+
+// Render racers in the modal
+function renderRacerSelectionGrid() {
+    const grid = document.getElementById('racerSelectionGrid');
+    grid.innerHTML = '';
+    characterImages.forEach(character => {
+        const [name, data] = Object.entries(character)[0];
+        const racerCard = document.createElement('div');
+        racerCard.className = "cursor-pointer border border-gray-500 p-2 rounded-md";
+        racerCard.innerHTML = `<img src="${data.shards}" alt="${name}" class="w-12 h-12 mx-auto">
+                               <div class="text-center mt-1">${name}</div>`;
+        racerCard.onclick = () => racerCard.classList.toggle('bg-green-300');
+        racerCard.dataset.racerName = name;
+        grid.appendChild(racerCard);
+    });
+}
+
+// Search filter
+function filterRacers() {
+    const searchQuery = document.getElementById('racerSearch').value.toLowerCase();
+    document.querySelectorAll('#racerSelectionGrid > div').forEach(racer => {
+        racer.style.display = racer.dataset.racerName.toLowerCase().includes(searchQuery) ? 'block' : 'none';
+    });
+}
+
+// Save selected racers
+function saveSelectedRacers() {
+    const modal = document.getElementById('racerSelectModal');
+    const track = modal.dataset.track;
+    const variation = modal.dataset.variation;
+    const selected = Array.from(document.querySelectorAll('#racerSelectionGrid .bg-green-300'))
+                          .map(racer => racer.dataset.racerName);
+    if (!selectedRacers[track]) selectedRacers[track] = {};
+    selectedRacers[track][variation] = selected;
+    selectedVariation[track] = variation;
+    closeRacerSelectModal();
+    renderTrackList();
+}
+
+let parsedOrder = []; // Global array to hold the parsed order
+function parseBulkInput() {
+    const input = document.getElementById('bulkInput').value.trim().split('\n');
+    const errorDiv = document.getElementById('errorDiv');
+    parsedOrder = []; // Clear previous order
+    const errorMessages = []; // Array to collect error messages
+
+    input.forEach((line, index) => {
+        line = line.trim();
+        let track, variation, racers;
+
+        // Define regex pattern for the input format
+        const regex = /^(.+?)\s+(\d+)\s+(.+)$/;
+        const match = line.match(regex);
+
+        if (match) {
+            track = findPartialMatch(tracks, match[1].trim(), 'name');
+            variation = parseInt(match[2].trim());
+
+            racers = match[3].split('/').map(r => {
+                const foundRacer = findPartialMatch(characterImages, r.trim(), 'racer');
+                return foundRacer ? Object.keys(foundRacer)[0] : null;
+            }).filter(Boolean); // Filter out any null values if a match is not found
+
+            if (track && variation && racers.length > 0) {
+                selectTrackVariation(track.name, variation, racers);
+                parsedOrder.push({ track: track.name.toLowerCase(), variation });
+            } else {
+                // Log specific errors for missing track, variation, or racers
+                if (!track) errorMessages.push(`Line ${index + 1}: Track "${match[1].trim()}" not found.`);
+                if (!variation) errorMessages.push(`Line ${index + 1}: Variation "${match[2].trim()}" is invalid.`);
+                if (racers.length === 0) errorMessages.push(`Line ${index + 1}: No valid racer found in "${match[3].trim()}"`);
+            }
+        } else {
+            errorMessages.push(`Line ${index + 1}: Invalid format - "${line}"`);
+        }
+    });
+
+    // Display errors in the errorDiv and toggle visibility
+    if (errorMessages.length > 0) {
+        errorDiv.innerHTML = errorMessages.map(msg => `<p>${msg}</p>`).join('');
+        errorDiv.classList.remove('hidden'); // Show the error div
+    } else {
+        errorDiv.innerHTML = ''; // Clear errors if there are none
+        errorDiv.classList.add('hidden'); // Hide the error div
+    }
+
+    renderTrackList();
+}
+
+
+
+
+// Find partial match helper
+function findPartialMatch(list, searchTerm, type) {
+    searchTerm = searchTerm.toLowerCase();
+    return list.find(item => {
+        if (type === 'name') return item.name.toLowerCase().includes(searchTerm);
+        if (type === 'racer') return Object.keys(item)[0].toLowerCase().includes(searchTerm);
+        return false;
+    });
+}
+
+// Select variation
+function selectTrackVariation(trackName, variationNumber, racersList) {
+    const track = tracks.find(t => t.name.toLowerCase() === trackName.toLowerCase());
+    if (track && track.variations.includes(variationNumber)) {
+        selectedVariation[track.name] = variationNumber;
+        selectedRacers[track.name] = { [variationNumber]: racersList };
+    }
+}
+
+// Render track list with racer images
+function renderTrackList() {
+    const trackList = document.getElementById('trackList');
+    trackList.innerHTML = '';
+    tracks.forEach(track => {
+        const trackContainer = document.createElement('div');
+        trackContainer.className = "track-container mb-5 bg-gray-700 flex-1 text-white p-3 rounded-lg shadow-md flex justify-between items-center relative";
+        const trackLabel = document.createElement('div');
+        trackLabel.className = "text-lg font-bold";
+        trackLabel.textContent = `${track.name} ${selectedVariation[track.name] ? `(Var ${selectedVariation[track.name]})` : ''}`;
+        const rightContainer = document.createElement('div');
+        rightContainer.className = "flex gap-2 justify-between items-center";
+
+        const variation = selectedVariation[track.name];
+        if (selectedRacers[track.name] && selectedRacers[track.name][variation]) {
+            selectedRacers[track.name][variation].forEach(racerName => {
+                const racerData = characterImages.find(obj => Object.keys(obj)[0].toLowerCase() === racerName.toLowerCase());
+                if (racerData) {
+                    const imgSrc = Object.values(racerData)[0].shards;
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = racerName;
+                    img.className = "w-12 h-12 rounded-md border border-gray-500";
+                    rightContainer.appendChild(img);
+                }
+            });
+        } else {
+            track.variations.forEach(variation => {
+                const variationButton = document.createElement('button');
+                variationButton.className = "bg-gray-500 text-white px-1 py-1 rounded-md text-xs";
+                variationButton.textContent = `Var ${variation}`;
+                variationButton.onclick = () => openRacerSelectModal(track.name, variation);
+                rightContainer.appendChild(variationButton);
+            });
+        }
+        trackContainer.appendChild(trackLabel);
+        trackContainer.appendChild(rightContainer);
+
+        const trackWrapper = document.createElement('div');
+        trackWrapper.className = "flex justify-between items-center gap-2";
+        trackWrapper.appendChild(trackContainer);
+
+        const resetButton = document.createElement('button');
+        resetButton.className = "bg-red-500 text-white px-2 py-1 rounded text-xs hidden-print";
+        resetButton.textContent = "Reset";
+        resetButton.onclick = () => resetTrack(track.name);
+
+        trackWrapper.appendChild(resetButton);
+        trackList.appendChild(trackWrapper);
+    });
+}
+
+// Reset track selection
+function resetTrack(trackName) {
+    delete selectedRacers[trackName];
+    delete selectedVariation[trackName];
+    renderTrackList();
+}
+function saveSetupAsImage() {
+    const trackListElement = document.getElementById('trackList');
+    const cloneList = trackListElement.cloneNode(true);
+
+    // Sort the cloned list based on the parsedOrder
+    const cloneTracks = Array.from(cloneList.children);
+    cloneTracks.sort((a, b) => {
+        const aTrackLabel = a.querySelector('.text-lg');
+        const bTrackLabel = b.querySelector('.text-lg');
+
+        if (!aTrackLabel || !bTrackLabel) return 0;
+
+        const aTrackText = aTrackLabel.textContent.split(' (Var');
+        const bTrackText = bTrackLabel.textContent.split(' (Var');
+
+        const aTrack = aTrackText[0].trim().toLowerCase();
+        const bTrack = bTrackText[0].trim().toLowerCase();
+        const aVariation = aTrackText[1] ? parseInt(aTrackText[1].match(/\d+/)[0]) : Infinity;
+        const bVariation = bTrackText[1] ? parseInt(bTrackText[1].match(/\d+/)[0]) : Infinity;
+
+        // Find the index of each track-variation pair in parsedOrder
+        const aIndex = parsedOrder.findIndex(o => o.track === aTrack && o.variation === aVariation);
+        const bIndex = parsedOrder.findIndex(o => o.track === bTrack && o.variation === bVariation);
+
+        return (aIndex === -1 ? Infinity : aIndex) - (bIndex === -1 ? Infinity : bIndex);
+    });
+
+    // Append sorted tracks back to the clone list
+    cloneList.innerHTML = '';
+    cloneTracks.forEach(track => cloneList.appendChild(track));
+
+    // Set background color and padding for the clone container
+    cloneList.style.backgroundColor = '#27273b';
+    cloneList.style.padding = '5px';
+
+    // Remove unnecessary elements and apply compact styling
+    cloneList.querySelectorAll('.hidden-print').forEach(el => el.remove());
+    cloneList.querySelectorAll('.track-container').forEach(trackBlock => {
+        if (!trackBlock.querySelector('img')) {
+            trackBlock.style.display = 'none';
+        } else {
+            trackBlock.classList.add('compact-track-container');
+        }
+    });
+    cloneList.style.width = '600px';
+
+    // Append the clone to the document, take screenshot, and then remove it
+    document.body.appendChild(cloneList);
+    html2canvas(cloneList).then(canvas => {
+        canvas.toBlob(blob => {
+            navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+                .then(() => {
+                    alert("Image saved and copied to clipboard!");
+                })
+                .catch(err => {
+                    console.error("Failed to copy image to clipboard: ", err);
+                    alert("Image saved but failed to copy to clipboard.");
+                });
+        });
+
+        document.body.removeChild(cloneList);
+    });
+}
+
+renderTrackList();
+</script>
+<style>
+    .compact-track-container {
+        margin-bottom: 2px !important; /* Reduce bottom margin */
+        padding: 4px !important; /* Minimize padding */
+        border-radius: 4px !important;
+    }
+</style>
+
+<style>
+    #racerSelectModal {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</body>
+</html>

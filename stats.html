@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Upgrade Materials Calculator</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+        <nav class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo_transparant.png" style="width: 70px">
+                <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+            </div>
+            <div class="hidden md:flex">
+                <ul class="flex items-center">
+                    <li class="mr-6">
+                        <a class="text-white" href="index">Home</a>
+                    </li>
+                    <li class="mr-6 relative group">
+                        <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded" id="calculatorsDropdown">Calculators</a>
+                        <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials <img class="inline-block w-10" src="images/Pro-gloves.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7) <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews <img class="inline-block w-10" src="crews/walle/Hal.webp"></a>
+                            <!-- Repeat for other calculators -->
+                        </div>
+                    </li>
+                    
+                    <li class="mr-6">
+                        <a class="text-white" href="stats">Stats</a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="support">Support ❤️</a>
+                    </li>
+                    <li class="discord ml-10">
+                        <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                            <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+                <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="md:hidden hidden" id="mobileMenu">
+            <ul class="">
+                <li class="active">
+                    <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white md:right-0 w-80 md:w-96 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7)</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews</a>
+                        <!-- Repeat for other calculators -->
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="stats">Stats</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="support">Support ❤️</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        document.getElementById('calculatorsDropdown').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.querySelector('.dropdown-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function (event) {
+            event.preventDefault();
+            event.target.nextElementSibling.classList.toggle('hidden');
+        });
+    </script>
+    <div class="container mx-auto mt-5 p-10 opacity-95" style="background-color: #152540;">
+        <h1 class="text-xl mb-4">Disney Speedstorm - Stat per level tables</h1>
+        <p>These tables contain the levels for each class at which level you get an increase. This is very usefull to
+            calculate at which level you get the next topspeed upgrade for example.</p>
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/2 md:p-5 smd:flex md:justify-center">
+                <table class="bg-black bg-opacity-50 stats-per-level-upgrade-table">
+                    <caption>Defender
+                    </caption>
+                    <tbody>
+                    <tr>
+                        <th>Stat
+                        </th>
+                        <th colspan="10">Level
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Combat
+                        </td>
+                        <td>2
+                        </td>
+                        <td>7
+                        </td>
+                        <td>12
+                        </td>
+                        <td>17
+                        </td>
+                        <td>22
+                        </td>
+                        <td>27
+                        </td>
+                        <td>32
+                        </td>
+                        <td>37
+                        </td>
+                        <td>42
+                        </td>
+                        <td>47
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Boost
+                        </td>
+                        <td>3
+                        </td>
+                        <td>8
+                        </td>
+                        <td>13
+                        </td>
+                        <td>18
+                        </td>
+                        <td>23
+                        </td>
+                        <td>28
+                        </td>
+                        <td>33
+                        </td>
+                        <td>38
+                        </td>
+                        <td>43
+                        </td>
+                        <td>48
+                        </td>
+                    </tr>
+                    <tr style="background-color: #165083;">
+                        <td>Top Speed
+                        </td>
+                        <td>4
+                        </td>
+                        <td>9
+                        </td>
+                        <td>14
+                        </td>
+                        <td>19
+                        </td>
+                        <td>24
+                        </td>
+                        <td>29
+                        </td>
+                        <td>34
+                        </td>
+                        <td>39
+                        </td>
+                        <td>44
+                        </td>
+                        <td>49
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Handling
+                        </td>
+                        <td>5
+                        </td>
+                        <td>10
+                        </td>
+                        <td>15
+                        </td>
+                        <td>20
+                        </td>
+                        <td>25
+                        </td>
+                        <td>30
+                        </td>
+                        <td>35
+                        </td>
+                        <td>40
+                        </td>
+                        <td>45
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Acceleration
+                        </td>
+                        <td>6
+                        </td>
+                        <td>11
+                        </td>
+                        <td>16
+                        </td>
+                        <td>21
+                        </td>
+                        <td>26
+                        </td>
+                        <td>31
+                        </td>
+                        <td>36
+                        </td>
+                        <td>41
+                        </td>
+                        <td>46
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-full md:w-1/2 md:p-5 smd:flex md:justify-center">
+
+                <table class="bg-black bg-opacity-50 stats-per-level-upgrade-table">
+                    <caption>Brawler
+                    </caption>
+                    <tbody>
+                    <tr>
+                        <th>Stat
+                        </th>
+                        <th colspan="10">Level
+                        </th>
+                    </tr>
+                    <tr style="background-color: #165083;">
+                        <td>Top Speed
+                        </td>
+                        <td>2
+                        </td>
+                        <td>7
+                        </td>
+                        <td>12
+                        </td>
+                        <td>17
+                        </td>
+                        <td>22
+                        </td>
+                        <td>27
+                        </td>
+                        <td>32
+                        </td>
+                        <td>37
+                        </td>
+                        <td>42
+                        </td>
+                        <td>47
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Combat
+                        </td>
+                        <td>3
+                        </td>
+                        <td>8
+                        </td>
+                        <td>13
+                        </td>
+                        <td>18
+                        </td>
+                        <td>23
+                        </td>
+                        <td>28
+                        </td>
+                        <td>33
+                        </td>
+                        <td>38
+                        </td>
+                        <td>43
+                        </td>
+                        <td>48
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Boost
+                        </td>
+                        <td>4
+                        </td>
+                        <td>9
+                        </td>
+                        <td>14
+                        </td>
+                        <td>19
+                        </td>
+                        <td>24
+                        </td>
+                        <td>29
+                        </td>
+                        <td>34
+                        </td>
+                        <td>39
+                        </td>
+                        <td>44
+                        </td>
+                        <td>49
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Acceleration
+                        </td>
+                        <td>5
+                        </td>
+                        <td>10
+                        </td>
+                        <td>15
+                        </td>
+                        <td>20
+                        </td>
+                        <td>25
+                        </td>
+                        <td>30
+                        </td>
+                        <td>35
+                        </td>
+                        <td>40
+                        </td>
+                        <td>45
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Handling
+                        </td>
+                        <td>6
+                        </td>
+                        <td>11
+                        </td>
+                        <td>16
+                        </td>
+                        <td>21
+                        </td>
+                        <td>26
+                        </td>
+                        <td>31
+                        </td>
+                        <td>36
+                        </td>
+                        <td>41
+                        </td>
+                        <td>46
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-full md:w-1/2 md:p-5 smd:flex md:justify-center">
+                <table class="bg-black bg-opacity-50 stats-per-level-upgrade-table">
+                    <caption>Trickster
+                    </caption>
+                    <tbody>
+                    <tr>
+                        <th>Stat
+                        </th>
+                        <th colspan="10">Level
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Boost
+                        </td>
+                        <td>2
+                        </td>
+                        <td>7
+                        </td>
+                        <td>12
+                        </td>
+                        <td>17
+                        </td>
+                        <td>22
+                        </td>
+                        <td>27
+                        </td>
+                        <td>32
+                        </td>
+                        <td>37
+                        </td>
+                        <td>42
+                        </td>
+                        <td>47
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Handling
+                        </td>
+                        <td>3
+                        </td>
+                        <td>8
+                        </td>
+                        <td>13
+                        </td>
+                        <td>18
+                        </td>
+                        <td>23
+                        </td>
+                        <td>28
+                        </td>
+                        <td>33
+                        </td>
+                        <td>38
+                        </td>
+                        <td>43
+                        </td>
+                        <td>48
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Acceleration
+                        </td>
+                        <td>4
+                        </td>
+                        <td>9
+                        </td>
+                        <td>14
+                        </td>
+                        <td>19
+                        </td>
+                        <td>24
+                        </td>
+                        <td>29
+                        </td>
+                        <td>34
+                        </td>
+                        <td>39
+                        </td>
+                        <td>44
+                        </td>
+                        <td>49
+                        </td>
+                    </tr>
+                    <tr style="background-color: #165083;">
+                        <td>Top Speed
+                        </td>
+                        <td>5
+                        </td>
+                        <td>10
+                        </td>
+                        <td>15
+                        </td>
+                        <td>20
+                        </td>
+                        <td>25
+                        </td>
+                        <td>30
+                        </td>
+                        <td>35
+                        </td>
+                        <td>40
+                        </td>
+                        <td>45
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Combat
+                        </td>
+                        <td>6
+                        </td>
+                        <td>11
+                        </td>
+                        <td>16
+                        </td>
+                        <td>21
+                        </td>
+                        <td>26
+                        </td>
+                        <td>31
+                        </td>
+                        <td>36
+                        </td>
+                        <td>41
+                        </td>
+                        <td>46
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w-full md:w-1/2 md:p-5 smd:flex md:justify-center">
+                <table class="bg-black bg-opacity-50 stats-per-level-upgrade-table">
+                    <caption>Speedster
+                    </caption>
+                    <tbody>
+                    <tr>
+                        <th>Stat
+                        </th>
+                        <th colspan="10">Level
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Acceleration
+                        </td>
+                        <td>2
+                        </td>
+                        <td>7
+                        </td>
+                        <td>12
+                        </td>
+                        <td>17
+                        </td>
+                        <td>22
+                        </td>
+                        <td>27
+                        </td>
+                        <td>32
+                        </td>
+                        <td>37
+                        </td>
+                        <td>42
+                        </td>
+                        <td>47
+                        </td>
+                    </tr>
+                    <tr style="background-color: #165083;">
+                        <td>Top Speed
+                        </td>
+                        <td>3
+                        </td>
+                        <td>8
+                        </td>
+                        <td>13
+                        </td>
+                        <td>18
+                        </td>
+                        <td>23
+                        </td>
+                        <td>28
+                        </td>
+                        <td>33
+                        </td>
+                        <td>38
+                        </td>
+                        <td>43
+                        </td>
+                        <td>48
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Handling
+                        </td>
+                        <td>4
+                        </td>
+                        <td>9
+                        </td>
+                        <td>14
+                        </td>
+                        <td>19
+                        </td>
+                        <td>24
+                        </td>
+                        <td>29
+                        </td>
+                        <td>34
+                        </td>
+                        <td>39
+                        </td>
+                        <td>44
+                        </td>
+                        <td>49
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Combat
+                        </td>
+                        <td>5
+                        </td>
+                        <td>10
+                        </td>
+                        <td>15
+                        </td>
+                        <td>20
+                        </td>
+                        <td>25
+                        </td>
+                        <td>30
+                        </td>
+                        <td>35
+                        </td>
+                        <td>40
+                        </td>
+                        <td>45
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Boost
+                        </td>
+                        <td>6
+                        </td>
+                        <td>11
+                        </td>
+                        <td>16
+                        </td>
+                        <td>21
+                        </td>
+                        <td>26
+                        </td>
+                        <td>31
+                        </td>
+                        <td>36
+                        </td>
+                        <td>41
+                        </td>
+                        <td>46
+                        </td>
+                        <td>50
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="container mx-auto mt-5 p-10 opacity-95" style="background-color: #152540;">
+        <div class="">
+            <p>Come visit the discord and share your thoughts! <br/><br/>
+                <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                    <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="container mx-auto mt-5 mb-5 p-10 opacity-95" style="background-color: #152540;">
+        <div class="mb-4">
+            <h2>Disclaimer</h2>
+            <p>
+                <i>Images and data presented here are based on content from the official <a
+                        href='https://speedstorm.fandom.com/wiki/Disney_Speedstorm_Wiki' target='_blank'
+                        style="color: #00BFFF;">Disney Speedstorm Wiki</a></i>
+            </p>
+        </div>
+    </div>
+</div>
+<!-- Tailwind CSS doesn't include JavaScript, use Alpine.js or similar for interactivity -->
+<footer class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+<script data-name="BMC-Widget" data-cfasync="true" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="Doobelator" data-description="Support me on Buy me a coffee!"
+        data-color="#eda631" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+</body>
+</html>

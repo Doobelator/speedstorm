@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - Doobelator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+
+    <div class="page-banner page-banner-bg-2 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Doobelator</h1>
+            <p class="">
+                Welcome to your go-to hub for Disney Speedstorm calculators!
+            </p>
+
+            <p class="mb-10">Here, you'll find everything you need to
+                streamline your gameplay, all in one place.</p></div>
+    </div>
+
+    <div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <!-- Calculators Section -->
+            <div class="grid md:grid-cols-2 grid-cols-1 gap-20 flex justify-center">
+                <!-- Calculator 1 -->
+                <div class="bg-black bg-opacity-50 p-3 md:p-4 rounded-lg group cursor-pointer">
+                    <a href="upgrade-materials-s7" class="flex flex-col items-center text-center no-underline">
+                        <h2 class="text-xl mb-2 text-white">Upgrade Materials Calculator</h2>
+                        <img src="images/upgrade_tokens.webp" alt="Upgrade Materials Calculator"
+                             class="mb-2 max-w-full h-auto rounded-md w-32">
+                        <p class="text-base text-white">Calculate materials for character upgrades.</p>
+                    </a>
+                </div>
+                <!-- Calculator 2 -->
+                <div class="bg-black bg-opacity-50 p-3 md:p-4 rounded-lg group cursor-pointer">
+                    <a href="ranked-rewards"
+                       class="flex flex-col items-center text-center no-underline">
+                        <h2 class="text-xl mb-2 text-white">Ranked Rewards Calculator</h2>
+                        <img src="images/Diamond.webp" alt="Ranked Rewards Calculator"
+                             class="mb-2 max-w-full h-auto rounded-md w-32">
+                        <p class="text-base text-white">Calculate ranked multiplayer rewards.</p>
+                    </a>
+                </div>
+                <!-- Add more calculator entries here -->
+            </div>
+
+        </div>
+    </div>
+<!--    <div class="page-banner page-banner-bg-3 w-full p-10 opacity-95  flex justify-center items-center">-->
+<!--<div class="container">-->
+
+<!--            <div class="carousel" style="border: 4px solid rgba(0,0,0,0.5);box-shadow:10px 10px 20px rgba(0,0,0,5);background-color: #152540;margin-bottom:30px;">-->
+<!--                <div class="carousel__slides">-->
+<!--                    <li class="carousel__slide justify-center"><img src="guide/upgrade-mats-s7-2.png" alt="Image 2">-->
+<!--                    </li>-->
+<!--                    <li class="carousel__slide justify-center"><img src="guide/upgrade-mats-s7-3.png" alt="Image 3">-->
+<!--                    </li>-->
+<!--                    <li class="carousel__slide justify-center"><img src="guide/ranked-rewards-1.png" alt="Image 4">-->
+<!--                    </li>-->
+<!--                </div>-->
+
+<!--                <button class="carousel__prev bg-black bg-opacity-50">&#10094;</button>-->
+<!--                <button class="carousel__next bg-black bg-opacity-50">&#10095;</button>-->
+<!--            </div>-->
+<!--    </div>-->
+<!--    </div>-->
+    
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slides = document.querySelectorAll('.carousel__slide');
+                let index = 0; // Track the current slide
+
+                function showSlide(n) {
+                    slides.forEach((slide, i) => {
+                        slide.style.display = (i === n) ? 'flex' : 'none';
+                    });
+                }
+
+                document.querySelector('.carousel__prev').addEventListener('click', function () {
+                    index = index - 1 < 0 ? slides.length - 1 : index - 1;
+                    showSlide(index);
+                });
+
+                document.querySelector('.carousel__next').addEventListener('click', function () {
+                    index = index + 1 >= slides.length ? 0 : index + 1;
+                    showSlide(index);
+                });
+
+                showSlide(index); // Initialize the carousel to show the first slide
+            });
+
+        </script>
+    </div>
+    <div class="page-section-medium-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <div class="">
+                <p>Come visit the discord and share your thoughts! <br><br>
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <h2>Disclaimer</h2>
+            <p>
+                <i>Images and data presented here are based on content from the official <a href="https://speedstorm.fandom.com/wiki/Disney_Speedstorm_Wiki" target="_blank" style="color: #00BFFF;">Disney Speedstorm Wiki</a></i>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-section-dark text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+<!-- Cookie Banner -->
+<div id="cookieBanner" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 text-center">
+    <p class="mb-2">We use cookies to ensure that we give you the best experience on our website. By continuing to browse, you agree to our <a href="privacy-policy" class="underline text-blue-400">Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Accept</button>
+</div>
+
+<script>
+    // Check if the user has already accepted cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+
+    // Event listener to accept cookies
+    document.getElementById('acceptCookies').addEventListener('click', function () {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spinning Wheel Randomizer</title>
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+<nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+        <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Spinning Wheel Randomizer</h1>
+    </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p class="text-center">Click the racers, and tracks to add or delete them from the wheel!</p>
+
+        <!-- Tabbed Layout for Racers and Tracks -->
+        <div class="flex justify-center my-6">
+            <button id="racersTab" onclick="showTab('racers')" class="tab-button active">Racers</button>
+            <button id="tracksTab" onclick="showTab('tracks')" class="tab-button">Tracks</button>
+        </div>
+
+        <div class="flex flex-wrap">
+            <!-- Left Side for Racers/Tracks Selection -->
+            <div class="w-full md:w-1/2">
+<div id="racers" class="tab-content">
+    <h3 class="text-2xl mb-4">Select Racers</h3>
+    <div class="mb-4 flex justify-between">
+        <input 
+            type="text" 
+            id="searchRacer" 
+            placeholder="Search Racers..." 
+            class="w-3/4 p-2 rounded bg-gray-700 text-white"
+            onkeyup="filterRacers()"
+        >
+        <button 
+            onclick="toggleSelectAllRacers()" 
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Select All Racers
+        </button>
+    </div>
+    <div id="racerGrid" class="grid grid-cols-3 md:grid-cols-5 gap-1"></div>
+</div>
+
+<div id="tracks" class="tab-content hidden">
+    <h3 class="text-2xl mb-4">Select Tracks</h3>
+    <div class="mb-4 flex justify-end">
+        <button 
+            onclick="toggleSelectAllTracks()" 
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Select All Tracks
+        </button>
+    </div>
+    <div id="trackList" class="space-y-2"></div>
+</div>
+</div>
+
+
+            <!-- Right Side for Wheel Display -->
+            <div class="w-full md:w-1/2 text-center">
+                <div id="wheelMessage" class="text-xl font-semibold mb-4 text-green-500"></div>
+                <div class="relative mx-auto my-8" style="width: 500px; height: 500px;">
+                    <canvas id="wheelCanvas" width="500" height="500" style="background-color: #27273b; border-radius: 50%;"></canvas>
+                    <div class="absolute top-5 left-1/2 transform -translate-x-1/2 -translate-y-full">
+                        <svg width="40" height="40" viewBox="0 0 24 24">
+                            <polygon fill="#FF6347" points="12,24 24,0 0,0"/>
+                        </svg>
+                    </div>
+                    <div id="spinCircle" 
+                         class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2
+                                bg-green-500 hover:bg-green-700 text-white font-bold py-4 px-4 rounded-full
+                                cursor-pointer text-sm flex items-center justify-center">
+                        Spin!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Function to filter racers based on search input
+    function filterRacers() {
+        const searchQuery = document.getElementById('searchRacer').value.toLowerCase();
+        const racers = Array.from(racerGrid.children);
+
+        racers.forEach(racer => {
+            const racerName = racer.querySelector('div').innerText.toLowerCase();
+            if (racerName.includes(searchQuery)) {
+                racer.classList.remove('hidden');
+            } else {
+                racer.classList.add('hidden');
+            }
+        });
+    }
+</script>
+<script>
+    // Racer and track data
+const characterImages = [
+    { "Mickey": { "shards": "racer_shards/mickey_shards.png" } },
+    { "Donald": { "shards": "racer_shards/donald.png" } },
+    { "Goofy": { "shards": "racer_shards/goofy.png" } },
+    { "Daisy": { "shards": "racer_shards/daisy.png" } },
+    { "Minnie": { "shards": "racer_shards/minnie.png" } },
+    { "Steamboat Mickey": { "shards": "racer_shards/sbmickey.png" } },
+    { "Steamboat Pete": { "shards": "racer_shards/pete.png" } },
+    { "Belle": { "shards": "racer_shards/belle.png" } },
+    { "Beast": { "shards": "racer_shards/beast.png" } },
+    { "Gaston": { "shards": "racer_shards/gaston.png" } },
+    { "Hercules": { "shards": "racer_shards/hercules.png" } },
+    { "Meg": { "shards": "racer_shards/meg.png" } },
+    { "Hades": { "shards": "racer_shards/hades.png" } },
+    { "Mowgli": { "shards": "racer_shards/mowgli.png" } },
+    { "Baloo": { "shards": "racer_shards/baloo.png" } },
+    { "Swann": { "shards": "racer_shards/swann.png" } },
+    { "Jack Sparrow": { "shards": "racer_shards/jack.png" } },
+    { "Davy Jones": { "shards": "racer_shards/davy_jones.png" } },
+    { "Barbossa": { "shards": "racer_shards/barbossa.png" } },
+    { "Tia": { "shards": "racer_shards/tia.png" } },
+    { "Will": { "shards": "racer_shards/will.png" } },
+    { "Mike": { "shards": "racer_shards/mike.png" } },
+    { "Celia Mae": { "shards": "racer_shards/celia.png" } },
+    { "Sulley": { "shards": "racer_shards/sulley.png" } },
+    { "Randall": { "shards": "racer_shards/randall.png" } },
+    { "Mulan": { "shards": "racer_shards/mulan.png" } },
+    { "Shang": { "shards": "racer_shards/shang.png" } },
+    { "Figment": { "shards": "racer_shards/figment.png" } },
+    { "Oswald": { "shards": "racer_shards/oswald.png" } },
+    { "Ortensia": { "shards": "racer_shards/ortensia.png" } },
+    { "Wall-E": { "shards": "racer_shards/walle.png" } },
+    { "Eve": { "shards": "racer_shards/eve.png" } },
+    { "Jessie": { "shards": "racer_shards/jessie.png" } },
+    { "Bo Peep": { "shards": "racer_shards/bo_peep.png" } },
+    { "Woody": { "shards": "racer_shards/woody.png" } },
+    { "Buzz Lightyear": { "shards": "racer_shards/buzz.png" } },
+    { "Angel": { "shards": "racer_shards/angel.png" } },
+    { "Gantu": { "shards": "racer_shards/gantu.png" } },
+    { "Jumba": { "shards": "racer_shards/jumba.png" } },
+    { "Lilo": { "shards": "racer_shards/lilo.png" } },
+    { "Stitch": { "shards": "racer_shards/stitch.png" } },
+    { "Aladdin": { "shards": "racer_shards/aladdin.png" } },
+    { "Jasmine": { "shards": "racer_shards/jasmine.png" } },
+    { "Jafar": { "shards": "racer_shards/jafar.png" } },
+    { "Genie": { "shards": "racer_shards/genie.png" } },
+    { "Kristoff": { "shards": "racer_shards/kristoff.png" } },
+    { "Hans": { "shards": "racer_shards/hans.png" } },
+    { "Anna": { "shards": "racer_shards/anna.png" } },
+    { "Elsa": { "shards": "racer_shards/elsa.png" } },
+    { "Olaf": { "shards": "racer_shards/olaf.png" } },
+    { "Ariel": { "shards": "racer_shards/ariel.png" } },
+    { "Prins Eric": { "shards": "racer_shards/princeeric.png" } },
+    { "King Triton": { "shards": "racer_shards/king.png" } },
+    { "Ursula": { "shards": "racer_shards/ursula.png" } },
+    { "Felix": { "shards": "../racer_shards/felix.png" } },
+    { "Vanellope": { "shards": "../racer_shards/vanellope.png" } },
+    { "Ralph": { "shards": "../racer_shards/ralph.png" } },
+    { "King Candy": { "shards": "../racer_shards/kingcandy.png" } },
+    { "Calhoun": { "shards": "../racer_shards/calhoun.png" } },
+    { "Kermit the Frog": { "shards": "../racer_shards/kermit.png" } },
+    { "Piggy": { "shards": "racer_shards/piggy.png" } },
+    { "Joy": { "shards": "../racer_shards/joy.png" } },
+    { "Fear": { "shards": "../racer_shards/fear.png" } },
+    { "Disgust": { "shards": "../racer_shards/disgust.png" } },
+    { "Anger": { "shards": "../racer_shards/anger.png" } },
+    { "Sadness": { "shards": "../racer_shards/sadness.png" } },
+    { "Anxiety": { "shards": "racer_shards/anxiety.png" } },
+    { "Ennui": { "shards": "racer_shards/ennui.png" } },
+    { "Maleficent": { "shards": "racer_shards/maleficent.png" } },
+    { "Cruella": { "shards": "racer_shards/cruella.png" } },
+    { "Dr. Finkelstein": { "shards": "racer_shards/dr_finkelstein.png" } },
+    { "Jack Skellington": { "shards": "racer_shards/jack_skellington.png" } },
+    { "Oogie Boogie": { "shards": "racer_shards/oogie_boogie.png" } },
+    { "Sally": { "shards": "racer_shards/sally.png" } },
+    { "Rapunzel": { "shards": "racer_shards/rapunzel.png" } },
+    { "Dash": { "shards": "racer_shards/dash.png" } },
+    { "Ms Incredible": { "shards": "racer_shards/ms_incredible.png" } },
+    { "Violet": { "shards": "racer_shards/violet.png" } },
+    
+];
+
+    // Sample track data
+    const tracks = [
+{ "name": "Agrabah", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Andy's Room", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Arbee's", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Arbee's Short Circuit", "variations": [1, 2, 3, 4, 5] },
+    { "name": "Arendelle", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Atlantica", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Candy Kingdom", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Castle", "variations": [1, 2, 3, 4] },
+    { "name": "Factory", "variations": [1, 2, 3, 4] },
+    { "name": "Great Wall", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Jungle Ruins", "variations": [1, 2, 3, 4] },
+    { "name": "Kaua'i", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Mount Olympus", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "The Nightmare Festival", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Pirate's", "variations": [1, 2, 3, 4, 5, 6, 7, 8] },
+    { "name": "Riley's Mind", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "Silver Screen", "variations": [1, 2, 3, 4, 5] },
+    { "name": "Toon Village", "variations": [1, 2, 3, 4, 5, 6] },
+    { "name": "The incredible showdown", "variations": [1, 2, 3, 4, 5, 6] },
+        // Add more tracks as needed
+    ];
+
+    const selectedItems = new Set();
+    const trackVariations = {}; 
+
+    function showTab(tabId) {
+        document.getElementById("racers").classList.add("hidden");
+        document.getElementById("tracks").classList.add("hidden");
+        document.getElementById("racersTab").classList.remove("active");
+        document.getElementById("tracksTab").classList.remove("active");
+
+        document.getElementById(tabId).classList.remove("hidden");
+        document.getElementById(tabId + "Tab").classList.add("active");
+    }
+
+    const racerGrid = document.getElementById('racerGrid');
+// Render racers grid
+
+characterImages.forEach(character => {
+    const [name, data] = Object.entries(character)[0];
+    const card = document.createElement('div');
+    card.className = "card bg-black bg-opacity-50 text-white rounded-lg p-1 shadow-md cursor-pointer";
+    card.innerHTML = `<img src="${data.shards}" alt="${name}" class="w-12 h-12 mx-auto"><div class="text-center mt-1 text-xs">${name}</div>`;
+    card.onclick = () => toggleTrack(name, card);  // Replace toggleWheelItem with toggleTrack here
+    racerGrid.appendChild(card);
+});
+
+    const trackList = document.getElementById('trackList');
+    tracks.forEach(track => {
+        const trackContainer = document.createElement('div');
+        trackContainer.className = "bg-gray-700 text-white p-3 rounded-lg shadow-md cursor-pointer flex justify-between items-center";
+        trackContainer.onclick = () => toggleTrack(track.name, trackContainer);
+
+        const trackLabel = document.createElement('span');
+        trackLabel.className = "text-lg font-bold";
+        trackLabel.textContent = track.name;
+
+        const variationContainer = document.createElement('div');
+        variationContainer.className = "flex gap-2";
+
+        track.variations.forEach(variation => {
+            const variationButton = document.createElement('button');
+            variationButton.className = "bg-gray-500 text-white px-2 py-1 rounded-md text-xs";
+            variationButton.textContent = `Var ${variation}`;
+            variationButton.setAttribute('data-track', track.name);
+            variationButton.setAttribute('data-variation', variation);
+            variationButton.onclick = (event) => {
+                event.stopPropagation();
+                toggleVariation(track.name, variation, variationButton);
+            };
+            variationContainer.appendChild(variationButton);
+        });
+
+        trackContainer.appendChild(trackLabel);
+        trackContainer.appendChild(variationContainer);
+        trackList.appendChild(trackContainer);
+    });
+
+let racersAllSelected = false; // Track selection state for racers
+let tracksAllSelected = false; // Track selection state for tracks
+
+function toggleSelectAllRacers() {
+    const racerCards = document.querySelectorAll('#racerGrid .card');
+    racerCards.forEach(card => {
+        const racerName = card.querySelector('div').innerText;
+        if (racersAllSelected) {
+            if (selectedItems.has(racerName)) {
+                toggleTrack(racerName, card); // Deselect
+            }
+        } else {
+            if (!selectedItems.has(racerName)) {
+                toggleTrack(racerName, card); // Select
+            }
+        }
+    });
+    racersAllSelected = !racersAllSelected; // Toggle state
+    renderWheel();
+    updateSelectAllRacersButton();
+}
+
+function toggleSelectAllTracks() {
+    const trackContainers = document.querySelectorAll('#trackList > div');
+    trackContainers.forEach(container => {
+        const trackName = container.querySelector('span').innerText;
+        if (tracksAllSelected) {
+            if (selectedItems.has(trackName)) {
+                toggleTrack(trackName, container); // Deselect
+            }
+        } else {
+            if (!selectedItems.has(trackName)) {
+                toggleTrack(trackName, container); // Select
+            }
+        }
+    });
+    tracksAllSelected = !tracksAllSelected; // Toggle state
+    renderWheel();
+    updateSelectAllTracksButton();
+}
+
+function updateSelectAllRacersButton() {
+    const button = document.querySelector('#racers .mb-4 button');
+    button.textContent = racersAllSelected ? 'Deselect All Racers' : 'Select All Racers';
+}
+
+function updateSelectAllTracksButton() {
+    const button = document.querySelector('#tracks .mb-4 button');
+    button.textContent = tracksAllSelected ? 'Deselect All Tracks' : 'Select All Tracks';
+}
+
+
+
+function toggleTrack(trackName, element) {
+    const isTrackSelected = selectedItems.has(trackName);
+
+    if (isTrackSelected) {
+        // If track is already selected, deselect it and all variations
+        selectedItems.delete(trackName);
+        element.classList.remove('bg-green-600');
+        
+        if (trackVariations[trackName]) {
+            trackVariations[trackName].forEach(variation => {
+                const variationButton = document.querySelector(`button[data-track="${trackName}"][data-variation="${variation}"]`);
+                if (variationButton) {
+                    variationButton.classList.remove('bg-green-800');
+                    variationButton.classList.add('bg-gray-500');
+                }
+            });
+            delete trackVariations[trackName];
+        }
+    } else {
+        // Select the track and enable all its variations, if it has any
+        selectedItems.add(trackName);
+        element.classList.add('bg-green-600');
+
+        const track = tracks.find(track => track.name === trackName);
+        if (track) {
+            // Only attempt to add variations if track is defined
+            if (!trackVariations[trackName]) trackVariations[trackName] = new Set();
+
+            track.variations.forEach(variation => {
+                trackVariations[trackName].add(variation);
+                const variationButton = document.querySelector(`button[data-track="${trackName}"][data-variation="${variation}"]`);
+                if (variationButton) {
+                    variationButton.classList.remove('bg-gray-500');
+                    variationButton.classList.add('bg-green-800');
+                }
+            });
+        }
+    }
+
+    renderWheel();
+}
+
+
+    function toggleVariation(track, variation, button) {
+        if (!trackVariations[track]) trackVariations[track] = new Set();
+        
+        if (trackVariations[track].has(variation)) {
+            trackVariations[track].delete(variation);
+            button.classList.remove('bg-green-800');
+            button.classList.add('bg-gray-500');
+        } else {
+            trackVariations[track].add(variation);
+            button.classList.remove('bg-gray-500');
+            button.classList.add('bg-green-800');
+        }
+    }
+
+    const wheelCanvas = document.getElementById('wheelCanvas');
+    const ctx = wheelCanvas.getContext('2d');
+    let currentRotation = 0;
+
+    function renderWheel() {
+        const items = Array.from(selectedItems);
+        ctx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+
+        if (items.length === 0) {
+            ctx.beginPath();
+            ctx.arc(250, 250, 240, 0, 2 * Math.PI);
+            ctx.fillStyle = "#666";
+            ctx.fill();
+            return;
+        }
+
+        const colors = ['#4A5568', '#2D3748', '#1A202C', '#343E4A', '#111822'];
+        const sliceAngle = 2 * Math.PI / items.length;
+
+        items.forEach((item, index) => {
+            const startAngle = index * sliceAngle;
+            const endAngle = startAngle + sliceAngle;
+            ctx.beginPath();
+            ctx.moveTo(250, 250);
+            ctx.arc(250, 250, 240, startAngle, endAngle);
+            ctx.closePath();
+            ctx.fillStyle = colors[index % colors.length];
+            ctx.fill();
+            ctx.save();
+            ctx.translate(250, 250);
+            ctx.rotate(startAngle + sliceAngle / 2);
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.fillText(item, 150, 0);
+            ctx.restore();
+        });
+    }
+
+    document.getElementById('spinCircle').addEventListener('click', () => {
+        document.getElementById('wheelMessage').textContent = '';
+        if (selectedItems.size === 0) {
+            document.getElementById('wheelMessage').textContent = "Please add items to the wheel before spinning!";
+            return;
+        }
+
+        const spinAngle = Math.floor(Math.random() * 360) + 1800;
+        currentRotation += spinAngle;
+
+        gsap.to('#wheelCanvas', {
+            rotation: currentRotation,
+            duration: 5,
+            ease: 'power3.out',
+            onComplete: () => {
+                const items = Array.from(selectedItems);
+                const finalRotation = (currentRotation + 90) % 360;
+                const sliceAngle = 360 / items.length;
+                const winningIndex = Math.floor((360 - finalRotation) / sliceAngle) % items.length;
+                const winner = items[winningIndex];
+                
+                if (trackVariations[winner]) {
+                    const variations = Array.from(trackVariations[winner]);
+                    const randomVariation = variations[Math.floor(Math.random() * variations.length)];
+                    document.getElementById('wheelMessage').textContent = `The winner is: ${winner} (Variation ${randomVariation})`;
+                } else {
+                    document.getElementById('wheelMessage').textContent = `The winner is: ${winner}`;
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+    .tab-button {
+        font-weight: bold;
+        padding: 8px 16px;
+        margin: 0 8px;
+        cursor: pointer;
+        background-color: #2D3748;
+        color: white;
+        border-radius: 4px;
+    }
+    .tab-button.active {
+        background-color: #4A5568;
+    }
+    .tab-content.hidden {
+        display: none;
+    }
+</style>
+
+<footer class="bg-gray-900 text-white p-4 text-center">
+    <p>&copy; 2024 Doobelator. All rights reserved.</p>
+</footer>
+</body>
+</html>

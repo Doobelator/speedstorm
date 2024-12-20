@@ -1,0 +1,1961 @@
+[
+            {
+                "name": "Chip",
+                "image": "crews/beautybeast/chip.webp",
+                "stats": ["Boost"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Potts",
+                "image": "crews/beautybeast/potts.webp",
+                "stats": ["Top Speed"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Sultan",
+                "image": "crews/beautybeast/Sultan.webp",
+                "stats": ["Combat"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Fifi and Maids",
+                "image": "crews/beautybeast/Fifi.webp",
+                "stats": ["Handling"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Cogsworth",
+                "image": "crews/beautybeast/Cogsworth.webp",
+                "stats": ["Top Speed", "Combat"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Philippe",
+                "image": "crews/beautybeast/Philippe.webp",
+                "stats": ["Acceleration", "Boost"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "CLAUDETTE, LAURETTE AND PAULETTE",
+                "image": "crews/beautybeast/GastonGirls.webp",
+                "stats": ["Top Speed", "Handling"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Belle", "Beast", "Gaston"]
+            },
+            {
+                "name": "Maurice",
+                "image": "crews/beautybeast/Maurice.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Belle"]
+            },
+            {
+                "name": "Lumiere",
+                "image": "crews/beautybeast/Lumiere.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Beast"]
+            },
+            {
+                "name": "Lefou",
+                "image": "crews/beautybeast/Lefou.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Gaston"]
+            },
+            {
+                "name": "NickSchmidt",
+                "image": "crews/monstersinc/NickSchmidt.webp",
+                "stats": ["Acceleration"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "PeteWard",
+                "image": "crews/monstersinc/PeteWard.webp",
+                "stats": ["Handling"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "TedPauley",
+                "image": "crews/monstersinc/TedPauley.webp",
+                "stats": ["Boost"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "George",
+                "image": "crews/monstersinc/George.webp",
+                "stats": ["Top Speed"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "CDA",
+                "image": "crews/monstersinc/CDA.webp",
+                "stats": ["Top Speed","Acceleration"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "Flint",
+                "image": "crews/monstersinc/Ms.Flint.webp",
+                "stats": ["Handling","Boost"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "Waternoose",
+                "image": "crews/monstersinc/Waternoose.webp",
+                "stats": ["Top Speed","Combat"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "Yeti",
+                "image": "crews/monstersinc/Yeti.webp",
+                "stats": ["Acceleration","Combat"],
+                "star": 1,
+                "epic": false,
+                "characters": ["Mike Wazowski","Sulley","Celia Mae","Randall"]
+            },
+            {
+                "name": "Boo",
+                "image": "crews/monstersinc/Boo.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Sulley"]
+            },
+            {
+                "name": "Roz",
+                "image": "crews/monstersinc/Roz.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Celia Mae"]
+            },
+            {
+                "name": "Fungus",
+                "image": "crews/monstersinc/Fungus.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Randall"]
+            },
+            {
+                "name": "SmittyNeedleman",
+                "image": "crews/monstersinc/SmittyNeedleman.webp",
+                "stats": ["All stats"],
+                "star": 1,
+                "epic": true,
+                "characters": ["Mike Wazowski"]
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {
+                "name": "crews/hercules/Cerberus",
+                "image": "crews/hercules/Cerberus.webp",
+                "stats": [
+                  "Acceleration","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Gods",
+                "image": "crews/hercules/Gods.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Hera",
+                "image": "crews/hercules/Hera.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Hermes",
+                "image": "crews/hercules/Hermes.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Hydra",
+                "image": "crews/hercules/Hydra.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Muses",
+                "image": "crews/hercules/Muses.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                    "Meg"
+                ]
+              },
+              {
+                "name": "crews/hercules/Pain-and-Panic",
+                "image": "crews/hercules/Pain-and-Panic.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Parents",
+                "image": "crews/hercules/Parents.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Pegasus",
+                "image": "crews/hercules/Pegasus.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Hercules"
+                ]
+              },
+              {
+                "name": "crews/hercules/Phil",
+                "image": "crews/hercules/Phil.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/hercules/Zeus",
+                "image": "crews/hercules/Zeus.webp",
+                "stats": [
+                  "Handling","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Meg", "Hercules", "Hades"
+                ]
+              },
+              {
+                "name": "crews/MF/Caroline",
+                "image": "crews/MF/Caroline.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Steamboat Mickey"
+                ]
+              },
+              {
+                "name": "crews/MF/Chip-and-Dale",
+                "image": "crews/MF/Chip-and-Dale.webp",
+                "stats": [
+                  "Top Speed","Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Clara",
+                "image": "crews/MF/Clara.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Clarabelle",
+                "image": "crews/MF/Clarabelle.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Fieldmouse",
+                "image": "crews/MF/Fieldmouse.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/GilbertGoof",
+                "image": "crews/MF/GilbertGoof.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Goofy"
+                ]
+              },
+              {
+                "name": "crews/MF/Goat",
+                "image": "crews/MF/Goat.webp",
+                "stats": [
+                  "Top Speed","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Gus",
+                "image": "crews/MF/Gus.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Horace",
+                "image": "crews/MF/Horace.webp",
+                "stats": [
+                  "Acceleration","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Humphrey",
+                "image": "crews/MF/Humphrey.webp",
+                "stats": [
+                  "Acceleration","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/LonesomeGhosts",
+                "image": "crews/MF/LonesomeGhosts.webp",
+                "stats": [
+                  "Handling","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/MickeyBirds",
+                "image": "crews/MF/MickeyBirds.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                    "Donald"
+                ]
+              },
+              {
+                "name": "crews/MF/MickeyDog",
+                "image": "crews/MF/MickeyDog.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                    "Minnie"
+                ]
+              },
+              {
+                "name": "crews/MF/MickeyDucks",
+                "image": "crews/MF/MickeyDucks.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                    "Daisy"
+                ]
+              },
+              {
+                "name": "crews/MF/MickeyMice",
+                "image": "crews/MF/MickeyMice.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Ohara",
+                "image": "crews/MF/Ohara.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Parrot",
+                "image": "crews/MF/Parrot.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                    "Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Pedro",
+                "image": "crews/MF/Pedro.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Pluto",
+                "image": "crews/MF/Pluto.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Mickey"
+                ]
+              },
+              {
+                "name": "crews/MF/Seal",
+                "image": "crews/MF/Seal.webp",
+                "stats": [
+                  "Acceleration","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Tanglefoot",
+                "image": "crews/MF/Tanglefoot.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Tootsie",
+                "image": "crews/MF/Tootsie.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                    "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/MF/Wilbur",
+                "image": "crews/MF/Wilbur.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mickey","Donald","Goofy","Minnie","Daisy","Steamboat Mickey","Steamboat Pete"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Bagheera",
+                "image": "crews/junglebook/Bagheera.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Junglepatrol",
+                "image": "crews/junglebook/Junglepatrol.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Kaa",
+                "image": "crews/junglebook/Kaa.webp",
+                "stats": [
+                  "Top Speed", "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Louie",
+                "image": "crews/junglebook/Louie.webp",
+                "stats": [
+                  "Combat","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/MowgliBirds",
+                "image": "crews/junglebook/MowgliBirds.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Shanti",
+                "image": "crews/junglebook/Shanti.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Shere_Khan",
+                "image": "crews/junglebook/Shere_Khan.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mowgli", "Baloo"
+                ]
+              },
+              {
+                "name": "crews/junglebook/Wolves",
+                "image": "crews/junglebook/Wolves.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Mowgli"
+                ]
+              },
+              {
+                "name": "crews/pirates/Beckett",
+                "image": "crews/pirates/Beckett.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "Gibbs",
+                "image": "crews/pirates/Gibbs.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/Gillette",
+                "image": "crews/pirates/Gillette.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/M_M",
+                "image": "crews/pirates/M_M.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/Marty",
+                "image": "crews/pirates/Marty.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/Norrington",
+                "image": "crews/pirates/Norrington.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/P_R",
+                "image": "crews/pirates/P_R.webp",
+                "stats": [
+                  "Acceleration","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Elizabeth Swann", "Jack Sparrow"
+                ]
+              },
+              {
+                "name": "crews/pirates/Weatherby",
+                "image": "crews/pirates/Weatherby.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Elizabeth Swann"
+                ]
+              },
+              {
+                "name": "crews/mulan/Chi-Fu",
+                "image": "crews/mulan/Chi-Fu.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/Cri-Kee",
+                "image": "crews/mulan/Cri-Kee.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/Fa_Zhou",
+                "image": "crews/mulan/Fa_Zhou.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/GeneralLi",
+                "image": "crews/mulan/GeneralLi.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/Khan",
+                "image": "crews/mulan/Khan.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/MulanFriends",
+                "image": "crews/mulan/MulanFriends.webp",
+                "stats": [
+                  "Handling","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/mulan/Mushu",
+                "image": "crews/mulan/Mushu.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Mulan"
+                ]
+              },
+              {
+                "name": "crews/mulan/The_Emperor_of_China",
+                "image": "crews/mulan/The_Emperor_of_China.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Mulan", "Shang"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/DapperDans",
+                "image": "crews/waltdisney/DapperDans.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/Dreamfinder",
+                "image": "crews/waltdisney/Dreamfinder.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/FigmentBirds",
+                "image": "crews/waltdisney/FigmentBirds.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/OrangeBird",
+                "image": "crews/waltdisney/OrangeBird.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/SMRT-1",
+                "image": "crews/waltdisney/SMRT-1.webp",
+                "stats": [
+                  "Top Speed","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/waltdisney/Sonny",
+                "image": "crews/waltdisney/Sonny.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Figment"
+                ]
+              },
+              {
+                "name": "crews/toystory/Aliens",
+                "image": "crews/toystory/Aliens.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Buzz Lightyear"
+                ]
+              },
+              {
+                "name": "crews/toystory/BoSheep",
+                "image": "crews/toystory/BoSheep.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Bullseye",
+                "image": "crews/toystory/Bullseye.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Woody"
+                ]
+              },
+              {
+                "name": "crews/toystory/Critters",
+                "image": "crews/toystory/Critters.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Jessie"
+                ]
+              },
+              {
+                "name": "crews/toystory/Hamm",
+                "image": "crews/toystory/Hamm.webp",
+                "stats": [
+                  "Handling","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Lenny",
+                "image": "crews/toystory/Lenny.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Mutant-Toys",
+                "image": "crews/toystory/Mutant-Toys.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/RC",
+                "image": "crews/toystory/RC.webp",
+                "stats": [
+                  "Top Speed","Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Rex",
+                "image": "crews/toystory/Rex.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Sarge",
+                "image": "crews/toystory/Sarge.webp",
+                "stats": [
+                  "Acceleration","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Slinky-Dog",
+                "image": "crews/toystory/Slinky-Dog.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/toystory/Wheezy",
+                "image": "crews/toystory/Wheezy.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Jessie","Woody","Buzz Lightyear","Bo Peep"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Cobra",
+                "image": "crews/lilostitch/Cobra.webp",
+                "stats": [
+                  "Acceleration","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Councilwoman",
+                "image": "crews/lilostitch/Councilwoman.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Captain Gantu"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/David",
+                "image": "crews/lilostitch/David.webp",
+                "stats": [
+                  "Top Speed","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/DuckFamily",
+                "image": "crews/lilostitch/DuckFamily.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Stitch"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Hasagawa",
+                "image": "crews/lilostitch/Hasagawa.webp",
+                "stats": [
+                  "Acceleration","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/IceCreamMan",
+                "image": "crews/lilostitch/IceCreamMan.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Intergalactic-Police",
+                "image": "crews/lilostitch/Intergalactic-Police.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Kumu",
+                "image": "crews/lilostitch/Kumu.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Luki",
+                "image": "crews/lilostitch/Luki.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Mertle",
+                "image": "crews/lilostitch/Mertle.webp",
+                "stats": [
+                  "Combat","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Nani",
+                "image": "crews/lilostitch/Nani.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Lilo"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Pleakley",
+                "image": "crews/lilostitch/Pleakley.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Jumba"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Pudge",
+                "image": "crews/lilostitch/Pudge.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Reuben",
+                "image": "crews/lilostitch/Reuben.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Angel"
+                ]
+              },
+              {
+                "name": "crews/lilostitch/Susan",
+                "image": "crews/lilostitch/Susan.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Lilo","Stitch","Captain Gantu","Jumba","Angel"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Abu",
+                "image": "crews/aladdin/Abu.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Aladdin"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Achmed",
+                "image": "crews/aladdin/Achmed.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Agrabah-siblings",
+                "image": "crews/aladdin/Agrabah-siblings.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Camel",
+                "image": "crews/aladdin/Camel.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Carpet",
+                "image": "crews/aladdin/Carpet.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Genie"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Cave",
+                "image": "crews/aladdin/Cave.webp",
+                "stats": [
+                  "Acceleration","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Gazeem",
+                "image": "crews/aladdin/Gazeem.webp",
+                "stats": [
+                  "Handling","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Iago",
+                "image": "crews/aladdin/Iago.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Merchant",
+                "image": "crews/aladdin/Merchant.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/aladdin/Rajah",
+                "image": "crews/aladdin/Rajah.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Jasmine"
+                ]
+              },
+              {
+                "name": "crews/aladdin/The_Sultan",
+                "image": "crews/aladdin/The_Sultan.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Aladdin","Genie","Jasmine","Jafar"
+                ]
+              },
+              {
+                "name": "crews/frozen/Agnarr",
+                "image": "crews/frozen/Agnarr.webp",
+                "stats": [
+                  "Handling","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Bruni",
+                "image": "crews/frozen/Bruni.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Elsa"
+                ]
+              },
+              {
+                "name": "crews/frozen/Bulda",
+                "image": "crews/frozen/Bulda.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Erik-and-Francis",
+                "image": "crews/frozen/Erik-and-Francis.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Grand-Pabbie",
+                "image": "crews/frozen/Grand-Pabbie.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Anna"
+                ]
+              },
+              {
+                "name": "crews/frozen/Iduna",
+                "image": "crews/frozen/Iduna.webp",
+                "stats": [
+                  "Acceleration","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Marshmallow",
+                "image": "crews/frozen/Marshmallow.webp",
+                "stats": [
+                  "Acceleration","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Mattias",
+                "image": "crews/frozen/Mattias.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Oaken",
+                "image": "crews/frozen/Oaken.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Royal-Guards-of-Arendelle",
+                "image": "crews/frozen/Royal-Guards-of-Arendelle.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Sitron",
+                "image": "crews/frozen/Sitron.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Snowgie",
+                "image": "crews/frozen/Snowgie.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Olaf"
+                ]
+              },
+              {
+                "name": "crews/frozen/Sven",
+                "image": "crews/frozen/Sven.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Kristoff"
+                ]
+              },
+              {
+                "name": "crews/frozen/Trolls",
+                "image": "crews/frozen/Trolls.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/frozen/Weselton",
+                "image": "crews/frozen/Weselton.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Olaf","Anna","Elsa","Kristoff","Hans"
+                ]
+              },
+              {
+                "name": "crews/walle/Auto",
+                "image": "crews/walle/Auto.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/BURN-E",
+                "image": "crews/walle/BURN-E.webp",
+                "stats": [
+                  "Handling","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/GO-4",
+                "image": "crews/walle/GO-4.webp",
+                "stats": [
+                  "Top Speed"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/Hal",
+                "image": "crews/walle/Hal.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Wall-E"
+                ]
+              },
+              {
+                "name": "crews/walle/Captain_Eve",
+                "image": "crews/walle/Captain_Eve.png",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/John-and-Mary",
+                "image": "crews/walle/John-and-Mary.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/M-O",
+                "image": "crews/walle/M-O.webp",
+                "stats": [
+                  "Acceleration","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/PR-T",
+                "image": "crews/walle/PR-T.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/walle/SECUR-T",
+                "image": "crews/walle/SECUR-T.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Wall-E", "Eve"
+                ]
+              },
+              {
+                "name": "crews/oswald/CamelOswald",
+                "image": "crews/oswald/CamelOswald.webp",
+                "stats": [
+                  "Top Speed","Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/Donkey",
+                "image": "crews/oswald/Donkey.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/Elephant-on-a-bicycle",
+                "image": "crews/oswald/Elephant-on-a-bicycle.webp",
+                "stats": [
+                  "Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/FlotsamandJetsam",
+                "image": "crews/littlemermaid/FlotsamandJetsam.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Ursula"
+                ]
+              },
+              {
+                "name": "crews/oswald/Francine",
+                "image": "crews/oswald/Francine.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/Hot_Dog",
+                "image": "crews/oswald/Hot_Dog.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/Lifeguard",
+                "image": "crews/oswald/Lifeguard.webp",
+                "stats": [
+                  "Acceleration","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/The-Mechanical-Cow",
+                "image": "crews/oswald/The-Mechanical-Cow.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/The-Reluctant-Horse",
+                "image": "crews/oswald/The-Reluctant-Horse.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Oswald","Ortensia"
+                ]
+              },
+              {
+                "name": "crews/oswald/Whiskers",
+                "image": "crews/oswald/Whiskers.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Oswald"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/ArielSisters",
+                "image": "crews/littlemermaid/ArielSisters.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Flounder",
+                "image": "crews/littlemermaid/Flounder.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Ariel"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Glut",
+                "image": "crews/littlemermaid/Glut.webp",
+                "stats": [
+                  "Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Grimsby",
+                "image": "crews/littlemermaid/Grimsby.webp",
+                "stats": [
+                  "Handling","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Herald",
+                "image": "crews/littlemermaid/Herald.webp",
+                "stats": [
+                  "Acceleration"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Louis",
+                "image": "crews/littlemermaid/Louis.webp",
+                "stats": [
+                  "Handling"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Max",
+                "image": "crews/littlemermaid/Max.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "Prince Eric"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Scuttle",
+                "image": "crews/littlemermaid/Scuttle.webp",
+                "stats": [
+                  "Top Speed","Boost"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/Sebastian",
+                "image": "crews/littlemermaid/Sebastian.webp",
+                "stats": [
+                  "All stats"
+                ],
+                "star": 1,
+                "epic": true,
+                "characters": [
+                  "King Triton"
+                ]
+              },
+              {
+                "name": "crews/littlemermaid/UrsulaGarden",
+                "image": "crews/littlemermaid/UrsulaGarden.webp",
+                "stats": [
+                  "Top Speed","Combat"
+                ],
+                "star": 1,
+                "epic": false,
+                "characters": [
+                  "Ariel","King Triton","Prince Eric","Ursula"
+                ]
+              }
+            
+]

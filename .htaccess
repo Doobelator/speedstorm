@@ -1,0 +1,25 @@
+#Rewrite everything to https
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove index.html from URL
+RewriteCond %{THE_REQUEST} /index\.html\s [NC]
+RewriteRule ^(.*?)index\.html$ /$1 [L,R=301,NC]
+
+# Check if the requested file is not a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+# Check if the requested file is not a regular file
+RewriteCond %{REQUEST_FILENAME} !-f
+# Rewrite the request to append .html file extension
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Ensure that directory requests use index.html as the default file
+DirectoryIndex index.html
+
+Redirect 302 /upgrade-materials /upgrade-materials-s7
+Redirect 302 /upgrade-materials?from=0&to=40&character=Mickey /upgrade-materials-s7
+Redirect 302 /stats-and-crews /upgrade-materials-s7
+
+
+

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Upgrade Materials Calculator</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+</head>
+
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+        <nav class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo_transparant.png" style="width: 70px">
+                <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+            </div>
+            <div class="hidden md:flex">
+                <ul class="flex items-center">
+                    <li class="mr-6">
+                        <a class="text-white" href="index">Home</a>
+                    </li>
+                    <li class="mr-6 relative group">
+                        <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded" id="calculatorsDropdown">Calculators</a>
+                        <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials <img class="inline-block w-10" src="images/Pro-gloves.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7) <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews <img class="inline-block w-10" src="crews/walle/Hal.webp"></a>
+                            <!-- Repeat for other calculators -->
+                        </div>
+                    </li>
+                    <li>
+                        <a class="text-white" href="tierlist">Tierlist maker</a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="support">Join the crew 🏎</a>
+                    </li>
+                    <li class="discord ml-10">
+                        <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                           class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                            <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+                <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="md:hidden hidden" id="mobileMenu">
+            <ul class="">
+                <li class="active">
+                    <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white md:right-0 w-80 md:w-96 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7)</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews</a>
+                        <!-- Repeat for other calculators -->
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+document.getElementById('calculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.querySelector('.dropdown-menu').classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+// Add this event listener to close the menu when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const calculatorsDropdownMenu = document.querySelector('.dropdown-menu');
+
+    // Check if the click is outside the mobile menu
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    // Check if the click is outside the calculators dropdown menu
+    if (!calculatorsDropdownMenu.contains(event.target) && !event.target.matches('#calculatorsDropdown')) {
+        calculatorsDropdownMenu.classList.add('hidden');
+    }
+});
+    </script>
+                <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Racer Stats and Crews Calculator</h1>
+    </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p>
+                <i>See more details on the <a href="https://speedstorm.fandom.com/wiki/Crew" target="_blank" style="color: #00BFFF;">Disney Speedstorm Wiki!</a></i>
+            </p>
+    </div></div>
+        <div class="page-section-medium-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/6 p-5 pl-0">
+                <form>
+                    <div class="mb-4">
+                        <label for="startLevel" class="block">I am Level:</label>
+                        <input type="number"
+                               class="form-input mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                               id="level" min="15" max="45" value="1" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="character" class="block">Character:</label>
+                        <select
+                                class="form-select mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                                id="character" required>
+                            <!-- Mickey and Friends  -->
+                            <optgroup label="Mickey and Friends">
+                                <option data-type="common" data-class="Speedster" value="Mickey">Mickey</option>
+                                <option data-type="rare" data-class="Brawler" value="Donald">Donald</option>
+                                <option data-type="rare" data-class="Defender" value="Goofy">Goofy</option>
+                                <option data-type="common" data-class="Trickster" value="Daisy">Daisy</option>
+                                <option data-type="rare" data-class="Brawler" value="Minnie">Minnie</option>
+                                <option data-type="epic" data-class="Defender" value="Steamboat Mickey">Steamboat
+                                    Mickey
+                                </option>
+                                <option data-type="common" data-class="Brawler" value="Steamboat Pete">Steamboat Pete
+                                </option>
+                            </optgroup>
+                            <!-- Beauty and the Beast  -->
+                            <optgroup label="Beauty and the Beast">
+                                <option data-type="epic" data-class="Speedster" value="Belle">Belle</option>
+                                <option data-type="rare" data-class="Brawler" value="Beast">Beast</option>
+                                <option data-type="rare" data-class="Brawler" value="Gaston">Gaston</option>
+                            </optgroup>
+                            <!-- Mulan  -->
+                            <optgroup label="Mulan">
+                                <option data-type="rare" data-class="Trickster" value="Mulan">Mulan</option>
+                                <option data-type="common" data-class="Defender" value="Shang">Shang</option>
+                            </optgroup>
+                            <!-- Jungle Book  -->
+                            <optgroup label="Jungle Book">
+                                <option data-type="rare" data-class="Speedster" value="Mowgli">Mowgli</option>
+                                <option data-type="epic" data-class="Defender" value="Baloo">Baloo</option>
+                            </optgroup>
+                            <!-- Pirates  -->
+                            <optgroup label="Pirates of the caribbean">
+                                <option data-type="common" data-class="Defender" value="Elizabeth Swann">Elizabeth
+                                    Swann
+                                </option>
+                                <option data-type="rare" data-class="Trickster" value="Jack Sparrow">Jack Sparrow
+                                </option>
+                            </optgroup>
+                            <!-- Hercules  -->
+                            <optgroup label="Hercules">
+                                <option data-type="rare" data-class="Brawler" value="Hercules">Hercules</option>
+                                <option data-type="common" data-class="Trickster" value="Meg">Meg</option>
+                                <option data-type="epic" data-class="Trickster" value="Hades">Hades</option>
+                            </optgroup>
+                            <!-- Monsters inc  -->
+                            <optgroup label="Monsters inc">
+                                <option data-type="common" data-class="Speedster" value="Mike Wazowski">Mike Wazowski
+                                </option>
+                                <option data-type="epic" data-class="Brawler" value="Sulley">Sulley</option>
+                                <option data-type="common" data-class="Defender" value="Celia Mae">Celia Mae</option>
+                                <option data-type="rare" data-class="Trickster" value="Randall">Randall</option>
+                            </optgroup>
+                            <!-- Walt Disney  -->
+                            <optgroup label="Walt Disney">
+                                <option data-type="epic" data-class="Trickster" value="Figment">Figment</option>
+                            </optgroup>
+                            <!-- Toy Story  -->
+                            <optgroup label="Toy Story">
+                                <option data-type="common" data-class="Brawler" value="Jessie">Jessie</option>
+                                <option data-type="common" data-class="Trickster" value="Bo Peep">Bo Peep</option>
+                                <option data-type="rare" data-class="Speedster" value="Woody">Woody</option>
+                                <option data-type="epic" data-class="Defender" value="Buzz Lightyear">Buzz Lightyear
+                                </option>
+                            </optgroup>
+                            <!-- Lilo and Stitch  -->
+                            <optgroup label="Lilo and Stitch">
+                                <option data-type="rare" data-class="Speedster" value="Lilo">Lilo</option>
+                                <option data-type="epic" data-class="Speedster" value="Stitch">Stitch</option>
+                                <option data-type="common" data-class="Defender" value="Jumba">Jumba</option>
+                                <option data-type="rare" data-class="Brawler" value="Captain Gantu">Captain Gantu
+                                </option>
+                                <option data-type="common" data-class="Trickster" value="Angel">Angel</option>
+                            </optgroup>
+                            <!-- Aladdin  -->
+                            <optgroup label="Aladdin">
+                                <option data-type="rare" data-class="Trickster" value="Aladdin">Aladdin</option>
+                                <option data-type="common" data-class="Speedster" value="Jasmine">Jasmine</option>
+                                <option data-type="rare" data-class="Brawler" value="Jafar">Jafar</option>
+                                <option data-type="epic" data-class="Defender" value="Genie">Genie</option>
+                            </optgroup>
+                            <!-- Frozen  -->
+                            <optgroup label="Frozen">
+                                <option data-type="common" data-class="Defender" value="Kristoff">Kristoff</option>
+                                <option data-type="common" data-class="Brawler" value="Hans">Hans</option>
+                                <option data-type="rare" data-class="Trickster" value="Anna">Anna</option>
+                                <option data-type="epic" data-class="Defender" value="Elsa">Elsa</option>
+                                <option data-type="epic" data-class="Speedster" value="Olaf">Olaf</option>
+                            </optgroup>
+                            <!-- Oswald the rabbit -->
+                            <optgroup label="Oswald the rabbit">
+                                <option data-type="epic" data-class="Trickster" value="Oswald">Oswald</option>
+                                <option data-type="rare" data-class="Speedster" value="Ortensia">Ortensia</option>
+                            </optgroup>
+                            <!-- Wall-E  -->
+                            <optgroup label="Wall-E & Eve">
+                                <option data-type="epic" data-class="Speedster" value="Wall-E">Wall-E</option>
+                                <option data-type="rare" data-class="Defender" value="Eve">Eve</option>
+                            </optgroup>
+                            <!-- Little mermaid -->
+                            <optgroup label="Little mermaid">
+                                <option data-type="rare" data-class="Defender" value="Ariel">Ariel</option>
+                                <option data-type="common" data-class="Speedster" value="Prince Eric">Prince Eric
+                                </option>
+                                <option data-type="common" data-class="Brawler" value="King Triton">King Triton</option>
+                                <option data-type="epic" data-class="Trickster" value="Ursula">Ursula</option>
+                            </optgroup>
+                            <!-- Add other options -->
+                        </select>
+                    </div>
+
+                    <button id="calculateStats" type="button"
+                            class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Calculate
+                    </button>
+                    <br/><br/>
+                </form>
+            </div>
+            <div class="crew-members w-full md:w-3/6 mb-4 flex justify-start flex-wrap">
+            </div>
+            <div class="w-full md:w-2/6">
+                <div id="result" class="mt-3">
+                    <table class="stat-table table-auto w-full bg-black bg-opacity-50"><thead><tr><th>Stat</th><th>Value</th></tr></thead><tbody><tr><td class="p-5 text-center">Top Speed</td><td class="p-5 text-center "> </td></tr><tr><td class="p-5 text-center">Acceleration</td><td class="p-5 text-center "> </td></tr><tr><td class="p-5 text-center">Handling</td><td class="p-5 text-center "> </td></tr><tr><td class="p-5 text-center">Boost</td><td class="p-5 text-center "> </td></tr><tr><td class="p-5 text-center">Combat</td><td class="p-5 text-center "> </td></tr></tbody></table>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+        <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <h2 class="text-lg">How does it work ?</h2>
+            <br/>
+            <p>Maximize your racer's performance by selecting the ideal crew with this calculator. Choose up to four crew members, each with a star rating from one to five, to see the total stat boost provided. This feature helps in determining the best crew combinations for your racing style, allowing for strategic planning to leverage your crew's strengths effectively on the track.</p>
+            <br/>
+            <p>This tool is optimized for estimating your total stats with any crew selected for the character. Select the crews (max 4), then select the stars and see the resulting stats! It was never easier to calculate on which crews you want to invest.</p>
+            <br/>
+            <p>Additional tips and tricks: Each racer has a hidden topspeed cap, meaning that only going for topspeed, will not benefit you in the long run.</p>
+            <br/>
+            <p><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/stats-and-crews-1.png"></p>
+            <br/>
+            <p><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/stats-and-crews-2.png"></p>
+        </div>
+    </div>
+        <div class="page-section-medium-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p>Due to limited available data, the calculator shows a close estimation of the stats. The calculation
+                behind this might put some stats a little off, especially around level 50. Come visit the discord and
+                share your thoughts! <br/><br/>
+                <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                    <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<footer class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+<script src="assets/stats-calc.min.js?v=1.0"></script>
+
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('doobelator', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Racing ticket',
+    'floating-chat.donateButton.background-color': '#00b9fe',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1352 @@
+{
+      "Beast": {
+        "Top Speed": {
+          "level15": 4335,
+          "level30": 5356,
+          "level45": 6679
+        },
+        "Acceleration": {
+          "level15": 3167,
+          "level30": 3496,
+          "level45": 3922
+        },
+        "Handling": {
+          "level15": 1999,
+          "level30": 2180,
+          "level45": 2403
+        },
+        "Boost": {
+          "level15": 3431,
+          "level30": 4126,
+          "level45": 5026
+        },
+        "Combat": {
+          "level15": 2841,
+          "level30": 4010,
+          "level45": 5526
+        }
+      },
+      "Belle": {
+        "Top Speed": {
+          "level1": 1685,
+          "level30": 3318,
+          "level45": 4473
+        },
+        "Acceleration": {
+          "level1": 4349,
+          "level30": 5750,
+          "level45": 6904
+        },
+        "Handling": {
+          "level1": 5292,
+          "level30": 6433,
+          "level45": 7240
+        },
+        "Boost": {
+          "level1": 4007,
+          "level30": 5195,
+          "level45": 6131
+        },
+        "Combat": {
+          "level1": 1315,
+          "level30": 3070,
+          "level45": 4310
+        }
+      },
+      "Gaston": {
+        "Top Speed": {
+          "level1": 4016,
+          "level30": 5673,
+          "level45": 6845
+        },
+        "Acceleration": {
+          "level1": 2614,
+          "level30": 3350,
+          "level45": 3870
+        },
+        "Handling": {
+          "level1": 1605,
+          "level30": 1873,
+          "level45": 2083
+        },
+        "Boost": {
+          "level1": 3269,
+          "level30": 4534,
+          "level45": 5429
+        },
+        "Combat": {
+          "level1": 1870,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Hades": {
+        "Top Speed": {
+          "level1": 3571,
+          "level30": 5145,
+          "level45": 6258
+        },
+        "Acceleration": {
+          "level1": 3512,
+          "level30": 4760,
+          "level45": 5643
+        },
+        "Handling": {
+          "level1": 2486,
+          "level30": 3080,
+          "level45": 3500
+        },
+        "Boost": {
+          "level1": 3199,
+          "level30": 4507,
+          "level45": 5432
+        },
+        "Combat": {
+          "level1": 1566,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Hercules": {
+        "Top Speed": {
+          "level1": 2799,
+          "level30": 5195,
+          "level45": 6385
+        },
+        "Acceleration": {
+          "level1": 3250,
+          "level30": 4831,
+          "level45": 5737
+        },
+        "Handling": {
+          "level1": 2769,
+          "level30": 3247,
+          "level45": 3624
+        },
+        "Boost": {
+          "level1": 1937,
+          "level30": 3479,
+          "level45": 4570
+        },
+        "Combat": {
+          "level1": 1873,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Meg": {
+        "Top Speed": {
+          "level1": 1471,
+          "level30": 3149,
+          "level45": 4335
+        },
+        "Acceleration": {
+          "level1": 3995,
+          "level30": 5659,
+          "level45": 6836
+        },
+        "Handling": {
+          "level1": 5088,
+          "level30": 6172,
+          "level45": 6938
+        },
+        "Boost": {
+          "level1": 5352,
+          "level30": 6435,
+          "level45": 7326
+        },
+        "Combat": {
+          "level1": 1561,
+          "level30": 3136,
+          "level45": 4376
+        }
+      },
+      "Daisy": {
+        "Top Speed": {
+          "level1": 2019,
+          "level30": 3418,
+          "level45": 4407
+        },
+        "Acceleration": {
+          "level1": 4651,
+          "level30": 6152,
+          "level45": 7213
+        },
+        "Handling": {
+          "level1": 4888,
+          "level30": 6015,
+          "level45": 6812
+        },
+        "Boost": {
+          "level1": 4764,
+          "level30": 5972,
+          "level45": 6827
+        },
+        "Combat": {
+          "level1": 1566,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Donald": {
+        "Top Speed": {
+          "level1": 1514,
+          "level30": 3088,
+          "level45": 4201
+        },
+        "Acceleration": {
+          "level1": 4243,
+          "level30": 5853,
+          "level45": 6991
+        },
+        "Handling": {
+          "level1": 5996,
+          "level30": 6849,
+          "level45": 7521
+        },
+        "Boost": {
+          "level1": 4127,
+          "level30": 5493,
+          "level45": 6459
+        },
+        "Combat": {
+          "level1": 1861,
+          "level30": 4008,
+          "level45": 5526
+        }
+      },
+      "Goofy": {
+        "Top Speed": {
+          "level15": 3617,
+          "level30": 4649,
+          "level45": 5988
+        },
+        "Acceleration": {
+          "level15": 4439,
+          "level30": 4979,
+          "level45": 5646
+        },
+        "Handling": {
+          "level15": 3157,
+          "level30": 3419,
+          "level45": 3759
+        },
+        "Boost": {
+          "level15": 3184,
+          "level30": 3867,
+          "level45": 4753
+        },
+        "Combat": {
+          "level15": 2450,
+          "level30": 3514,
+          "level45": 4893
+        }
+      },
+      "Mickey": {
+        "Top Speed": {
+          "level1": 1642,
+          "level30": 3581,
+          "level45": 4573
+        },
+        "Acceleration": {
+          "level1": 4093,
+          "level30": 5824,
+          "level45": 6870
+        },
+        "Handling": {
+          "level1": 5224,
+          "level30": 6363,
+          "level45": 7168
+        },
+        "Boost": {
+          "level1": 4632,
+          "level30": 5301,
+          "level45": 5828
+        },
+        "Combat": {
+          "level1": 1320,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Minnie": {
+        "Top Speed": {
+          "level15": 2527,
+          "level30": 3290,
+          "level45": 4279
+        },
+        "Acceleration": {
+          "level15": 5266,
+          "level30": 6127,
+          "level45": 7244
+        },
+        "Handling": {
+          "level15": 5743,
+          "level30": 6414,
+          "level45": 7243
+        },
+        "Boost": {
+          "level15": 4900,
+          "level30": 5375,
+          "level45": 5992
+        },
+        "Combat": {
+          "level15": 2846,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Steamboat Mickey": {
+        "Top Speed": {
+          "level15": 3025,
+          "level30": 3842,
+          "level45": 4900
+        },
+        "Acceleration": {
+          "level15": 4630,
+          "level30": 5398,
+          "level45": 6347
+        },
+        "Handling": {
+          "level15": 4830,
+          "level30": 5461,
+          "level45": 6278
+        },
+        "Boost": {
+          "level15": 4987,
+          "level30": 5414,
+          "level45": 5966
+        },
+        "Combat": {
+          "level15": 2398,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Steamboat Pete": {
+        "Top Speed": {
+          "level1": 4085,
+          "level30": 5860,
+          "level45": 6993
+        },
+        "Acceleration": {
+          "level1": 2685,
+          "level30": 4027,
+          "level45": 4638
+        },
+        "Handling": {
+          "level1": 1622,
+          "level30": 2466,
+          "level45": 2712
+        },
+        "Boost": {
+          "level1": 2649,
+          "level30": 3938,
+          "level45": 4849
+        },
+        "Combat": {
+          "level1": 2649,
+          "level30": 5196,
+          "level45": 6997
+        }
+      },
+      "Shang": {
+        "Top Speed": {
+          "level1": 2885,
+          "level30": 5366,
+          "level45": 6557
+        },
+        "Acceleration": {
+          "level1": 3825,
+          "level30": 5032,
+          "level45": 5708
+        },
+        "Handling": {
+          "level1": 2605,
+          "level30": 3116,
+          "level45": 3477
+        },
+        "Boost": {
+          "level1": 2882,
+          "level30": 4174,
+          "level45": 5088
+        },
+        "Combat": {
+          "level1": 2243,
+          "level30": 4585,
+          "level45": 6241
+        }
+      },
+      "Mulan": {
+        "Top Speed": {
+          "level1": 1542,
+          "level30": 3195,
+          "level45": 4364
+        },
+        "Acceleration": {
+          "level1": 4069,
+          "level30": 5713,
+          "level45": 6875
+        },
+        "Handling": {
+          "level1": 5361,
+          "level30": 6375,
+          "level45": 7092
+        },
+        "Boost": {
+          "level1": 4250,
+          "level30": 5511,
+          "level45": 6402
+        },
+        "Combat": {
+          "level1": 1535,
+          "level30": 3118,
+          "level45": 4364
+        }
+      },
+      "Elizabeth Swann": {
+        "Top Speed": {
+          "level15": 2306,
+          "level30": 3205,
+          "level45": 4370
+        },
+        "Acceleration": {
+          "level15": 4843,
+          "level30": 5678,
+          "level45": 6708
+        },
+        "Handling": {
+          "level15": 5661,
+          "level30": 6267,
+          "level45": 7052
+        },
+        "Boost": {
+          "level15": 5456,
+          "level30": 6125,
+          "level45": 6991
+        },
+        "Combat": {
+          "level15": 3296,
+          "level30": 4578,
+          "level45": 6240
+        }
+      },
+      "Jack Sparrow": {
+        "Top Speed": {
+          "level1": 2971,
+          "level30": 4753,
+          "level45": 6012
+        },
+        "Acceleration": {
+          "level1": 3305,
+          "level30": 4658,
+          "level45": 5615
+        },
+        "Handling": {
+          "level1": 2565,
+          "level30": 3158,
+          "level45": 3576
+        },
+        "Boost": {
+          "level1": 3199,
+          "level30": 4507,
+          "level45": 5432
+        },
+        "Combat": {
+          "level1": 1569,
+          "level30": 3139,
+          "level45": 4375
+        }
+      },
+      "Baloo": {
+        "Top Speed": {
+          "level1": 3999,
+          "level30": 5240,
+          "level45": 6542
+        },
+        "Acceleration": {
+          "level1": 1669,
+          "level30": 2650,
+          "level45": 3423
+        },
+        "Handling": {
+          "level1": 1766,
+          "level30": 2072,
+          "level45": 2288
+        },
+        "Boost": {
+          "level1": 2833,
+          "level30": 4169,
+          "level45": 5114
+        },
+        "Combat": {
+          "level1": 2233,
+          "level30": 4579,
+          "level45": 6237
+        }
+      },
+      "Mowgli": {
+        "Top Speed": {
+          "level1": 1599,
+          "level30": 3662,
+          "level45": 4720
+        },
+        "Acceleration": {
+          "level1": 3873,
+          "level30": 5635,
+          "level45": 6708
+        },
+        "Handling": {
+          "level1": 4496,
+          "level30": 5659,
+          "level45": 6481
+        },
+        "Boost": {
+          "level1": 4528,
+          "level30": 5179,
+          "level45": 5692
+        },
+        "Combat": {
+          "level1": 1337,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Celia Mae": {
+        "Top Speed": {
+          "level1": 2928,
+          "level30": 5288,
+          "level45": 6460
+        },
+        "Acceleration": {
+          "level1": 3250,
+          "level30": 4511,
+          "level45": 5321
+        },
+        "Handling": {
+          "level1": 2258,
+          "level30": 2856,
+          "level45": 3278
+        },
+        "Boost": {
+          "level1": 2021,
+          "level30": 3417,
+          "level45": 4413
+        },
+        "Combat": {
+          "level1": 2007,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Sulley": {
+        "Top Speed": {
+          "level1": 3656,
+          "level30": 5946,
+          "level45": 7079
+        },
+        "Acceleration": {
+          "level1": 2215,
+          "level30": 2878,
+          "level45": 3257
+        },
+        "Handling": {
+          "level1": 1533,
+          "level30": 1769,
+          "level45": 1954
+        },
+        "Boost": {
+          "level1": 2649,
+          "level30": 3938,
+          "level45": 4849
+        },
+        "Combat": {
+          "level1": 1863,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Mike Wazowski": {
+        "Top Speed": {
+          "level1": 1557,
+          "level30": 3175,
+          "level45": 4319
+        },
+        "Acceleration": {
+          "level1": 4369,
+          "level30": 5962,
+          "level45": 7088
+        },
+        "Handling": {
+          "level1": 5710,
+          "level30": 6785,
+          "level45": 7545
+        },
+        "Boost": {
+          "level1": 3889,
+          "level30": 4747,
+          "level45": 5423
+        },
+        "Combat": {
+          "level1": 1327,
+          "level30": 3074,
+          "level45": 4309
+        }
+      },
+      "Randall": {
+        "Top Speed": {
+          "level1": 2842,
+          "level30": 4728,
+          "level45": 6061
+        },
+        "Acceleration": {
+          "level1": 3531,
+          "level30": 4740,
+          "level45": 5595
+        },
+        "Handling": {
+          "level1": 3026,
+          "level30": 3675,
+          "level45": 4134
+        },
+        "Boost": {
+          "level1": 3026,
+          "level30": 4228,
+          "level45": 5079
+        },
+        "Combat": {
+          "level1": 1569,
+          "level30": 3145,
+          "level45": 4387
+        }
+      },
+      "Figment": {
+        "Top Speed": {
+          "level1": 2885,
+          "level30": 5245,
+          "level45": 6417
+        },
+        "Acceleration": {
+          "level1": 3436,
+          "level30": 4913,
+          "level45": 5836
+        },
+        "Handling": {
+          "level1": 2686,
+          "level30": 3307,
+          "level45": 3745
+        },
+        "Boost": {
+          "level1": 2475,
+          "level30": 3727,
+          "level45": 4611
+        },
+        "Combat": {
+          "level1": 1878,
+          "level30": 3606,
+          "level45": 4973
+        }
+      },
+      "Bo Peep": {
+        "Top Speed": {
+          "level1": 2906,
+          "level30": 5241,
+          "level45": 6423
+        },
+        "Acceleration": {
+          "level1": 3070,
+          "level30": 4575,
+          "level45": 5512
+        },
+        "Handling": {
+          "level1": 2526,
+          "level30": 3081,
+          "level45": 3473
+        },
+        "Boost": {
+          "level1": 2814,
+          "level30": 4024,
+          "level45": 4879
+        },
+        "Combat": {
+          "level1": 1563,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Buzz Lightyear": {
+        "Top Speed": {
+          "level1": 3485,
+          "level30": 5341,
+          "level45": 6653
+        },
+        "Acceleration": {
+          "level1": 2475,
+          "level30": 3139,
+          "level45": 3661
+        },
+        "Handling": {
+          "level1": 1512,
+          "level30": 1800,
+          "level45": 2003
+        },
+        "Boost": {
+          "level1": 2561,
+          "level30": 3789,
+          "level45": 4658
+        },
+        "Combat": {
+          "level1": 2234,
+          "level30": 4582,
+          "level45": 6241
+        }
+      },
+      "Jessie": {
+        "Top Speed": {
+          "level15": 2825,
+          "level30": 3613,
+          "level45": 4633
+        },
+        "Acceleration": {
+          "level1": 5203,
+          "level30": 6050,
+          "level45": 7149
+        },
+        "Handling": {
+          "level1": 5947,
+          "level30": 6486,
+          "level45": 7152
+        },
+        "Boost": {
+          "level1": 4845,
+          "level30": 5410,
+          "level45": 6141
+        },
+        "Combat": {
+          "level1": 2846,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Woody": {
+        "Top Speed": {
+          "level1": 3014,
+          "level30": 4855,
+          "level45": 6157
+        },
+        "Acceleration": {
+          "level1": 3250,
+          "level30": 4557,
+          "level45": 5481
+        },
+        "Handling": {
+          "level1": 2185,
+          "level30": 3070,
+          "level45": 3695
+        },
+        "Boost": {
+          "level1": 2310,
+          "level30": 3390,
+          "level45": 4241
+        },
+        "Combat": {
+          "level1": 1322,
+          "level30": 3357,
+          "level45": 4796
+        }
+      },
+      "Angel": {
+        "Top Speed": {
+          "level1": 2049,
+          "level30": 3521,
+          "level45": 4561
+        },
+        "Acceleration": {
+          "level1": 4573,
+          "level30": 5901,
+          "level45": 6840
+        },
+        "Handling": {
+          "level1": 5190,
+          "level30": 6162,
+          "level45": 6850
+        },
+        "Boost": {
+          "level1": 4899,
+          "level30": 6125,
+          "level45": 6991
+        },
+        "Combat": {
+          "level1": 1566,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Captain Gantu": {
+        "Top Speed": {
+          "level1": 4042,
+          "level30": 5699,
+          "level45": 6871
+        },
+        "Acceleration": {
+          "level1": 2656,
+          "level30": 3422,
+          "level45": 3963
+        },
+        "Handling": {
+          "level1": 1566,
+          "level30": 1840,
+          "level45": 2055
+        },
+        "Boost": {
+          "level1": 2391,
+          "level30": 3715,
+          "level45": 4651
+        },
+        "Combat": {
+          "level1": 2231,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Jumba": {
+        "Top Speed": {
+          "level1": 3956,
+          "level30": 5788,
+          "level45": 6982
+        },
+        "Acceleration": {
+          "level1": 2729,
+          "level30": 3385,
+          "level45": 3879
+        },
+        "Handling": {
+          "level1": 1692,
+          "level30": 2011,
+          "level45": 2237
+        },
+        "Boost": {
+          "level1": 2561,
+          "level30": 3880,
+          "level45": 4813
+        },
+        "Combat": {
+          "level1": 2231,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Lilo": {
+        "Top Speed": {
+          "level1": 2114,
+          "level30": 3743,
+          "level45": 4774
+        },
+        "Acceleration": {
+          "level1": 4522,
+          "level30": 5891,
+          "level45": 6823
+        },
+        "Handling": {
+          "level1": 4118,
+          "level30": 5266,
+          "level45": 6077
+        },
+        "Boost": {
+          "level1": 3773,
+          "level30": 4636,
+          "level45": 5315
+        },
+        "Combat": {
+          "level1": 1320,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Stitch": {
+        "Top Speed": {
+          "level1": 2097,
+          "level30": 3552,
+          "level45": 4581
+        },
+        "Acceleration": {
+          "level1": 4496,
+          "level30": 5830,
+          "level45": 6774
+        },
+        "Handling": {
+          "level1": 4432,
+          "level30": 6003,
+          "level45": 7114
+        },
+        "Boost": {
+          "level1": 4375,
+          "level30": 5163,
+          "level45": 5784
+        },
+        "Combat": {
+          "level1": 1320,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Aladdin": {
+        "Top Speed": {
+          "level1": 3378,
+          "level30": 4915,
+          "level45": 6001
+        },
+        "Acceleration": {
+          "level1": 3105,
+          "level30": 4361,
+          "level45": 5249
+        },
+        "Handling": {
+          "level1": 2371,
+          "level30": 2946,
+          "level45": 3353
+        },
+        "Boost": {
+          "level1": 3659,
+          "level30": 4942,
+          "level45": 5849
+        },
+        "Combat": {
+          "level1": 1566,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Genie": {
+        "Top Speed": {
+          "level1": 4051,
+          "level30": 5711,
+          "level45": 6884
+        },
+        "Acceleration": {
+          "level1": 2795,
+          "level30": 3407,
+          "level45": 3890
+        },
+        "Handling": {
+          "level1": 1555,
+          "level30": 1909,
+          "level45": 2160
+        },
+        "Boost": {
+          "level1": 3146,
+          "level30": 4397,
+          "level45": 5281
+        },
+        "Combat": {
+          "level1": 2231,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Jafar": {
+        "Top Speed": {
+          "level1": 3613,
+          "level30": 5217,
+          "level45": 6351
+        },
+        "Acceleration": {
+          "level1": 3531,
+          "level30": 4806,
+          "level45": 5707
+        },
+        "Handling": {
+          "level1": 2585,
+          "level30": 3044,
+          "level45": 3406
+        },
+        "Boost": {
+          "level1": 3146,
+          "level30": 4443,
+          "level45": 5359
+        },
+        "Combat": {
+          "level1": 1873,
+          "level30": 4019,
+          "level45": 5537
+        }
+      },
+      "Jasmine": {
+        "Top Speed": {
+          "level1": 3592,
+          "level30": 5325,
+          "level45": 6458
+        },
+        "Acceleration": {
+          "level1": 3627,
+          "level30": 4939,
+          "level45": 5852
+        },
+        "Handling": {
+          "level1": 2333,
+          "level30": 2872,
+          "level45": 3253
+        },
+        "Boost": {
+          "level1": 3227,
+          "level30": 4289,
+          "level45": 5126
+        },
+        "Combat": {
+          "level1": 1323,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Anna": {
+        "Top Speed": {
+          "level1": 3511,
+          "level30": 5120,
+          "level45": 6259
+        },
+        "Acceleration": {
+          "level1": 3531,
+          "level30": 4892,
+          "level45": 5854
+        },
+        "Handling": {
+          "level1": 2727,
+          "level30": 3351,
+          "level45": 3792
+        },
+        "Boost": {
+          "level1": 3227,
+          "level30": 4514,
+          "level45": 5424
+        },
+        "Combat": {
+          "level1": 1562,
+          "level30": 3140,
+          "level45": 4382
+        }
+      },
+      "Elsa": {
+        "Top Speed": {
+          "level1": 3408,
+          "level30": 5310,
+          "level45": 6473
+        },
+        "Acceleration": {
+          "level1": 3579,
+          "level30": 4698,
+          "level45": 5526
+        },
+        "Handling": {
+          "level1": 2295,
+          "level30": 2864,
+          "level45": 3266
+        },
+        "Boost": {
+          "level1": 2871,
+          "level30": 4158,
+          "level45": 5068
+        },
+        "Combat": {
+          "level1": 2223,
+          "level30": 4576,
+          "level45": 6240
+        }
+      },
+      "Hans": {
+        "Top Speed": {
+          "level1": 4128,
+          "level30": 6110,
+          "level45": 7269
+        },
+        "Acceleration": {
+          "level1": 2585,
+          "level30": 3452,
+          "level45": 4015
+        },
+        "Handling": {
+          "level1": 1645,
+          "level30": 1911,
+          "level45": 2121
+        },
+        "Boost": {
+          "level1": 2795,
+          "level30": 4066,
+          "level45": 4965
+        },
+        "Combat": {
+          "level1": 1867,
+          "level30": 4004,
+          "level45": 5515
+        }
+      },
+      "Kristoff": {
+        "Top Speed": {
+          "level1": 3322,
+          "level30": 5284,
+          "level45": 6483
+        },
+        "Acceleration": {
+          "level1": 3647,
+          "level30": 4704,
+          "level45": 5513
+        },
+        "Handling": {
+          "level1": 2811,
+          "level30": 3284,
+          "level45": 3618
+        },
+        "Boost": {
+          "level1": 1870,
+          "level30": 3391,
+          "level45": 4467
+        },
+        "Combat": {
+          "level1": 2233,
+          "level30": 4581,
+          "level45": 6240
+        }
+      },
+      "Olaf": {
+        "Top Speed": {
+          "level1": 2105,
+          "level30": 3774,
+          "level45": 4832
+        },
+        "Acceleration": {
+          "level1": 4548,
+          "level30": 6075,
+          "level45": 7119
+        },
+        "Handling": {
+          "level1": 4180,
+          "level30": 5330,
+          "level45": 6144
+        },
+        "Boost": {
+          "level1": 4503,
+          "level30": 5139,
+          "level45": 5640
+        },
+        "Combat": {
+          "level1": 1317,
+          "level30": 3058,
+          "level45": 4289
+        }
+      },
+      "Ortensia": {
+        "Top Speed": {
+          "level1": 2217,
+          "level30": 3710,
+          "level45": 4766
+        },
+        "Acceleration": {
+          "level1": 4573,
+          "level30": 6079,
+          "level45": 7144
+        },
+        "Handling": {
+          "level1": 3873,
+          "level30": 5011,
+          "level45": 5815
+        },
+        "Boost": {
+          "level1": 4406,
+          "level30": 5056,
+          "level45": 5569
+        },
+        "Combat": {
+          "level1": 1321,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "Oswald": {
+        "Top Speed": {
+          "level1": 2114,
+          "level30": 3629,
+          "level45": 4699
+        },
+        "Acceleration": {
+          "level1": 4318,
+          "level30": 5786,
+          "level45": 6825
+        },
+        "Handling": {
+          "level1": 4243,
+          "level30": 5395,
+          "level45": 6210
+        },
+        "Boost": {
+          "level1": 4899,
+          "level30": 5693,
+          "level45": 6254
+        },
+        "Combat": {
+          "level1": 1567,
+          "level30": 3142,
+          "level45": 4383
+        }
+      },
+      "Wall-E": {
+        "Top Speed": {
+          "level15": 2926,
+          "level30": 3695,
+          "level45": 4692
+        },
+        "Acceleration": {
+          "level15": 4968,
+          "level30": 5780,
+          "level45": 6832
+        },
+        "Handling": {
+          "level15": 5436,
+          "level30": 6051,
+          "level45": 6848
+        },
+        "Boost": {
+          "level15": 5079,
+          "level30": 5400,
+          "level45": 5796
+        },
+        "Combat": {
+          "level15": 2132,
+          "level30": 3086,
+          "level45": 4322
+        }
+      },
+      "Ariel": {
+        "Top Speed": {
+          "level1": 3142,
+          "level30": 4686,
+          "level45": 5778
+        },
+        "Acceleration": {
+          "level1": 3550,
+          "level30": 4660,
+          "level45": 5534
+        },
+        "Handling": {
+          "level1": 2896,
+          "level30": 3553,
+          "level45": 4017
+        },
+        "Boost": {
+          "level1": 2544,
+          "level30": 3836,
+          "level45": 4750
+        },
+        "Combat": {
+          "level1": 2231,
+          "level30": 4578,
+          "level45": 6238
+        }
+      },
+      "Prince Eric": {
+        "Top Speed": {
+          "level1": 3631,
+          "level30": 5243,
+          "level45": 6383
+        },
+        "Acceleration": {
+          "level1": 3342,
+          "level30": 4571,
+          "level45": 5439
+        },
+        "Handling": {
+          "level1": 2646,
+          "level30": 3263,
+          "level45": 3699
+        },
+        "Boost": {
+          "level1": 2631,
+          "level30": 3681,
+          "level45": 4508
+        },
+        "Combat": {
+          "level1": 1320,
+          "level30": 3069,
+          "level45": 4306
+        }
+      },
+      "King Triton": {
+        "Top Speed": {
+          "level1": 4025,
+          "level30": 5691,
+          "level45": 6869
+        },
+        "Acceleration": {
+          "level1": 2909,
+          "level30": 3679,
+          "level45": 4223
+        },
+        "Handling": {
+          "level1": 1687,
+          "level30": 1898,
+          "level45": 2064
+        },
+        "Boost": {
+          "level1": 2434,
+          "level30": 3715,
+          "level45": 4620
+        },
+        "Combat": {
+          "level1": 1870,
+          "level30": 4018,
+          "level45": 5537
+        }
+      },
+      "Ursula": {
+        "Top Speed": {
+          "level15": 4755,
+          "level30": 5662,
+          "level45": 6838
+        },
+        "Acceleration": {
+          "level15": 3083,
+          "level30": 3507,
+          "level45": 4058
+        },
+        "Handling": {
+          "level15": 1876,
+          "level30": 2037,
+          "level45": 2247
+        },
+        "Boost": {
+          "level15": 3746,
+          "level30": 4465,
+          "level45": 5398
+        },
+        "Combat": {
+          "level15": 2137,
+          "level30": 3141,
+          "level45": 4381
+        }
+      },
+      "Eve": {
+        "Top Speed": {
+          "level1": 2199,
+          "level30": 3628,
+          "level45": 4638
+        },
+        "Acceleration": {
+          "level1": 4369,
+          "level30": 5730,
+          "level45": 6802
+        },
+        "Handling": {
+          "level1": 5305,
+          "level30": 6259,
+          "level45": 7075
+        },
+        "Boost": {
+          "level1": 4462,
+          "level30": 5377,
+          "level45": 6024
+        },
+        "Combat": {
+          "level1": 2431,
+          "level30": 4578,
+          "level45": 6238
+        }
+      }
+    }

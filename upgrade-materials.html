@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Upgrade Materials Calculator</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+    <nav class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="logo_transparant.png" style="width: 70px">
+                <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+            </div>
+            <div class="hidden md:flex">
+                <ul class="flex items-center">
+                    <li class="mr-6">
+                        <a class="text-white" href="index">Home</a>
+                    </li>
+                    <li class="mr-6 relative group">
+                        <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded" id="calculatorsDropdown">Calculators</a>
+                        <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials <img class="inline-block w-10" src="images/Pro-gloves.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7) <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                            <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews <img class="inline-block w-10" src="crews/walle/Hal.webp"></a>
+                            <!-- Repeat for other calculators -->
+                        </div>
+                    </li>
+                    <li>
+                        <a class="text-white" href="tierlist">Tierlist maker</a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="support">Join the crew 🏎</a>
+                    </li>
+                    <li class="discord ml-10">
+                        <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                           class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                            <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+                <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="md:hidden hidden" id="mobileMenu">
+            <ul class="">
+                <li class="active">
+                    <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white md:right-0 w-80 md:w-96 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials">Upgrade materials</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials (Season 7)</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="stats-and-crews">Stats with crews</a>
+                        <!-- Repeat for other calculators -->
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+                </li>
+                <li>
+                    <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+document.getElementById('calculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.querySelector('.dropdown-menu').classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation(); // Prevent this click from being captured by the document listener
+});
+
+// Add this event listener to close the menu when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const calculatorsDropdownMenu = document.querySelector('.dropdown-menu');
+
+    // Check if the click is outside the mobile menu
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    // Check if the click is outside the calculators dropdown menu
+    if (!calculatorsDropdownMenu.contains(event.target) && !event.target.matches('#calculatorsDropdown')) {
+        calculatorsDropdownMenu.classList.add('hidden');
+    }
+});
+    </script>
+            <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Upgrade materials</h1>
+    </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p>
+                <i>See more details on the <a href="https://speedstorm.fandom.com/" target="_blank" style="color: #00BFFF;">Disney Speedstorm Wiki!</a></i>
+            </p>
+    </div></div>
+<div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-1/3 p-5 pl-0 flex justify-center">
+                <form>
+                    <div class="mb-4">
+                        <label for="startLevel" class="block">I am Level:</label>
+                        <input type="number"
+                               class="form-input mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                               id="startLevel" min="1" max="49" value="1" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="endLevel" class="block">I need Level:</label>
+                        <input type="number"
+                               class="form-input mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                               id="endLevel" min="2" max="50" value="50" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="character" class="block">Character:</label>
+                        <select class="form-select mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                                id="character" required>
+                            <!-- Mickey and Friends  -->
+                            <optgroup label="Mickey and Friends">
+                                <option value="Mickey">Mickey</option>
+                                <option value="Donald">Donald</option>
+                                <option value="Goofy">Goofy</option>
+                                <option value="Daisy">Daisy</option>
+                                <option value="Minnie">Minnie</option>
+                                <option value="Steamboat Mickey">Steamboat Mickey</option>
+                                <option value="Steamboat Pete">Steamboat Pete</option>
+                            </optgroup>
+                            <!-- Beauty and the Beast  -->
+                            <optgroup label="Beauty and the Beast">
+                                <option value="Belle">Belle</option>
+                                <option value="Beast">Beast</option>
+                                <option value="Gaston">Gaston</option>
+                            </optgroup>
+                            <!-- Mulan  -->
+                            <optgroup label="Mulan">
+                                <option value="Mulan">Mulan</option>
+                                <option value="Shang">Shang</option>
+                            </optgroup>
+                            <!-- Jungle Book  -->
+                            <optgroup label="Jungle Book">
+                                <option value="Mowgli">Mowgli</option>
+                                <option value="Baloo">Baloo</option>
+                            </optgroup>
+                            <!-- Pirates  -->
+                            <optgroup label="Pirates of the caribbean">
+                                <option value="Swann">Swann</option>
+                                <option value="Jack Sparrow">Jack Sparrow</option>
+                            </optgroup>
+                            <!-- Hercules  -->
+                            <optgroup label="Hercules">
+                                <option value="Hercules">Hercules</option>
+                                <option value="Meg">Meg</option>
+                                <option value="Hades">Hades</option>
+                            </optgroup>
+                            <!-- Monsters inc  -->
+                            <optgroup label="Monsters inc">
+                                <option value="Mike">Mike</option>
+                                <option value="Sulley">Sulley</option>
+                                <option value="Celia Mae">Celia Mae</option>
+                                <option value="Randall">Randall</option>
+                            </optgroup>
+                            <!-- Walt Disney  -->
+                            <optgroup label="Walt Disney">
+                                <option value="Figment">Figment</option>
+                            </optgroup>
+                            <!-- Toy Story  -->
+                            <optgroup label="Toy Story">
+                                <option value="Jessie">Jessie</option>
+                                <option value="Bo Peep">Bo Peep</option>
+                                <option value="Woody">Woody</option>
+                                <option value="Buzz Lightyear">Buzz Lightyear</option>
+                            </optgroup>
+                            <!-- Lilo and Stitch  -->
+                            <optgroup label="Lilo and Stitch">
+                                <option value="Lilo">Lilo</option>
+                                <option value="Stitch">Stitch</option>
+                                <option value="Jumba">Jumba</option>
+                                <option value="Gantu">Gantu</option>
+                                <option value="Angel">Angel</option>
+                            </optgroup>
+                            <!-- Aladdin  -->
+                            <optgroup label="Aladdin">
+                                <option value="Aladdin">Aladdin</option>
+                                <option value="Jasmine">Jasmine</option>
+                                <option value="Jafar">Jafar</option>
+                                <option value="Genie">Genie</option>
+                            </optgroup>
+                            <!-- Frozen  -->
+                            <optgroup label="Frozen">
+                                <option value="Kristoff">Kristoff</option>
+                                <option value="Hans">Hans</option>
+                                <option value="Anna">Anna</option>
+                                <option value="Elsa">Elsa</option>
+                                <option value="Olaf">Olaf</option>
+                            </optgroup>
+                            <!-- Oswald the rabbit -->
+                            <optgroup label="Oswald the rabbit">
+                                <option value="Oswald">Oswald</option>
+                                <option value="Ortensia">Ortensia</option>
+                            </optgroup>
+                            <!-- Wall-E  -->
+                            <optgroup label="Wall-E & Eve">
+                                <option value="Wall-E">Wall-E</option>
+                                <option value="Eve">Eve</option>
+                            </optgroup>
+                            <!-- Little mermaid -->
+                            <optgroup label="Little mermaid">
+                                <option value="Ariel">Ariel</option>
+                                <option value="Prins Eric">Prince Eric</option>
+                                <option value="King Triton">King Triton</option>
+                                <option value="Ursula">Ursula</option>
+                            </optgroup>
+                            <!-- Add other options -->
+                        </select>
+                    </div>
+                    <button type="button"
+                            class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            onclick="calculateMaterials()">Calculate
+                    </button>
+                    <br/><br/>
+                    <button type="button"
+                            class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            onclick="calculateEventTimesNeeded()">Show Racer Boost events per material *
+                    </button>
+                    <br/><br/>
+                    <p>* The events per material show the total 'Racer Boost events' needed per material. You can find
+                        this event by going in game to: <b>Single Player > Limited Events > Racer Boost</b></p>
+                </form>
+            </div>
+            <div class="w-full md:w-1/3 flex justify-center">
+                <div id="result" class="mt-3"></div>
+            </div>
+            <div class="w-full md:w-1/3 flex justify-center">
+                <div id="eventData" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <p style="border:2px solid #111827; padding:10px;">Note: This will be deprecated once season 7 launches. For season 7 check out the <a href="upgrade-materials-s7" style="color: #00BFFF;">season 7 calculator</a> ! </p>
+            <br/>
+            <h2 class="text-lg">How does it work ?</h2>
+            <br/>
+            <br/>
+            <p>Find out exactly what you need to upgrade your favorite Disney characters in Speedstorm. By selecting a character and specifying the current and desired levels, you receive a precise list of required materials for the upgrade. This tool is designed to streamline your planning process, making it clear and simple to gather the necessary items for enhancing your character's abilities.</p>
+            <br/>
+            <br/>
+            <p><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/upgrade-mats-1.png"></p>
+        </div>
+    </div>
+<div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <p>Come visit the discord and share your thoughts! <br/><br/>
+                <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                    <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                </a>
+            </p>
+        </div>
+    </div>
+<div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <h2>Disclaimer</h2>
+            <p>
+                <i>Images and data presented here are based on content from the official <a
+                        href='https://speedstorm.fandom.com/wiki/Disney_Speedstorm_Wiki' target='_blank'
+                        style="color: #00BFFF;">Disney Speedstorm Wiki</a></i>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateQueryParams() {
+        const startLevel = document.getElementById('startLevel').value;
+        const endLevel = document.getElementById('endLevel').value;
+        const character = document.getElementById('character').value;
+
+        const queryParams = new URLSearchParams(window.location.search);
+
+        startLevel ? queryParams.set('from', startLevel) : queryParams.delete('from');
+        endLevel ? queryParams.set('to', endLevel) : queryParams.delete('to');
+        character ? queryParams.set('character', character) : queryParams.delete('character');
+
+        // This will update the URL without reloading the page
+        window.history.replaceState({}, '', `${window.location.pathname}?${queryParams}`);
+    }
+
+    document.getElementById('startLevel').addEventListener('change', updateQueryParams);
+    document.getElementById('endLevel').addEventListener('change', updateQueryParams);
+    document.getElementById('character').addEventListener('change', updateQueryParams);
+
+    function populateFieldsFromQueryParams() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const startLevel = queryParams.get('from');
+        const endLevel = queryParams.get('to');
+        const character = queryParams.get('character');
+
+        if (startLevel) document.getElementById('startLevel').value = startLevel;
+        if (endLevel) document.getElementById('endLevel').value = endLevel;
+        if (character) document.getElementById('character').value = character;
+
+        calculateMaterials();
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', populateFieldsFromQueryParams);
+</script>
+<script>
+    const classImages = [
+        {
+            "class": "Speedster",
+            "images": {
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+            }
+        },
+        {
+            "class": "Brawler",
+            "images": {
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+            }
+        },
+        {
+            "class": "Trickster",
+            "images": {
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+            }
+        },
+        {
+            "class": "Defender",
+            "images": {
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+            }
+        },
+    ];
+
+    const characterImages = [
+        {
+            "Mickey": {
+                "type": "common",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Hat-baton.webp",
+                "purple_tier_4": "images/Birthday-cake.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Mickeys-gloves.webp",
+            }
+        },
+        {
+            "Donald": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Hat-baton.webp",
+                "purple_tier_4": "images/Birthday-cake.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Sleeping-cap.webp",
+            }
+        },
+        {
+            "Goofy": {
+                "type": "rare",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Hat-baton.webp",
+                "purple_tier_4": "images/Birthday-cake.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Camping-pack.webp",
+            }
+        },
+        {
+            "Daisy": {
+                "type": "common",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Bath-scrub.webp",
+                "purple_tier_4": "images/purple_placeholder.svg",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Pink-Bow.webp",
+            }
+        },
+        {
+            "Minnie": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Bath-scrub.webp",
+                "purple_tier_4": "images/purple_placeholder.svg",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Polka-dot-Bow.webp",
+            }
+        },
+        {
+            "Steamboat Mickey": {
+                "type": "epic",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Antique-telephone.webp",
+                "purple_tier_4": "images/Steamboat-Whistler.png",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Ship-wheel.webp",
+            }
+        },
+        {
+            "Steamboat Pete": {
+                "type": "common",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Alarm-clock.webp",
+                "purple_tier_2": "images/Dog-bone.webp",
+                "purple_tier_3": "images/Antique-telephone.webp",
+                "purple_tier_4": "images/Steamboat-Whistler.png",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/CaptainHat.webp",
+            }
+        },
+        {
+            "Belle": {
+                "type": "epic",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Evening-gloves.webp",
+                "purple_tier_2": "images/Plates.webp",
+                "purple_tier_3": "images/Workshop-tools.webp",
+                "purple_tier_4": "images/InventorHeadset.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Belle-books.webp",
+            }
+        },
+        {
+            "Beast": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Evening-gloves.webp",
+                "purple_tier_2": "images/Plates.webp",
+                "purple_tier_3": "images/Workshop-tools.webp",
+                "purple_tier_4": "images/InventorHeadset.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Enchanted-rose.webp",
+            }
+        },
+        {
+            "Gaston": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Evening-gloves.webp",
+                "purple_tier_2": "images/Hunting-Gloves.webp",
+                "purple_tier_3": "images/Workshop-tools.webp",
+                "purple_tier_4": "images/InventorHeadset.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Gaston-breakfast.webp",
+            }
+        },
+        {
+            "Hercules": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Action-figure.webp",
+                "purple_tier_2": "images/Greek-sandals.webp",
+                "purple_tier_3": "images/Herculade.webp",
+                "purple_tier_4": "images/Greek-plate.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Symbol-of-the-Gods.webp",
+            }
+        },
+        {
+            "Meg": {
+                "type": "common",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Action-figure.webp",
+                "purple_tier_2": "images/Greek-sandals.webp",
+                "purple_tier_3": "images/Herculade.webp",
+                "purple_tier_4": "images/Greek-plate.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Meg-flower.webp",
+            }
+        },
+        {
+            "Hades": {
+                "type": "epic",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Action-figure.webp",
+                "purple_tier_2": "images/The-fates-eye.webp",
+                "purple_tier_3": "images/Herculade.webp",
+                "purple_tier_4": "images/Greek-plate.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/gold_placeholder.svg",
+            }
+        },
+        {
+            "Mowgli": {
+                "type": "rare",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Wooden-club.webp",
+                "purple_tier_2": "images/Bushel-of-bananas.webp",
+                "purple_tier_3": "images/Bamboo-stick.webp",
+                "purple_tier_4": "images/Grapes.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Mowgli-baby-basket.webp",
+            }
+        },
+        {
+            "Baloo": {
+                "type": "epic",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Wooden-club.webp",
+                "purple_tier_2": "images/Bushel-of-bananas.webp",
+                "purple_tier_3": "images/Bamboo-stick.webp",
+                "purple_tier_4": "images/Grapes.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Coconut.webp",
+            }
+        },
+        {
+            "Swann": {
+                "type": "common",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Ship-in-a-bottle.webp",
+                "purple_tier_2": "images/Piece-of-eight.webp",
+                "purple_tier_3": "images/Wanted-poster.webp",
+                "purple_tier_4": "images/Pirate-hat.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Jade-captains-knot.webp",
+            }
+        },
+        {
+            "Jack Sparrow": {
+                "type": "rare",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Ship-in-a-bottle.webp",
+                "purple_tier_2": "images/Piece-of-eight.webp",
+                "purple_tier_3": "images/Wanted-poster.webp",
+                "purple_tier_4": "images/Pirate-hat.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Jack-Compass.webp",
+            }
+        },
+        {
+            "Mike": {
+                "type": "common",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Scream-canister.webp",
+                "purple_tier_2": "images/Boo-door.webp",
+                "purple_tier_3": "images/Sock.webp",
+                "purple_tier_4": "images/YetiSnowCone.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Oven-mitts.webp",
+            }
+        },
+        {
+            "Celia Mae": {
+                "type": "common",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Scream-canister.webp",
+                "purple_tier_2": "images/Boo-door.webp",
+                "purple_tier_3": "images/Sock.webp",
+                "purple_tier_4": "images/YetiSnowCone.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Celia-headset.webp",
+            }
+        },
+        {
+            "Sulley": {
+                "type": "epic",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Scream-canister.webp",
+                "purple_tier_2": "images/Boo-door.webp",
+                "purple_tier_3": "images/Sock.webp",
+                "purple_tier_4": "images/YetiSnowCone.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Boo-drawing-Sulley.webp",
+            }
+        },
+        {
+            "Randall": {
+                "type": "rare",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Scream-canister.webp",
+                "purple_tier_2": "images/Boo-door.webp",
+                "purple_tier_3": "images/Sock.webp",
+                "purple_tier_4": "images/YetiSnowCone.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Boo-drawing-Randall.webp",
+            }
+        },
+        {
+            "Mulan": {
+                "type": "rare",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Teapot.webp",
+                "purple_tier_2": "images/Cri-Kee-cage.webp",
+                "purple_tier_3": "images/Hair-comb.webp",
+                "purple_tier_4": "images/Hand-fan.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Fa-family-sword.webp",
+            }
+        },
+        {
+            "Shang": {
+                "type": "common",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Teapot.webp",
+                "purple_tier_2": "images/Cri-Kee-cage.webp",
+                "purple_tier_3": "images/Hair-comb.webp",
+                "purple_tier_4": "images/Hand-fan.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Shang-sword.webp",
+            }
+        },
+        {
+            "Figment": {
+                "type": "epic",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/FirstVisit.webp",
+                "purple_tier_2": "images/Ride-tickets.webp",
+                "purple_tier_3": "images/Spaceship-earth-souvenir.webp",
+                "purple_tier_4": "images/Epcot-map.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Yellow-sweater.webp",
+            }
+        },
+        {
+            "Oswald": {
+                "type": "epic",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Vintage-Trolley-Bell.webp",
+                "purple_tier_2": "images/Accordion.webp",
+                "purple_tier_3": "images/Skunk-Disguise.webp",
+                "purple_tier_4": "images/Rope.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/gold_placeholder.svg",
+            }
+        },
+        {
+            "Ortensia": {
+                "type": "rare",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Vintage-Trolley-Bell.webp",
+                "purple_tier_2": "images/Accordion.webp",
+                "purple_tier_3": "images/Skunk-Disguise.webp",
+                "purple_tier_4": "images/Rope.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/gold_placeholder.svg",
+            }
+        },
+        {
+            "Wall-E": {
+                "type": "epic",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Trash-Cube.webp",
+                "purple_tier_2": "images/Operation-Recolonize-Manual.webp",
+                "purple_tier_3": "images/Meal-in-a-Cup.webp",
+                "purple_tier_4": "images/BnL-Cooler.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Fire-Extinguisher.webp",
+            }
+        },
+        {
+            "Eve": {
+                "type": "rare",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Trash-Cube.webp",
+                "purple_tier_2": "images/Operation-Recolonize-Manual.webp",
+                "purple_tier_3": "images/Meal-in-a-Cup.webp",
+                "purple_tier_4": "images/BnL-Cooler.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Plant.webp",
+            }
+        },
+        {
+            "Jessie": {
+                "type": "common",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Alphabet-blocks.webp",
+                "purple_tier_2": "images/TheBigOne.webp",
+                "purple_tier_3": "images/Checkers.webp",
+                "purple_tier_4": "images/Video-game-strategy-guide.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Jessie-lasso.webp",
+            }
+        },
+        {
+            "Bo Peep": {
+                "type": "common",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Alphabet-blocks.webp",
+                "purple_tier_2": "images/TheBigOne.webp",
+                "purple_tier_3": "images/Checkers.webp",
+                "purple_tier_4": "images/Video-game-strategy-guide.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Bo-epic.webp",
+            }
+        },
+        {
+            "Woody": {
+                "type": "rare",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Alphabet-blocks.webp",
+                "purple_tier_2": "images/TheBigOne.webp",
+                "purple_tier_3": "images/Checkers.webp",
+                "purple_tier_4": "images/Video-game-strategy-guide.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Woody-drawing.webp",
+            }
+        },
+        {
+            "Buzz Lightyear": {
+                "type": "epic",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Alphabet-blocks.webp",
+                "purple_tier_2": "images/TheBigOne.webp",
+                "purple_tier_3": "images/Checkers.webp",
+                "purple_tier_4": "images/Video-game-strategy-guide.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Buzz-drawing.webp",
+            }
+        },
+        {
+            "Angel": {
+                "type": "common",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Big-wheel-bike.webp",
+                "purple_tier_2": "images/Luki-shave-ice.webp",
+                "purple_tier_3": "images/Toy-car.webp",
+                "purple_tier_4": "images/Rose-shirt.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Pot-of-flowers.webp",
+            }
+        },
+        {
+            "Gantu": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Big-wheel-bike.webp",
+                "purple_tier_2": "images/Luki-shave-ice.webp",
+                "purple_tier_3": "images/Toy-car.webp",
+                "purple_tier_4": "images/Rose-shirt.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Capsule.webp",
+            }
+        },
+        {
+            "Jumba": {
+                "type": "common",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Big-wheel-bike.webp",
+                "purple_tier_2": "images/Luki-shave-ice.webp",
+                "purple_tier_3": "images/Toy-car.webp",
+                "purple_tier_4": "images/Rose-shirt.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Net-cannon.webp",
+            }
+        },
+        {
+            "Lilo": {
+                "type": "rare",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Big-wheel-bike.webp",
+                "purple_tier_2": "images/Luki-shave-ice.webp",
+                "purple_tier_3": "images/Toy-car.webp",
+                "purple_tier_4": "images/Rose-shirt.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Lilos-experiment-book.webp",
+            }
+        },
+        {
+            "Stitch": {
+                "type": "epic",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Big-wheel-bike.webp",
+                "purple_tier_2": "images/Luki-shave-ice.webp",
+                "purple_tier_3": "images/Toy-car.webp",
+                "purple_tier_4": "images/Rose-shirt.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Scrump.webp",
+            }
+        },
+        {
+            "Aladdin": {
+                "type": "rare",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Loaf-of-bread.webp",
+                "purple_tier_2": "images/Hourglass.webp",
+                "purple_tier_3": "images/Vanishing-potion.webp",
+                "purple_tier_4": "images/Animal-Figurines.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Scimitar.webp",
+            }
+        },
+        {
+            "Jasmine": {
+                "type": "common",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Loaf-of-bread.webp",
+                "purple_tier_2": "images/Hourglass.webp",
+                "purple_tier_3": "images/Vanishing-potion.webp",
+                "purple_tier_4": "images/Animal-Figurines.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Jasmine-flower.webp",
+            }
+        },
+        {
+            "Jafar": {
+                "type": "rare",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Loaf-of-bread.webp",
+                "purple_tier_2": "images/Hourglass.webp",
+                "purple_tier_3": "images/Vanishing-potion.webp",
+                "purple_tier_4": "images/Animal-Figurines.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Jafar-Snake-Staff.webp",
+            }
+        },
+        {
+            "Genie": {
+                "type": "epic",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Loaf-of-bread.webp",
+                "purple_tier_2": "images/Hourglass.webp",
+                "purple_tier_3": "images/Vanishing-potion.webp",
+                "purple_tier_4": "images/Animal-Figurines.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Magic-Lamp.webp",
+            }
+        },
+        {
+            "Kristoff": {
+                "type": "common",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Ice-blocks.webp",
+                "purple_tier_2": "images/Troll-Crystals.webp",
+                "purple_tier_3": "images/Troll-Cape.webp",
+                "purple_tier_4": "images/Plates-of-chocolates.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Kristoff-Lute.webp",
+            }
+        },
+        {
+            "Hans": {
+                "type": "common",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Ice-blocks.webp",
+                "purple_tier_2": "images/Troll-Crystals.webp",
+                "purple_tier_3": "images/Troll-Cape.webp",
+                "purple_tier_4": "images/Plates-of-chocolates.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Hans-sword.webp",
+            }
+        },
+        {
+            "Anna": {
+                "type": "rare",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Ice-blocks.webp",
+                "purple_tier_2": "images/Troll-Crystals.webp",
+                "purple_tier_3": "images/Troll-Cape.webp",
+                "purple_tier_4": "images/Plates-of-chocolates.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Anna-necklace.webp",
+            }
+        },
+        {
+            "Elsa": {
+                "type": "epic",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Ice-blocks.webp",
+                "purple_tier_2": "images/Troll-Crystals.webp",
+                "purple_tier_3": "images/Troll-Cape.webp",
+                "purple_tier_4": "images/Plates-of-chocolates.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Elsa-Gloves.webp",
+            }
+        },
+        {
+            "Olaf": {
+                "type": "epic",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Ice-blocks.webp",
+                "purple_tier_2": "images/Troll-Crystals.webp",
+                "purple_tier_3": "images/Troll-Cape.webp",
+                "purple_tier_4": "images/Plates-of-chocolates.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Olaf-sunglasses.webp",
+            }
+        },
+        {
+            "Ariel": {
+                "type": "rare",
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+                "purple_tier_1": "images/Binding-Contract.webp",
+                "purple_tier_2": "images/Cake-topper.webp",
+                "purple_tier_3": "images/Mirror.webp",
+                "purple_tier_4": "images/Seashell-Drumsticks.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Dinglehopper.webp",
+            }
+        },
+        {
+            "Prins Eric": {
+                "type": "common",
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+                "purple_tier_1": "images/Binding-Contract.webp",
+                "purple_tier_2": "images/Cake-topper.webp",
+                "purple_tier_3": "images/Mirror.webp",
+                "purple_tier_4": "images/Seashell-Drumsticks.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Eric-statue.webp",
+            }
+        },
+        {
+            "King Triton": {
+                "type": "common",
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+                "purple_tier_1": "images/Binding-Contract.webp",
+                "purple_tier_2": "images/Cake-topper.webp",
+                "purple_tier_3": "images/Mirror.webp",
+                "purple_tier_4": "images/Seashell-Drumsticks.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Trident.webp",
+            }
+        },
+        {
+            "Ursula": {
+                "type": "epic",
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+                "purple_tier_1": "images/Binding-Contract.webp",
+                "purple_tier_2": "images/Cake-topper.webp",
+                "purple_tier_3": "images/Mirror.webp",
+                "purple_tier_4": "images/Seashell-Drumsticks.webp",
+                "single_redcan": "images/Energy-drink.webp",
+                "double_bluecan": "images/Energy-drink-duo.webp",
+                "triple_whitecan": "images/Energy-drink-trio.webp",
+                "epic": "images/Ursula-Necklace.webp",
+            }
+        },
+    ];
+
+    const bonusData = [
+        {"level": 1, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 2, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 3, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 4, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 5, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 6, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 7, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 8, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 9, "single_redcan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+
+        {"level": 10, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 11, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 12, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 13, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 14, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 15, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 16, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 17, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 18, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+        {"level": 19, "double_bluecan": 12, "basic_mat": 12, "purple_tier_1": 12, "shard": 1},
+
+        {"level": 20, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 21, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 22, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 23, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 24, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 25, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 26, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 27, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 28, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+        {"level": 29, "triple_whitecan": 12, "basic_mat": 12, "pro_mat": 8, "purple_tier_1": 12, "shard": 1},
+
+        {"level": 30, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 31, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 32, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 33, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 34, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 35, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 36, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 37, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 38, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+        {"level": 39, "pro_mat": 8, "purple_tier_2": 8, "purple_tier_3": 8, "shard": 1},
+
+        {"level": 40, "purple_tier_2": 8, "purple_tier_3": 6, "epic": 4, "shard": 1},
+        {"level": 41, "purple_tier_2": 8, "purple_tier_3": 6, "epic": 4, "shard": 1},
+        {"level": 42, "purple_tier_2": 8, "purple_tier_3": 6, "epic": 4, "shard": 1},
+        {"level": 43, "purple_tier_2": 8, "purple_tier_3": 6, "epic": 4, "shard": 1},
+        {"level": 44, "purple_tier_2": 8, "purple_tier_3": 6, "epic": 4, "shard": 1},
+
+        {"level": 45, "purple_tier_3": 6, "purple_tier_4": 3, "epic": 4, "shard": 1},
+        {"level": 46, "purple_tier_3": 6, "purple_tier_4": 3, "epic": 4, "shard": 1},
+        {"level": 47, "purple_tier_3": 6, "purple_tier_4": 3, "epic": 4, "shard": 1},
+        {"level": 48, "purple_tier_3": 6, "purple_tier_4": 3, "epic": 4, "shard": 1},
+        {"level": 49, "purple_tier_3": 6, "purple_tier_4": 3, "epic": 4, "shard": 1},
+    ];
+
+    // Define the level data as pro_matvided
+    const commonLevelData = [
+        {"level": 2, "single_redcan": 1},
+        {"level": 3, "single_redcan": 2},
+        {"level": 4, "single_redcan": 3},
+        {"level": 5, "single_redcan": 4},
+        {"level": 6, "single_redcan": 4, "double_bluecan": 1},
+        {"level": 7, "single_redcan": 5, "double_bluecan": 2},
+        {"level": 8, "single_redcan": 8, "double_bluecan": 3},
+        {"level": 9, "single_redcan": 10, "double_bluecan": 5},
+        {"level": 10, "single_redcan": 12, "double_bluecan": 6},
+        {"level": 11, "single_redcan": 12, "double_bluecan": 7, "basic_mat": 1},
+        {"level": 12, "single_redcan": 13, "double_bluecan": 7, "basic_mat": 2},
+        {"level": 13, "single_redcan": 14, "double_bluecan": 7, "basic_mat": 3},
+        {"level": 14, "single_redcan": 15, "double_bluecan": 8, "basic_mat": 3},
+        {"level": 15, "single_redcan": 17, "double_bluecan": 9, "basic_mat": 3},
+        {"level": 16, "double_bluecan": 12, "basic_mat": 6, "purple_tier_1": 4},
+        {"level": 17, "double_bluecan": 14, "basic_mat": 8, "purple_tier_1": 4},
+        {"level": 18, "double_bluecan": 16, "basic_mat": 9, "purple_tier_1": 4},
+        {"level": 19, "double_bluecan": 18, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 20, "double_bluecan": 20, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 21, "triple_whitecan": 4, "basic_mat": 13, "purple_tier_1": 6},
+        {"level": 22, "triple_whitecan": 4, "basic_mat": 14, "purple_tier_1": 7},
+        {"level": 23, "triple_whitecan": 4, "basic_mat": 15, "purple_tier_1": 7},
+        {"level": 24, "triple_whitecan": 4, "basic_mat": 16, "purple_tier_1": 8},
+        {"level": 25, "triple_whitecan": 4, "basic_mat": 17, "purple_tier_1": 10},
+        {"level": 26, "triple_whitecan": 6, "pro_mat": 3, "purple_tier_1": 11},
+        {"level": 27, "triple_whitecan": 6, "pro_mat": 3, "purple_tier_1": 14},
+        {"level": 28, "triple_whitecan": 7, "pro_mat": 3, "purple_tier_1": 14},
+        {"level": 29, "triple_whitecan": 7, "pro_mat": 4, "purple_tier_1": 14},
+        {"level": 30, "triple_whitecan": 8, "pro_mat": 4, "purple_tier_1": 14},
+        {"level": 31, "triple_whitecan": 10, "pro_mat": 5, "purple_tier_2": 2},
+        {"level": 32, "triple_whitecan": 12, "pro_mat": 5, "purple_tier_2": 2},
+        {"level": 33, "triple_whitecan": 13, "pro_mat": 5, "purple_tier_2": 2},
+        {"level": 34, "triple_whitecan": 15, "pro_mat": 5, "purple_tier_2": 2},
+        {"level": 35, "triple_whitecan": 16, "pro_mat": 6, "purple_tier_2": 2},
+        {"level": 36, "pro_mat": 11, "purple_tier_2": 4, "purple_tier_3": 2},
+        {"level": 37, "pro_mat": 12, "purple_tier_2": 5, "purple_tier_3": 2},
+        {"level": 38, "pro_mat": 12, "purple_tier_2": 6, "purple_tier_3": 3},
+        {"level": 39, "pro_mat": 14, "purple_tier_2": 7, "purple_tier_3": 3},
+        {"level": 40, "pro_mat": 18, "purple_tier_2": 7, "purple_tier_3": 3},
+        {"level": 41, "epic": 4, "purple_tier_2": 10, "purple_tier_3": 5},
+        {"level": 42, "epic": 5, "purple_tier_2": 11, "purple_tier_3": 5},
+        {"level": 43, "epic": 6, "purple_tier_2": 11, "purple_tier_3": 6},
+        {"level": 44, "epic": 7, "purple_tier_2": 13, "purple_tier_3": 6},
+        {"level": 45, "epic": 8, "purple_tier_2": 16, "purple_tier_3": 6},
+        {"level": 46, "epic": 8, "purple_tier_3": 7, "purple_tier_4": 9},
+        {"level": 47, "epic": 9, "purple_tier_3": 8, "purple_tier_4": 10},
+        {"level": 48, "epic": 10, "purple_tier_3": 8, "purple_tier_4": 12},
+        {"level": 49, "epic": 10, "purple_tier_3": 8, "purple_tier_4": 16},
+        {"level": 50, "epic": 10, "purple_tier_3": 8, "purple_tier_4": 21}
+    ];
+
+    const rareLevelData = [
+        {"level": 2, "single_redcan": 1},
+        {"level": 3, "single_redcan": 2},
+        {"level": 4, "single_redcan": 3},
+        {"level": 5, "single_redcan": 4},
+        {"level": 6, "single_redcan": 4, "double_bluecan": 1},
+        {"level": 7, "single_redcan": 5, "double_bluecan": 2},
+        {"level": 8, "single_redcan": 8, "double_bluecan": 3},
+        {"level": 9, "single_redcan": 10, "double_bluecan": 5},
+        {"level": 10, "single_redcan": 12, "double_bluecan": 6},
+        {"level": 11, "single_redcan": 12, "double_bluecan": 7, "basic_mat": 1},
+        {"level": 12, "single_redcan": 13, "double_bluecan": 7, "basic_mat": 2},
+        {"level": 13, "single_redcan": 14, "double_bluecan": 7, "basic_mat": 3},
+        {"level": 14, "single_redcan": 15, "double_bluecan": 8, "basic_mat": 3},
+        {"level": 15, "single_redcan": 17, "double_bluecan": 9, "basic_mat": 3},
+        {"level": 16, "double_bluecan": 12, "basic_mat": 6, "purple_tier_1": 4},
+        {"level": 17, "double_bluecan": 14, "basic_mat": 8, "purple_tier_1": 4},
+        {"level": 18, "double_bluecan": 16, "basic_mat": 9, "purple_tier_1": 4},
+        {"level": 19, "double_bluecan": 18, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 20, "double_bluecan": 20, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 21, "triple_whitecan": 4, "basic_mat": 13, "purple_tier_1": 6},
+        {"level": 22, "triple_whitecan": 4, "basic_mat": 14, "purple_tier_1": 7},
+        {"level": 23, "triple_whitecan": 4, "basic_mat": 15, "purple_tier_1": 7},
+        {"level": 24, "triple_whitecan": 4, "basic_mat": 16, "purple_tier_1": 8},
+        {"level": 25, "triple_whitecan": 4, "basic_mat": 17, "purple_tier_1": 11},
+        {"level": 26, "triple_whitecan": 6, "pro_mat": 3, "purple_tier_1": 13},
+        {"level": 27, "triple_whitecan": 7, "pro_mat": 3, "purple_tier_1": 14},
+        {"level": 28, "triple_whitecan": 8, "pro_mat": 4, "purple_tier_1": 14},
+        {"level": 29, "triple_whitecan": 8, "pro_mat": 5, "purple_tier_1": 16},
+        {"level": 30, "triple_whitecan": 9, "pro_mat": 5, "purple_tier_1": 19},
+        {"level": 31, "triple_whitecan": 12, "pro_mat": 6, "purple_tier_2": 3},
+        {"level": 32, "triple_whitecan": 14, "pro_mat": 7, "purple_tier_2": 3},
+        {"level": 33, "triple_whitecan": 14, "pro_mat": 8, "purple_tier_2": 4},
+        {"level": 34, "triple_whitecan": 16, "pro_mat": 8, "purple_tier_2": 5},
+        {"level": 35, "triple_whitecan": 16, "pro_mat": 10, "purple_tier_2": 6},
+        {"level": 36, "pro_mat": 15, "purple_tier_2": 7, "purple_tier_3": 4},
+        {"level": 37, "pro_mat": 17, "purple_tier_2": 7, "purple_tier_3": 5},
+        {"level": 38, "pro_mat": 20, "purple_tier_2": 7, "purple_tier_3": 6},
+        {"level": 39, "pro_mat": 24, "purple_tier_2": 8, "purple_tier_3": 6},
+        {"level": 40, "pro_mat": 25, "purple_tier_2": 11, "purple_tier_3": 7},
+        {"level": 41, "epic": 6, "purple_tier_2": 16, "purple_tier_3": 9},
+        {"level": 42, "epic": 7, "purple_tier_2": 18, "purple_tier_3": 10},
+        {"level": 43, "epic": 8, "purple_tier_2": 20, "purple_tier_3": 11},
+        {"level": 44, "epic": 10, "purple_tier_2": 22, "purple_tier_3": 12},
+        {"level": 45, "epic": 13, "purple_tier_2": 23, "purple_tier_3": 12},
+        {"level": 46, "epic": 15, "purple_tier_3": 14, "purple_tier_4": 11},
+        {"level": 47, "epic": 17, "purple_tier_3": 16, "purple_tier_4": 13},
+        {"level": 48, "epic": 20, "purple_tier_3": 18, "purple_tier_4": 15},
+        {"level": 49, "epic": 23, "purple_tier_3": 20, "purple_tier_4": 18},
+        {"level": 50, "epic": 26, "purple_tier_3": 20, "purple_tier_4": 24}
+    ];
+
+    const epicLevelData = [
+        {"level": 2, "single_redcan": 1},
+        {"level": 3, "single_redcan": 2},
+        {"level": 4, "single_redcan": 3},
+        {"level": 5, "single_redcan": 4},
+        {"level": 6, "single_redcan": 4, "double_bluecan": 1},
+        {"level": 7, "single_redcan": 5, "double_bluecan": 2},
+        {"level": 8, "single_redcan": 8, "double_bluecan": 3},
+        {"level": 9, "single_redcan": 10, "double_bluecan": 5},
+        {"level": 10, "single_redcan": 12, "double_bluecan": 6},
+        {"level": 11, "single_redcan": 12, "double_bluecan": 7, "basic_mat": 1},
+        {"level": 12, "single_redcan": 13, "double_bluecan": 7, "basic_mat": 2},
+        {"level": 13, "single_redcan": 14, "double_bluecan": 7, "basic_mat": 3},
+        {"level": 14, "single_redcan": 15, "double_bluecan": 8, "basic_mat": 3},
+        {"level": 15, "single_redcan": 17, "double_bluecan": 9, "basic_mat": 3},
+        {"level": 16, "double_bluecan": 12, "basic_mat": 6, "purple_tier_1": 4},
+        {"level": 17, "double_bluecan": 14, "basic_mat": 8, "purple_tier_1": 4},
+        {"level": 18, "double_bluecan": 16, "basic_mat": 9, "purple_tier_1": 4},
+        {"level": 19, "double_bluecan": 18, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 20, "double_bluecan": 20, "basic_mat": 10, "purple_tier_1": 4},
+        {"level": 21, "triple_whitecan": 4, "basic_mat": 13, "purple_tier_1": 6},
+        {"level": 22, "triple_whitecan": 4, "basic_mat": 14, "purple_tier_1": 7},
+        {"level": 23, "triple_whitecan": 4, "basic_mat": 15, "purple_tier_1": 7},
+        {"level": 24, "triple_whitecan": 4, "basic_mat": 16, "purple_tier_1": 8},
+        {"level": 25, "triple_whitecan": 4, "basic_mat": 17, "purple_tier_1": 11},
+        {"level": 26, "triple_whitecan": 6, "pro_mat": 3, "purple_tier_1": 14},
+        {"level": 27, "triple_whitecan": 6, "pro_mat": 4, "purple_tier_1": 16},
+        {"level": 28, "triple_whitecan": 7, "pro_mat": 5, "purple_tier_1": 18},
+        {"level": 29, "triple_whitecan": 8, "pro_mat": 6, "purple_tier_1": 21},
+        {"level": 30, "triple_whitecan": 10, "pro_mat": 7, "purple_tier_1": 22},
+        {"level": 31, "triple_whitecan": 12, "pro_mat": 9, "purple_tier_2": 5},
+        {"level": 32, "triple_whitecan": 15, "pro_mat": 10, "purple_tier_2": 5},
+        {"level": 33, "triple_whitecan": 16, "pro_mat": 12, "purple_tier_2": 6},
+        {"level": 34, "triple_whitecan": 19, "pro_mat": 14, "purple_tier_2": 7},
+        {"level": 35, "triple_whitecan": 21, "pro_mat": 16, "purple_tier_2": 9},
+        {"level": 36, "pro_mat": 19, "purple_tier_2": 12, "purple_tier_3": 6},
+        {"level": 37, "pro_mat": 21, "purple_tier_2": 13, "purple_tier_3": 8},
+        {"level": 38, "pro_mat": 24, "purple_tier_2": 14, "purple_tier_3": 10},
+        {"level": 39, "pro_mat": 28, "purple_tier_2": 15, "purple_tier_3": 12},
+        {"level": 40, "pro_mat": 32, "purple_tier_2": 18, "purple_tier_3": 13},
+        {"level": 41, "epic": 9, "purple_tier_2": 23, "purple_tier_3": 15},
+        {"level": 42, "epic": 12, "purple_tier_2": 26, "purple_tier_3": 15},
+        {"level": 43, "epic": 14, "purple_tier_2": 29, "purple_tier_3": 18},
+        {"level": 44, "epic": 17, "purple_tier_2": 33, "purple_tier_3": 18},
+        {"level": 45, "epic": 21, "purple_tier_2": 35, "purple_tier_3": 20},
+        {"level": 46, "epic": 23, "purple_tier_3": 22, "purple_tier_4": 18},
+        {"level": 47, "epic": 26, "purple_tier_3": 24, "purple_tier_4": 21},
+        {"level": 48, "epic": 30, "purple_tier_3": 26, "purple_tier_4": 23},
+        {"level": 49, "epic": 33, "purple_tier_3": 28, "purple_tier_4": 27},
+        {"level": 50, "epic": 40, "purple_tier_3": 30, "purple_tier_4": 28}
+    ];
+
+    function calculateMaterials() {
+        updateQueryParams();
+        document.getElementById('eventData').innerHTML = '';
+
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const type = images[character].type;
+
+
+        const materials = {};
+
+        let levelData;
+        if (type === 'common') {
+            levelData = commonLevelData;
+        } else if (type === 'rare') {
+            levelData = rareLevelData;
+        } else {
+            levelData = epicLevelData;
+        }
+
+        levelData.forEach(item => {
+            if (item.level > startLevel && item.level <= endLevel) {
+                Object.keys(item).forEach(key => {
+                    if (key !== 'level') {
+                        if (!materials[key]) {
+                            materials[key] = 0;
+                        }
+                        materials[key] += item[key];
+                    }
+                });
+            }
+        });
+
+        let resultText = `<h3>Total materials needed from LVL ${startLevel} to LVL ${endLevel}:</h3><div class="flex flex-wrap justify-center gap-4">`;
+        Object.keys(materials).forEach(material => {
+            let imgSrc = '';
+            if (images[character][material]) {
+                imgSrc = images[character][material];
+            }
+            // Each card contains an image of the material and the amount received
+            resultText += `<div class="card bg-black bg-opacity-50 text-white rounded-lg p-4 shadow-lg">
+                        <img src="${imgSrc}" alt="${material}" class="w-20 h-20 mx-auto">
+                        <div class="text-center mt-2">${materials[material]}</div>
+                    </div>`;
+        });
+        resultText += '</div>';
+
+        document.getElementById('result').innerHTML = resultText;
+    }
+
+    function calculateEventTimesNeeded() {
+        updateQueryParams();
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const type = images[character].type;
+
+        const levelData = {
+            common: commonLevelData,
+            rare: rareLevelData,
+            epic: epicLevelData
+        }[type];
+
+        const materialsRequired = {};
+
+        levelData.forEach(item => {
+            if (item.level > startLevel && item.level <= endLevel) {
+                Object.keys(item).forEach(key => {
+                    if (key !== 'level') {
+                        materialsRequired[key] = (materialsRequired[key] || 0) + item[key];
+                    }
+                });
+            }
+        });
+
+        // Assume a fixed material provision per event based on the character type or level range
+        const eventsNeeded = {};
+
+        Object.keys(materialsRequired).forEach(material => {
+            const eventMaterialAmount = findMaterialAmountPerEvent(material, startLevel, endLevel);
+            if (eventMaterialAmount > 0) {
+                eventsNeeded[material] = Math.ceil(materialsRequired[material] / eventMaterialAmount);
+            } else {
+                eventsNeeded[material] = -1;
+            }
+        });
+
+        let maxEvents = Math.max(...Object.values(eventsNeeded).filter(val => !isNaN(val)));
+
+        displayResults(eventsNeeded, maxEvents, materialsRequired);
+    }
+
+    function findMaterialAmountPerEvent(material, startLevel, endLevel) {
+        // Assuming bonus data provides a constant amount per material type per event
+        // This could be adjusted if the provision varies within a specified range
+        const relevantBonus = bonusData.find(item => item.level >= startLevel && item.level <= endLevel && item[material]);
+        return relevantBonus ? relevantBonus[material] : 0;
+    }
+
+    function displayResults(eventsNeeded, maxEvents, materialsRequired) {
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+
+        let resultText = `<h3>Total materials needed from ${startLevel} to ${endLevel}:</h3><div class="flex flex-wrap justify-center gap-4">`;
+        Object.keys(eventsNeeded).forEach(material => {
+            let imgSrc = '';
+            if (images[character][material]) {
+                imgSrc = images[character][material];
+            }
+            // Construct each card with the material image, amount required, and number of events or a note if not available
+            resultText += `<div class="card bg-black bg-opacity-50 text-white rounded-lg p-4 shadow-lg">
+                        <img src="${imgSrc}" alt="${material}" class="w-16 h-16 mx-auto">
+                        <div class="text-center mt-2">${materialsRequired[material]}</div>`;
+            if (eventsNeeded[material] === -1) {
+                resultText += `<div class="text-center mt-1">Not available from bonus events at lvl ${startLevel}</div>`;
+            } else {
+                resultText += `<div class="text-center mt-1">Complete ${eventsNeeded[material]} events</div>`;
+            }
+            resultText += `</div>`;
+        });
+        resultText += '</div>';
+
+        document.getElementById('result').innerHTML = resultText;
+
+
+        // // events for the selected levels
+        let eventData = '<h3>Materials you get from the bonus event per level:</h3><table class="table-auto bg-black bg-opacity-50 w-full"><tbody>';
+        for (let i = startLevel; i < endLevel; i++) {
+            eventData += `<tr><td class="text-center">Lvl ${i}</td>`; // Level indicator cell
+            Object.keys(eventsNeeded).forEach(material => {
+                let bonusLevelData = bonusData.find(item => item.level == i && item[material]);
+                if (bonusLevelData && material !== 'level' && material !== 'shard') {
+                    let imgSrc = images[character][material] ? images[character][material] : 'defaultImagePath';
+                    // Ensure each material and its number are within the same cell, with the number below the image
+                    eventData += `<td class="text-center"><div class="flex flex-col items-center justify-center"><img src="${imgSrc}" alt="${material}" style="width:50px;"><span>${bonusLevelData[material]}</span></div></td>`;
+                }
+            });
+            eventData += `</tr>`;
+        }
+        eventData += '</tbody></table>';
+        document.getElementById('eventData').innerHTML = eventData;
+
+
+    }
+</script>
+<footer class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+<!-- Tailwind CSS doesn't include JavaScript, use Alpine.js or similar for interactivity -->
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script>
+  kofiWidgetOverlay.draw('doobelator', {
+    'type': 'floating-chat',
+    'floating-chat.donateButton.text': 'Racing ticket',
+    'floating-chat.donateButton.background-color': '#00b9fe',
+    'floating-chat.donateButton.text-color': '#fff'
+  });
+</script>
+</body>
+</html>

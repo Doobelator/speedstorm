@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Ranked Rewards Calculator</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+        <nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+    <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Ranked Rewards Calculator</h1>
+    </div>
+    </div>
+        <div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p>
+                <i>See more details on the <a href="https://speedstorm.fandom.com/" target="_blank" style="color: #00BFFF;">Disney Speedstorm Wiki!</a></i>
+            </p>
+    </div></div>
+<div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+         <div class="flex flex-wrap">
+            <div class="w-full md:w-1/3 p-5">
+                <form>
+                    <div class="mb-4">
+                        <label for="startLevel" class="block">I am MPR:</label>
+                        <input type="number"
+                               class="form-input mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                               id="startLevel" min="0" max="39" value="0" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="endLevel" class="block">I need MPR:</label>
+                        <input type="number"
+                               class="form-input mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                               id="endLevel" min="1" max="40" value="40" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="character" class="block">Character:</label>
+                        <select class="form-select mt-1 block w-full bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm"
+                                id="character" required>
+    <!-- Mickey and Friends  -->
+    <optgroup label="Mickey and Friends">
+        <option value="Mickey">Mickey</option>
+        <option value="Donald">Donald</option>
+        <option value="Goofy">Goofy</option>
+        <option value="Daisy">Daisy</option>
+        <option value="Minnie">Minnie</option>
+        <option value="Steamboat Mickey">Steamboat Mickey</option>
+        <option value="Steamboat Pete">Steamboat Pete</option>
+    </optgroup>
+    <!-- Beauty and the Beast  -->
+    <optgroup label="Beauty and the Beast">
+        <option value="Belle">Belle</option>
+        <option value="Beast">Beast</option>
+        <option value="Gaston">Gaston</option>
+    </optgroup>
+    <!-- Mulan  -->
+    <optgroup label="Mulan">
+        <option value="Mulan">Mulan</option>
+        <option value="Shang">Shang</option>
+    </optgroup>
+    <!-- Jungle Book  -->
+    <optgroup label="Jungle Book">
+        <option value="Mowgli">Mowgli</option>
+        <option value="Baloo">Baloo</option>
+    </optgroup>
+    <!-- Pirates of the Caribbean -->
+    <optgroup label="Pirates of the Caribbean">
+        <option value="Swann">Swann</option>
+        <option value="Jack Sparrow">Jack Sparrow</option>
+        <option value="Davy Jones">Davy Jones</option>
+        <option value="Barbossa">Barbossa</option>
+        <option value="Tia">Tia</option>
+        <option value="Will">Will</option>
+    </optgroup>
+    <!-- Hercules  -->
+    <optgroup label="Hercules">
+        <option value="Hercules">Hercules</option>
+        <option value="Meg">Meg</option>
+        <option value="Hades">Hades</option>
+    </optgroup>
+    <!-- Monsters inc  -->
+    <optgroup label="Monsters, Inc.">
+        <option value="Mike">Mike</option>
+        <option value="Sulley">Sulley</option>
+        <option value="Celia Mae">Celia Mae</option>
+        <option value="Randall">Randall</option>
+    </optgroup>
+    <!-- Walt Disney  -->
+    <optgroup label="Walt Disney">
+        <option value="Figment">Figment</option>
+        <option value="Oswald">Oswald</option>
+        <option value="Ortensia">Ortensia</option>
+    </optgroup>
+    <!-- Toy Story  -->
+    <optgroup label="Toy Story">
+        <option value="Jessie">Jessie</option>
+        <option value="Bo Peep">Bo Peep</option>
+        <option value="Woody">Woody</option>
+        <option value="Buzz Lightyear">Buzz Lightyear</option>
+    </optgroup>
+    <!-- Lilo and Stitch  -->
+    <optgroup label="Lilo and Stitch">
+        <option value="Lilo">Lilo</option>
+        <option value="Stitch">Stitch</option>
+        <option value="Jumba">Jumba</option>
+        <option value="Gantu">Gantu</option>
+        <option value="Angel">Angel</option>
+    </optgroup>
+    <!-- Aladdin  -->
+    <optgroup label="Aladdin">
+        <option value="Aladdin">Aladdin</option>
+        <option value="Jasmine">Jasmine</option>
+        <option value="Jafar">Jafar</option>
+        <option value="Genie">Genie</option>
+    </optgroup>
+    <!-- Frozen  -->
+    <optgroup label="Frozen">
+        <option value="Kristoff">Kristoff</option>
+        <option value="Hans">Hans</option>
+        <option value="Anna">Anna</option>
+        <option value="Elsa">Elsa</option>
+        <option value="Olaf">Olaf</option>
+    </optgroup>
+    <!-- Wall-E  -->
+    <optgroup label="Wall-E & Eve">
+        <option value="Wall-E">Wall-E</option>
+        <option value="Eve">Eve</option>
+    </optgroup>
+    <!-- Little Mermaid -->
+    <optgroup label="The Little Mermaid">
+        <option value="Ariel">Ariel</option>
+        <option value="Prins Eric">Prince Eric</option>
+        <option value="King Triton">King Triton</option>
+        <option value="Ursula">Ursula</option>
+    </optgroup>
+    <!-- Wreck-It Ralph -->
+    <optgroup label="Wreck-It Ralph">
+        <option value="Vanellope">Vanellope</option>
+        <option value="Felix">Felix</option>
+        <option value="King Candy">King Candy</option>
+        <option value="Ralph">Ralph</option>
+        <option value="Calhoun">Calhoun</option>
+    </optgroup>
+    <!-- Muppets -->
+    <optgroup label="Muppets">
+        <option value="Kermit the Frog">Kermit the Frog</option>
+        <option value="Piggy">Piggy</option>
+    </optgroup>
+    <!-- Inside Out -->
+    <optgroup label="Inside Out">
+        <option value="Anger">Anger</option>
+        <option value="Disgust">Disgust</option>
+        <option value="Fear">Fear</option>
+        <option value="Joy">Joy</option>
+        <option value="Sadness">Sadness</option>
+        <option value="Anxiety">Anxiety</option>
+        <option value="Ennui">Ennui</option>
+    </optgroup>
+    <!-- Sleeping Beauty -->
+    <optgroup label="Sleeping Beauty">
+        <option value="Maleficent">Maleficent</option>
+    </optgroup>
+    <!-- 101 Dalmatians -->
+    <optgroup label="101 Dalmatians">
+        <option value="Cruella">Cruella</option>
+    </optgroup>
+    <!-- Nightmare Before Christmas -->
+    <optgroup label="Nightmare Before Christmas">
+        <option value="Dr. Finkelstein">Dr. Finkelstein</option>
+        <option value="Jack Skellington">Jack Skellington</option>
+        <option value="Oogie Boogie">Oogie Boogie</option>
+        <option value="Sally">Sally</option>
+    </optgroup>
+</select>
+
+                    </div>
+                    <button type="button"
+                            class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            onclick="calculateMaterials()">Calculate
+                    </button>
+                    <br/><br/>
+                </form>
+            </div>
+            <div class="w-full md:w-2/3 flex justify-center">
+                <div id="result" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <h2 class="text-lg">How does it work ?</h2>
+            <br/>
+            <p>Ascend through the ranks in Disney Speedstorm and discover the rewards that await at each milestone. Input your current and target MPR ranks to see a detailed list of the rewards you can earn. This tool is perfect for players aiming to climb the rankings efficiently, providing clear insights into the benefits of reaching higher levels and helping to set achievable goals.</p>
+            <br/>
+            <p>Want to level up your Belle from MPR 16 to 28 ? Your effort will definitely be paid !</p>
+            <br/>
+            <p><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/ranked-rewards-1.png"></p>
+        </div>
+    </div>
+<div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <p>Come visit the discord and share your thoughts! <br/><br/>
+                <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                    <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateQueryParams() {
+        const startLevel = document.getElementById('startLevel').value;
+        const endLevel = document.getElementById('endLevel').value;
+        const character = document.getElementById('character').value;
+
+        const queryParams = new URLSearchParams(window.location.search);
+
+        startLevel ? queryParams.set('from', startLevel) : queryParams.delete('from');
+        endLevel ? queryParams.set('to', endLevel) : queryParams.delete('to');
+        character ? queryParams.set('character', character) : queryParams.delete('character');
+
+        // This will update the URL without reloading the page
+        window.history.replaceState({}, '', `${window.location.pathname}?${queryParams}`);
+    }
+
+    document.getElementById('startLevel').addEventListener('change', updateQueryParams);
+    document.getElementById('endLevel').addEventListener('change', updateQueryParams);
+    document.getElementById('character').addEventListener('change', updateQueryParams);
+
+    function populateFieldsFromQueryParams() {
+        const queryParams = new URLSearchParams(window.location.search);
+        const startLevel = queryParams.get('from');
+        const endLevel = queryParams.get('to');
+        const character = queryParams.get('character');
+
+        if (startLevel) document.getElementById('startLevel').value = startLevel;
+        if (endLevel) document.getElementById('endLevel').value = endLevel;
+        if (character) document.getElementById('character').value = character;
+
+        calculateMaterials();
+    }
+
+    // Call the function on page load
+    document.addEventListener('DOMContentLoaded', populateFieldsFromQueryParams);
+</script>
+<script>
+    const characterImages = [
+    {
+        "Mickey": {
+            "type": "common",
+            "shards": "racer_shards/mickey_shards.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Donald": {
+            "type": "rare",
+            "shards": "racer_shards/donald.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Goofy": {
+            "type": "rare",
+            "shards": "racer_shards/goofy.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Daisy": {
+            "type": "common",
+            "shards": "racer_shards/daisy.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Minnie": {
+            "type": "rare",
+            "shards": "racer_shards/minnie.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Steamboat Mickey": {
+            "type": "epic",
+            "shards": "racer_shards/sbmickey.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Steamboat Pete": {
+            "type": "common",
+            "shards": "racer_shards/pete.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Belle": {
+            "type": "epic",
+            "shards": "racer_shards/belle.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Beast": {
+            "type": "rare",
+            "shards": "racer_shards/beast.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Gaston": {
+            "type": "rare",
+            "shards": "racer_shards/gaston.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Hercules": {
+            "type": "rare",
+            "shards": "racer_shards/hercules.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Meg": {
+            "type": "common",
+            "shards": "racer_shards/meg.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Hades": {
+            "type": "epic",
+            "shards": "racer_shards/hades.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Mowgli": {
+            "type": "rare",
+            "shards": "racer_shards/mowgli.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Baloo": {
+            "type": "epic",
+            "shards": "racer_shards/baloo.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Swann": {
+            "type": "common",
+            "shards": "racer_shards/swann.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jack Sparrow": {
+            "type": "rare",
+            "shards": "racer_shards/jack.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Davy Jones": {
+            "type": "epic",
+            "shards": "racer_shards/davy_jones.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Barbossa": {
+            "type": "rare",
+            "shards": "racer_shards/barbossa.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Tia": {
+            "type": "common",
+            "shards": "racer_shards/tia.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Will": {
+            "type": "rare",
+            "shards": "racer_shards/will.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Mike": {
+            "type": "common",
+            "shards": "racer_shards/mike.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Sulley": {
+            "type": "epic",
+            "shards": "racer_shards/sulley.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Celia Mae": {
+            "type": "common",
+            "shards": "racer_shards/celia.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Randall": {
+            "type": "rare",
+            "shards": "racer_shards/randall.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Mulan": {
+            "type": "rare",
+            "shards": "racer_shards/mulan.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Shang": {
+            "type": "common",
+            "shards": "racer_shards/shang.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Figment": {
+            "type": "epic",
+            "shards": "racer_shards/figment.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Oswald": {
+            "type": "epic",
+            "shards": "racer_shards/oswald.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Ortensia": {
+            "type": "rare",
+            "shards": "racer_shards/ortensia.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Wall-E": {
+            "type": "epic",
+            "shards": "racer_shards/walle.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Eve": {
+            "type": "rare",
+            "shards": "racer_shards/eve.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jessie": {
+            "type": "common",
+            "shards": "racer_shards/jessie.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Bo Peep": {
+            "type": "common",
+            "shards": "racer_shards/bo_peep.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Woody": {
+            "type": "rare",
+            "shards": "racer_shards/woody.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Buzz Lightyear": {
+            "type": "epic",
+            "shards": "racer_shards/buzz.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Angel": {
+            "type": "common",
+            "shards": "racer_shards/angel.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Gantu": {
+            "type": "rare",
+            "shards": "racer_shards/gantu.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jumba": {
+            "type": "common",
+            "shards": "racer_shards/jumba.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Lilo": {
+            "type": "rare",
+            "shards": "racer_shards/lilo.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Stitch": {
+            "type": "epic",
+            "shards": "racer_shards/stitch.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Aladdin": {
+            "type": "rare",
+            "shards": "racer_shards/aladdin.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jasmine": {
+            "type": "common",
+            "shards": "racer_shards/jasmine.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jafar": {
+            "type": "rare",
+            "shards": "racer_shards/jafar.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Genie": {
+            "type": "epic",
+            "shards": "racer_shards/genie.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Kristoff": {
+            "type": "common",
+            "shards": "racer_shards/kristoff.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Hans": {
+            "type": "common",
+            "shards": "racer_shards/hans.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Anna": {
+            "type": "rare",
+            "shards": "racer_shards/anna.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Elsa": {
+            "type": "epic",
+            "shards": "racer_shards/elsa.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Olaf": {
+            "type": "epic",
+            "shards": "racer_shards/olaf.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Ariel": {
+            "type": "rare",
+            "shards": "racer_shards/ariel.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Prins Eric": {
+            "type": "common",
+            "shards": "racer_shards/princeeric.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "King Triton": {
+            "type": "common",
+            "shards": "racer_shards/king.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Ursula": {
+            "type": "epic",
+            "shards": "racer_shards/ursula.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Vanellope": {
+            "type": "epic",
+            "shards": "racer_shards/vanellope.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Felix": {
+            "type": "epic",
+            "shards": "racer_shards/felix.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "King Candy": {
+            "type": "epic",
+            "shards": "racer_shards/kingcandy.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Ralph": {
+            "type": "epic",
+            "shards": "racer_shards/ralph.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Calhoun": {
+            "type": "epic",
+            "shards": "racer_shards/calhoun.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Kermit the frog": {
+            "type": "epic",
+            "shards": "racer_shards/kermit.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Anger": {
+            "type": "epic",
+            "shards": "racer_shards/anger.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Disgust": {
+            "type": "epic",
+            "shards": "racer_shards/disgust.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Fear": {
+            "type": "epic",
+            "shards": "racer_shards/fear.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Joy": {
+            "type": "epic",
+            "shards": "racer_shards/joy.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Sadness": {
+            "type": "epic",
+            "shards": "racer_shards/sadness.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Davy Jones": {
+            "type": "epic",
+            "shards": "racer_shards/davy_jones.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Barbossa": {
+            "type": "rare",
+            "shards": "racer_shards/barbossa.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Tia": {
+            "type": "common",
+            "shards": "racer_shards/tia.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Will": {
+            "type": "rare",
+            "shards": "racer_shards/will.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Anxiety": {
+            "type": "epic",
+            "shards": "racer_shards/anxiety.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Ennui": {
+            "type": "epic",
+            "shards": "racer_shards/ennui.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Maleficent": {
+            "type": "epic",
+            "shards": "racer_shards/maleficent.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Cruella": {
+            "type": "epic",
+            "shards": "racer_shards/cruella.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Dr. Finkelstein": {
+            "type": "epic",
+            "shards": "racer_shards/dr_finkelstein.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Jack Skellington": {
+            "type": "epic",
+            "shards": "racer_shards/jack_skellington.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Oogie Boogie": {
+            "type": "epic",
+            "shards": "racer_shards/oogie_boogie.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    },
+    {
+        "Sally": {
+            "type": "epic",
+            "shards": "racer_shards/sally.png",
+            "motto": "images/motto.png",
+            "plate": "images/licence_plate.png",
+            "emote": "images/emote.png",
+            "kart_part": "images/kart_part.png",
+            "kart_part_diamond": "images/kart_part_diamond.png",
+            "upgrade_tokens": "images/upgrade_tokens.webp",
+            "mp_coins": "images/MP-coins.webp",
+            "tokens": "images/Tokens.webp"
+        }
+    }
+];
+
+
+    const bonusData = [
+        {"mpr": 1, "upgrade_tokens": 300, "mp_coins": 50, "tokens": 5},
+        {"mpr": 2, "shards": 4, "mp_coins": 50, "tokens": 5},
+        {"mpr": 3, "motto": 1, "mp_coins": 50, "tokens": 5},
+        {"mpr": 4, "upgrade_tokens": 300, "mp_coins": 50, "tokens": 5},
+        {"mpr": 5, "upgrade_tokens": 300, "mp_coins": 50, "tokens": 5},
+
+        {"mpr": 6, "kart_part": 1, "mp_coins": 50, "tokens": 10},
+        {"mpr": 7, "shards": 5, "mp_coins": 60, "tokens": 5},
+        {"mpr": 8, "plate": 5, "mp_coins": 60, "tokens": 5},
+        {"mpr": 9, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 10, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+
+        {"mpr": 11, "kart_part": 1, "mp_coins": 60, "tokens": 10},
+        {"mpr": 12, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 13, "shards": 5, "mp_coins": 60, "tokens": 5},
+        {"mpr": 14, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 15, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 16, "kart_part": 1, "mp_coins": 60, "tokens": 10},
+        {"mpr": 17, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 18, "shards": 5, "mp_coins": 60, "tokens": 5},
+        {"mpr": 19, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+        {"mpr": 20, "upgrade_tokens": 300, "mp_coins": 60, "tokens": 5},
+
+        {"mpr": 21, "kart_part": 1, "mp_coins": 60, "tokens": 10},
+        {"mpr": 22, "upgrade_tokens": 300, "mp_coins": 80, "tokens": 5},
+        {"mpr": 23, "shards": 6, "mp_coins": 80, "tokens": 5},
+        {"mpr": 24, "upgrade_tokens": 300, "mp_coins": 80, "tokens": 5},
+        {"mpr": 25, "upgrade_tokens": 300, "mp_coins": 80, "tokens": 5},
+        {"mpr": 26, "kart_part_diamond": 1, "mp_coins": 80, "tokens": 10},
+        {"mpr": 27, "upgrade_tokens": 500, "mp_coins": 80, "tokens": 5},
+        {"mpr": 28, "shards": 6, "mp_coins": 100, "tokens": 5},
+        {"mpr": 29, "upgrade_tokens": 500, "mp_coins": 100, "tokens": 5},
+
+        {"mpr": 30, "upgrade_tokens": 500, "mp_coins": 100, "tokens": 5},
+        {"mpr": 31, "emote": 1, "mp_coins": 100, "tokens": 10},
+        {"mpr": 32, "upgrade_tokens": 500, "mp_coins": 100, "tokens": 5},
+        {"mpr": 33, "shards": 6, "mp_coins": 100, "tokens": 5},
+        {"mpr": 34, "upgrade_tokens": 700, "mp_coins": 120, "tokens": 5},
+        {"mpr": 35, "upgrade_tokens": 700, "mp_coins": 120, "tokens": 5},
+        {"mpr": 36, "upgrade_tokens": 700, "mp_coins": 120, "tokens": 10},
+        {"mpr": 37, "upgrade_tokens": 700, "mp_coins": 120, "tokens": 5},
+        {"mpr": 38, "shards": 8, "mp_coins": 120, "tokens": 5},
+        {"mpr": 39, "upgrade_tokens": 1000, "mp_coins": 120, "tokens": 5},
+        {"mpr": 40, "mp_coins": 140, "tokens": 120},
+    ];
+
+    function calculateMaterials() {
+        updateQueryParams();
+
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const type = images[character].type;
+
+
+        const materials = {};
+
+        let levelData;
+        if (type === 'common') {
+            levelData = bonusData;
+        } else if (type === 'rare') {
+            levelData = bonusData;
+        } else {
+            levelData = bonusData;
+        }
+
+        levelData.forEach(item => {
+            if (item.mpr > startLevel && item.mpr <= endLevel) {
+                Object.keys(item).forEach(key => {
+                    if (key !== 'mpr') {
+                        if (!materials[key]) {
+                            materials[key] = 0;
+                        }
+                        materials[key] += item[key];
+                    }
+                });
+            }
+        });
+
+        let resultText = `<h3>Total ranked rewards you will receive from MPR ${startLevel} to MPR ${endLevel}:</h3><div class="flex flex-wrap justify-center gap-4">`;
+        Object.keys(materials).forEach(material => {
+            let imgSrc = '';
+            if (images[character][material]) {
+                imgSrc = images[character][material];
+            }
+
+            let material_text = '';
+            if (material == 'plate') {
+                material_text = 'Licence Plate';
+            } else if (material == 'emote') {
+                material_text = 'Emote';
+            } else if (material == 'kart_part') {
+                material_text = 'Kart Skin';
+            }
+
+            let imgOrText = '';
+            if (material_text == '') {
+                imgOrText = `<img src="${imgSrc}" alt="${material}" class="w-20 h-20 mx-auto">`;
+            } else {
+                imgOrText = `<img src="https://placehold.co/316x316/38a9d4/white?text=${material_text}" alt="${material}" class="w-20 h-20 mx-auto">`;
+            }
+
+            // Each card contains an image of the material and the amount received
+            resultText += `<div class="card bg-black bg-opacity-50 text-white rounded-lg p-4 shadow-lg">
+                        ${imgOrText}
+                        <div class="text-center mt-2">${materials[material]}</div>
+                    </div>`;
+        });
+        resultText += '</div>';
+
+        document.getElementById('result').innerHTML = resultText;
+    }
+
+    function calculateEventTimesNeeded() {
+        updateQueryParams();
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const type = images[character].type;
+
+        const levelData = {
+            common: commonLevelData,
+            rare: rareLevelData,
+            epic: epicLevelData
+        }[type];
+
+        const materialsRequired = {};
+
+        levelData.forEach(item => {
+            if (item.level > startLevel && item.level <= endLevel) {
+                Object.keys(item).forEach(key => {
+                    if (key !== 'level') {
+                        materialsRequired[key] = (materialsRequired[key] || 0) + item[key];
+                    }
+                });
+            }
+        });
+
+        // Assume a fixed material provision per event based on the character type or level range
+        const eventsNeeded = {};
+
+        Object.keys(materialsRequired).forEach(material => {
+            const eventMaterialAmount = findMaterialAmountPerEvent(material, startLevel, endLevel);
+            if (eventMaterialAmount > 0) {
+                eventsNeeded[material] = Math.ceil(materialsRequired[material] / eventMaterialAmount);
+            } else {
+                eventsNeeded[material] = -1;
+            }
+        });
+
+        let maxEvents = Math.max(...Object.values(eventsNeeded).filter(val => !isNaN(val)));
+
+        displayResults(eventsNeeded, maxEvents, materialsRequired);
+    }
+
+    function findMaterialAmountPerEvent(material, startLevel, endLevel) {
+        // Assuming bonus data provides a constant amount per material type per event
+        // This could be adjusted if the provision varies within a specified range
+        const relevantBonus = bonusData.find(item => item.level >= startLevel && item.level <= endLevel && item[material]);
+        return relevantBonus ? relevantBonus[material] : 0;
+    }
+
+    function displayResults(eventsNeeded, maxEvents, materialsRequired) {
+        const character = document.getElementById('character').value;
+        const images = characterImages.find(c => c[character]);
+        const startLevel = parseInt(document.getElementById('startLevel').value);
+        const endLevel = parseInt(document.getElementById('endLevel').value);
+
+        let resultText = `<h3>Total materials needed from ${startLevel} to ${endLevel}:</h3><table class="table-auto"><thead><th>Amount</th><th></th><th># of events</th></thead><tbody>`;
+        Object.keys(eventsNeeded).forEach(material => {
+            let imgSrc = '';
+            if (images[character][material]) {
+                imgSrc = images[character][material];
+            }
+
+            resultText += `<tr><td><div class="flex justify-center align-center">${materialsRequired[material]}</div></td><td><img src="${imgSrc}" style="width:50px;"></td>`;
+            if (eventsNeeded[material] === -1) {
+                resultText += `<td style="padding-left: 10px;"> (Not available from bonus events at lvl ${startLevel})</td>`;
+            } else {
+                resultText += `<td style="padding-left: 10px;"> Complete ${eventsNeeded[material]} events</td>`;
+            }
+            resultText += `</tr>`;
+
+        });
+        resultText += '</tbody></table>';
+
+        document.getElementById('result').innerHTML = resultText;
+
+        // events for the selected levels
+        let eventData = '<h3>Materials you get from the bonus event per level:</h3><table class="table-auto"><tbody>';
+        for (let i = startLevel; i < endLevel; i++) {
+            eventData += `<tr>`;
+            eventData += `<td><div class="flex justify-center align-center">Lvl ${i}</div></td>`;
+            Object.keys(eventsNeeded).forEach(material => {
+                let bonusLevelData = bonusData.find(item => item.level == i && item[material]);
+
+                console.log('bonusLevelData');
+                console.log(bonusLevelData);
+                if (bonusLevelData) {
+                    if (material === 'level' || material === 'shard') {
+                        return;
+                    }
+                    let imgSrc = '';
+                    if (images[character][material]) {
+                        imgSrc = images[character][material];
+                    }
+                    eventData += `<td class="">${bonusLevelData[material]}</td><td><img src="${imgSrc}" style="width:50px;"></td>`;
+                }
+            });
+            eventData += `</tr>`;
+        }
+        eventData += '</tbody></table>';
+        document.getElementById('eventData').innerHTML = eventData;
+    }
+</script>
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<!-- Popup Modal -->
+    <div id="donationPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="p-10 max-w-sm w-full text-center relative" style="background-color: #152540;color: #fff">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-900" onclick="closePopup()">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Support on Ko-fi!</h2>
+            <p class="flex justify-center"><img src="logo_transparant.png" style="width: 70px"></p>
+            <br/>
+            <p class="mb-4">To keep this site running <b>beyond February 2025</b>, we need to raise <b>€70</b> in donations. Without your support, we'll sadly have to close. If you enjoy the content and find value here, please consider donating to help us reach our goal. Every bit helps, and we're grateful for your support!</p>
+            <p>Also earn your <b style=color:#ef4444;>supporters</b> role on the discord to show everyone you are keeping this alive !</p><br/>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                <div class="bg-red-500 h-4 rounded-full" style="width: 12%;" id="progressBar"></div>
+            </div>
+            <p class="mb-4">12% of €70 goal</p>
+
+            <a href="https://ko-fi.com/doobelator" target="_blank" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-300">Donate on Ko-fi</a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+<footer class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookieBanner" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 text-center" style="display: none;">
+    <p class="mb-2">We use cookies to ensure that we give you the best experience on our website. By continuing to browse, you agree to our <a href="privacy-policy" class="underline text-blue-400">Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Accept</button>
+</div>
+
+<script>
+    // Check if the user has already accepted cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+
+    // Event listener to accept cookies
+    document.getElementById('acceptCookies').addEventListener('click', function () {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>

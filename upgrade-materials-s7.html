@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Upgrade Materials Calculator</title>
+    <!-- Include Tailwind CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+    <nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+    <!--<div class="bg-pink-700 w-full p-2 opacity-95 flex justify-center">-->
+        <!--<div class="container">-->
+        <!--    Due to all season 7 changes, the site will be under maintance and will only contain this calculator for now. Thanks for your understanding.-->
+        <!--</div>-->
+    <!--</div>-->
+    
+        <div class="page-banner page-banner-small page-banner-bg-7 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Upgrade materials</h1>
+    </div>
+    </div>
+    
+<div class="page-section-dark w-full p-10 opacity-95 flex justify-center">
+        <div class="container">
+            <p>
+                <i>To see all details about the change, please see the <a href='https://disneyspeedstorm.com/news/disney-speedstorm-community-pit-stop-upgrade-system-rework' target='_blank' style="color: #00BFFF;">official announcement</a></i>
+            </p>
+            <p>
+                <i>And see more details on the Disney <a href='https://speedstorm.fandom.com/wiki/Upgrade_system#01:_Upgrading_character_level_and_Increasing_Star_Tier' target='_blank' style="color: #00BFFF;">Speedstorm Wiki!</a></i>
+            </p>
+    </div></div>
+    <div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+        <h1 class="text-xl mb-4 flex text-center md:text-left">Disney Speedstorm - Upgrade material calculator <img src="images/upgrade_tokens.webp" style="display: inline-block;width: 30px;height:30px;"> </h1>
+
+        <div class="flex flex-wrap">
+            <div class="w-full md:w-2/3 p-1 flex justify-center">
+                <form class="w-full">
+                    <div id="charactersContainer" class="w-full">
+                        <!-- Character inputs will be added here dynamically -->
+                    </div>
+                    <button id="addCharacterBtn" type="button" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Character</button><br/><br/>
+                    <button type="button" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="calculateMaterialsForAll()">Calculate</button><br/><br/>
+                </form>
+            </div>
+            <div id="result" class="md:w-1/3 text-center"></div>
+        </div>
+    </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <h2 class="text-2xl">How does it work ?</h2>
+            <p>With Season 7 comes a new upgrade system, featuring a unified upgrade token currency <span class="inline-block"><img src="images/upgrade_tokens.webp" style="width: 30px;height:30px;"></span> and now the need for racer shards to level up. This calculator simplifies the process by allowing you to select multiple racers, enter your start and end levels, and instantly see the total upgrade tokens and shards needed. It's crafted to assist in strategic planning, ensuring efficient use of resources for upgrading in the new season.</p>
+            <br/>
+            <p>Make sure to think about who you want to upgrade before using all the upgrade tokens at once! This currency is super valuable now. Imagine this, you could level a character from 40 to 41 at the same cost of leveling a new racer from 1 to 15!</p>
+            <br/>
+            <p class="flex justify-between flex-col 2xl:flex-row"><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/upgrade-mats-s7-1.png" class="opacity-90"><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/upgrade-mats-s7-2.png" class="opacity-90"></p>
+            <br/>
+            <p></p>
+            <br/>
+            <p>You can select as many racers as you want. The calculator will sum up all the upgrade tokens and show all needed racers shards accumulated.</p>
+            <br/>
+            <p><img style="box-shadow:10px 10px 20px rgba(0,0,0,5);" src="guide/upgrade-mats-s7-3.png" class="opacity-90"></p>
+        </div>
+    </div>
+<div class="page-section-medium-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+            <p>Come visit the discord and share your thoughts! <br/><br/>
+                <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:285px;"
+                   class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                    <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Doobelator Discord
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class="page-section-dark w-full p-10 opacity-95  flex justify-center">
+        <div class="container">
+        <div class="mb-4">
+            <h2>Disclaimer</h2>
+            <p>
+                <i>Images and data presented here are based on content from the official <a href='https://speedstorm.fandom.com/wiki/Disney_Speedstorm_Wiki' target='_blank' style="color: #00BFFF;">Disney Speedstorm Wiki</a></i>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const classImages = [
+        {
+            "class": "Speedster",
+            "images": {
+                "basic_mat": "images/basic-mat-speedster.webp",
+                "pro_mat": "images/pro-mat-speedster.webp",
+            }
+        },
+        {
+            "class": "Brawler",
+            "images": {
+                "basic_mat": "images/Racing-gloves.webp",
+                "pro_mat": "images/Pro-gloves.webp",
+            }
+        },
+        {
+            "class": "Trickster",
+            "images": {
+                "basic_mat": "images/Racing-shades.webp",
+                "pro_mat": "images/Pro-shades.webp",
+            }
+        },
+        {
+            "class": "Defender",
+            "images": {
+                "basic_mat": "images/Racing-helmet.webp",
+                "pro_mat": "images/Pro-helmet.webp",
+            }
+        },
+    ];
+
+    const characterImages = [
+    { "Mickey": { "type": "common", "shards": "racer_shards/mickey_shards.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Donald": { "type": "rare", "shards": "racer_shards/donald.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Goofy": { "type": "common", "shards": "racer_shards/goofy.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Daisy": { "type": "rare", "shards": "racer_shards/daisy.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Minnie": { "type": "common", "shards": "racer_shards/minnie.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Steamboat Mickey": { "type": "rare", "shards": "racer_shards/sbmickey.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Steamboat Pete": { "type": "common", "shards": "racer_shards/pete.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Belle": { "type": "rare", "shards": "racer_shards/belle.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Beast": { "type": "common", "shards": "racer_shards/beast.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Gaston": { "type": "rare", "shards": "racer_shards/gaston.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Hercules": { "type": "common", "shards": "racer_shards/hercules.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Meg": { "type": "rare", "shards": "racer_shards/meg.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Hades": { "type": "common", "shards": "racer_shards/hades.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Mowgli": { "type": "rare", "shards": "racer_shards/mowgli.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Baloo": { "type": "common", "shards": "racer_shards/baloo.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Swann": { "type": "rare", "shards": "racer_shards/swann.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jack Sparrow": { "type": "common", "shards": "racer_shards/jack.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Davy Jones": { "type": "rare", "shards": "racer_shards/davy_jones.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Barbossa": { "type": "common", "shards": "racer_shards/barbossa.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Tia": { "type": "rare", "shards": "racer_shards/tia.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Will": { "type": "common", "shards": "racer_shards/will.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Mike": { "type": "rare", "shards": "racer_shards/mike.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Celia Mae": { "type": "common", "shards": "racer_shards/celia.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Sulley": { "type": "rare", "shards": "racer_shards/sulley.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Randall": { "type": "common", "shards": "racer_shards/randall.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Mulan": { "type": "rare", "shards": "racer_shards/mulan.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Shang": { "type": "common", "shards": "racer_shards/shang.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Figment": { "type": "rare", "shards": "racer_shards/figment.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Oswald": { "type": "common", "shards": "racer_shards/oswald.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Ortensia": { "type": "rare", "shards": "racer_shards/ortensia.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Wall-E": { "type": "common", "shards": "racer_shards/walle.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Eve": { "type": "rare", "shards": "racer_shards/eve.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jessie": { "type": "common", "shards": "racer_shards/jessie.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Bo Peep": { "type": "rare", "shards": "racer_shards/bo_peep.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Woody": { "type": "common", "shards": "racer_shards/woody.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Buzz Lightyear": { "type": "rare", "shards": "racer_shards/buzz.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Angel": { "type": "common", "shards": "racer_shards/angel.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Gantu": { "type": "rare", "shards": "racer_shards/gantu.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jumba": { "type": "common", "shards": "racer_shards/jumba.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Lilo": { "type": "rare", "shards": "racer_shards/lilo.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Stitch": { "type": "common", "shards": "racer_shards/stitch.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Aladdin": { "type": "rare", "shards": "racer_shards/aladdin.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jasmine": { "type": "common", "shards": "racer_shards/jasmine.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jafar": { "type": "rare", "shards": "racer_shards/jafar.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Genie": { "type": "common", "shards": "racer_shards/genie.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Kristoff": { "type": "rare", "shards": "racer_shards/kristoff.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Hans": { "type": "common", "shards": "racer_shards/hans.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Anna": { "type": "rare", "shards": "racer_shards/anna.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Elsa": { "type": "common", "shards": "racer_shards/elsa.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Olaf": { "type": "rare", "shards": "racer_shards/olaf.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Ariel": { "type": "common", "shards": "racer_shards/ariel.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Prins Eric": { "type": "rare", "shards": "racer_shards/princeeric.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "King Triton": { "type": "common", "shards": "racer_shards/king.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Ursula": { "type": "rare", "shards": "racer_shards/ursula.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Felix": { "type": "common", "shards": "../racer_shards/felix.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Vanellope": { "type": "rare", "shards": "../racer_shards/vanellope.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Ralph": { "type": "common", "shards": "../racer_shards/ralph.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "King Candy": { "type": "rare", "shards": "../racer_shards/kingcandy.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Calhoun": { "type": "common", "shards": "../racer_shards/calhoun.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Kermit the Frog": { "type": "rare", "shards": "../racer_shards/kermit.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Piggy": { "type": "common", "shards": "racer_shards/piggy.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Joy": { "type": "rare", "shards": "../racer_shards/joy.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Fear": { "type": "common", "shards": "../racer_shards/fear.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Disgust": { "type": "rare", "shards": "../racer_shards/disgust.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Anger": { "type": "common", "shards": "../racer_shards/anger.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Sadness": { "type": "rare", "shards": "../racer_shards/sadness.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Anxiety": { "type": "common", "shards": "racer_shards/anxiety.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Ennui": { "type": "rare", "shards": "racer_shards/ennui.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Maleficent": { "type": "common", "shards": "racer_shards/maleficent.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Cruella": { "type": "rare", "shards": "racer_shards/cruella.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Dr. Finkelstein": { "type": "common", "shards": "racer_shards/dr_finkelstein.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Jack Skellington": { "type": "rare", "shards": "racer_shards/jack_skellington.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Oogie Boogie": { "type": "common", "shards": "racer_shards/oogie_boogie.png", "upgrade_tokens": "images/upgrade_tokens.webp" } },
+    { "Sally": { "type": "rare", "shards": "racer_shards/sally.png", "upgrade_tokens": "images/upgrade_tokens.webp" } }
+];
+
+
+    const bonusData = [
+        {"level": 1, "shards": 0, "upgrade_tokens": 0},
+        {"level": 2, "shards": 1, "upgrade_tokens": 150},
+        {"level": 3, "shards": 1, "upgrade_tokens": 170},
+        {"level": 4, "shards": 1, "upgrade_tokens": 190},
+        {"level": 5, "shards": 1, "upgrade_tokens": 210},
+        {"level": 6, "shards": 1, "upgrade_tokens": 230},
+        {"level": 7, "shards": 1, "upgrade_tokens": 250},
+        {"level": 8, "shards": 1, "upgrade_tokens": 270},
+        {"level": 9, "shards": 1, "upgrade_tokens": 300},
+        {"level": 10, "shards": 1, "upgrade_tokens": 320},
+
+        {"level": 11, "shards": 2, "upgrade_tokens": 350},
+        {"level": 12, "shards": 2, "upgrade_tokens": 380},
+        {"level": 13, "shards": 2, "upgrade_tokens": 400},
+        {"level": 14, "shards": 2, "upgrade_tokens": 450},
+        {"level": 15, "shards": 2, "upgrade_tokens": 500},
+        {"level": 16, "shards": 2, "upgrade_tokens": 540},
+        {"level": 17, "shards": 2, "upgrade_tokens": 580},
+        {"level": 18, "shards": 2, "upgrade_tokens": 630},
+        {"level": 19, "shards": 2, "upgrade_tokens": 700},
+        {"level": 20, "shards": 3, "upgrade_tokens": 750},
+
+        {"level": 21, "shards": 3, "upgrade_tokens": 820},
+        {"level": 22, "shards": 3, "upgrade_tokens": 900},
+        {"level": 23, "shards": 3, "upgrade_tokens": 970},
+        {"level": 24, "shards": 3, "upgrade_tokens": 1050},
+        {"level": 25, "shards": 3, "upgrade_tokens": 1150},
+        {"level": 26, "shards": 4, "upgrade_tokens": 1250},
+        {"level": 27, "shards": 4, "upgrade_tokens": 1350},
+        {"level": 28, "shards": 4, "upgrade_tokens": 1450},
+        {"level": 29, "shards": 4, "upgrade_tokens": 1550},
+        {"level": 30, "shards": 4, "upgrade_tokens": 1700},
+
+        {"level": 31, "shards": 5, "upgrade_tokens": 1850},
+        {"level": 32, "shards": 5, "upgrade_tokens": 2000},
+        {"level": 33, "shards": 5, "upgrade_tokens": 2150},
+        {"level": 34, "shards": 5, "upgrade_tokens": 2300},
+        {"level": 35, "shards": 5, "upgrade_tokens": 2500},
+        {"level": 36, "shards": 5, "upgrade_tokens": 2700},
+        {"level": 37, "shards": 5, "upgrade_tokens": 3000},
+        {"level": 38, "shards": 5, "upgrade_tokens": 3300},
+        {"level": 39, "shards": 5, "upgrade_tokens": 3600},
+        {"level": 40, "shards": 5, "upgrade_tokens": 4000},
+
+        {"level": 41, "shards": 7, "upgrade_tokens": 4300},
+        {"level": 42, "shards": 7, "upgrade_tokens": 4750},
+        {"level": 43, "shards": 7, "upgrade_tokens": 5200},
+        {"level": 44, "shards": 7, "upgrade_tokens": 5700},
+        {"level": 45, "shards": 9, "upgrade_tokens": 6200},
+
+        {"level": 46, "shards": 9, "upgrade_tokens": 6700},
+        {"level": 47, "shards": 9, "upgrade_tokens": 7300},
+        {"level": 48, "shards": 10, "upgrade_tokens": 8000},
+        {"level": 49, "shards": 10, "upgrade_tokens": 8900},
+        {"level": 50, "shards": 10, "upgrade_tokens": 10000},
+    ];
+
+    document.getElementById('addCharacterBtn').addEventListener('click', addCharacterField);
+
+function addCharacterField() {
+    const container = document.getElementById('charactersContainer');
+    const newCharacterDiv = document.createElement('div');
+    newCharacterDiv.innerHTML = `
+    <div class="character-container flex justify-start w-full">
+                        <input placeholder="Start Level" type="number" class="w-1/4 mr-1 md:mr-5 mb-5 form-input mt-1 block bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm startLevel" min="1" max="49" value="1" required>
+                        <input placeholder="End Level" type="number" class="w-1/4 mr-1 md:mr-5 mb-5 form-input mt-1 block  bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm endLevel" min="2" max="50" value="50" required>
+                        <select class="w-2/4 form-select mt-1 block mr-1 md:mr-5 mb-5 bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded-md shadow-sm character" required>
+    <!-- Mickey and Friends  -->
+    <optgroup label="Mickey and Friends">
+        <option value="Mickey">Mickey</option>
+        <option value="Donald">Donald</option>
+        <option value="Goofy">Goofy</option>
+        <option value="Daisy">Daisy</option>
+        <option value="Minnie">Minnie</option>
+        <option value="Steamboat Mickey">Steamboat Mickey</option>
+        <option value="Steamboat Pete">Steamboat Pete</option>
+    </optgroup>
+    <!-- Beauty and the Beast  -->
+    <optgroup label="Beauty and the Beast">
+        <option value="Belle">Belle</option>
+        <option value="Beast">Beast</option>
+        <option value="Gaston">Gaston</option>
+    </optgroup>
+    <!-- Mulan  -->
+    <optgroup label="Mulan">
+        <option value="Mulan">Mulan</option>
+        <option value="Shang">Shang</option>
+    </optgroup>
+    <!-- Jungle Book  -->
+    <optgroup label="Jungle Book">
+        <option value="Mowgli">Mowgli</option>
+        <option value="Baloo">Baloo</option>
+    </optgroup>
+    <!-- Pirates of the Caribbean -->
+    <optgroup label="Pirates of the Caribbean">
+        <option value="Swann">Swann</option>
+        <option value="Jack Sparrow">Jack Sparrow</option>
+        <option value="Davy Jones">Davy Jones</option>
+        <option value="Barbossa">Barbossa</option>
+        <option value="Tia">Tia</option>
+        <option value="Will">Will</option>
+    </optgroup>
+    <!-- Hercules  -->
+    <optgroup label="Hercules">
+        <option value="Hercules">Hercules</option>
+        <option value="Meg">Meg</option>
+        <option value="Hades">Hades</option>
+    </optgroup>
+    <!-- Monsters inc  -->
+    <optgroup label="Monsters, Inc.">
+        <option value="Mike">Mike</option>
+        <option value="Sulley">Sulley</option>
+        <option value="Celia Mae">Celia Mae</option>
+        <option value="Randall">Randall</option>
+    </optgroup>
+    <!-- Walt Disney  -->
+    <optgroup label="Walt Disney">
+        <option value="Figment">Figment</option>
+        <option value="Oswald">Oswald</option>
+        <option value="Ortensia">Ortensia</option>
+    </optgroup>
+    <!-- Toy Story  -->
+    <optgroup label="Toy Story">
+        <option value="Jessie">Jessie</option>
+        <option value="Bo Peep">Bo Peep</option>
+        <option value="Woody">Woody</option>
+        <option value="Buzz Lightyear">Buzz Lightyear</option>
+    </optgroup>
+    <!-- Lilo and Stitch  -->
+    <optgroup label="Lilo and Stitch">
+        <option value="Lilo">Lilo</option>
+        <option value="Stitch">Stitch</option>
+        <option value="Jumba">Jumba</option>
+        <option value="Gantu">Gantu</option>
+        <option value="Angel">Angel</option>
+    </optgroup>
+    <!-- Aladdin  -->
+    <optgroup label="Aladdin">
+        <option value="Aladdin">Aladdin</option>
+        <option value="Jasmine">Jasmine</option>
+        <option value="Jafar">Jafar</option>
+        <option value="Genie">Genie</option>
+    </optgroup>
+    <!-- Frozen  -->
+    <optgroup label="Frozen">
+        <option value="Kristoff">Kristoff</option>
+        <option value="Hans">Hans</option>
+        <option value="Anna">Anna</option>
+        <option value="Elsa">Elsa</option>
+        <option value="Olaf">Olaf</option>
+    </optgroup>
+    <!-- Wall-E  -->
+    <optgroup label="Wall-E & Eve">
+        <option value="Wall-E">Wall-E</option>
+        <option value="Eve">Eve</option>
+    </optgroup>
+    <!-- Little Mermaid -->
+    <optgroup label="The Little Mermaid">
+        <option value="Ariel">Ariel</option>
+        <option value="Prins Eric">Prince Eric</option>
+        <option value="King Triton">King Triton</option>
+        <option value="Ursula">Ursula</option>
+    </optgroup>
+    <!-- Wreck-It Ralph -->
+    <optgroup label="Wreck-It Ralph">
+        <option value="Vanellope">Vanellope</option>
+        <option value="Felix">Felix</option>
+        <option value="King Candy">King Candy</option>
+        <option value="Ralph">Ralph</option>
+        <option value="Calhoun">Calhoun</option>
+    </optgroup>
+    <!-- Muppets -->
+    <optgroup label="Muppets">
+        <option value="Kermit the Frog">Kermit the Frog</option>
+        <option value="Piggy">Piggy</option>
+    </optgroup>
+    <!-- Inside Out -->
+    <optgroup label="Inside Out">
+        <option value="Anger">Anger</option>
+        <option value="Disgust">Disgust</option>
+        <option value="Fear">Fear</option>
+        <option value="Joy">Joy</option>
+        <option value="Sadness">Sadness</option>
+        <option value="Anxiety">Anxiety</option>
+        <option value="Ennui">Ennui</option>
+    </optgroup>
+    <!-- Sleeping Beauty -->
+    <optgroup label="Sleeping Beauty">
+        <option value="Maleficent">Maleficent</option>
+    </optgroup>
+    <!-- 101 Dalmatians -->
+    <optgroup label="101 Dalmatians">
+        <option value="Cruella">Cruella</option>
+    </optgroup>
+    <!-- Nightmare Before Christmas -->
+    <optgroup label="Nightmare Before Christmas">
+        <option value="Dr. Finkelstein">Dr. Finkelstein</option>
+        <option value="Jack Skellington">Jack Skellington</option>
+        <option value="Oogie Boogie">Oogie Boogie</option>
+        <option value="Sally">Sally</option>
+    </optgroup>
+</select>
+
+                        <button style="height: 42px;margin-top: 4px;" type="button" class="btn remove-character-btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">x</button><br/><br/>
+                </div>
+    `;
+    container.appendChild(newCharacterDiv);
+
+    const removeBtn = newCharacterDiv.querySelector('.remove-character-btn');
+    removeBtn.addEventListener('click', function() {
+        newCharacterDiv.remove(); // Removes the div containing the character input fields and the remove button
+    });
+}
+
+
+function calculateMaterialsForAll() {
+    const characters = document.querySelectorAll('#charactersContainer > div > div.character-container');
+    const totalMaterials = {};
+    const characterShards = {}; // New object to track shards per character
+
+    characters.forEach((characterDiv) => {
+        const character = characterDiv.querySelector('.character').value;
+        const startLevel = parseInt(characterDiv.querySelector('.startLevel').value);
+        const endLevel = parseInt(characterDiv.querySelector('.endLevel').value);
+        const images = characterImages.find(c => c[character]);
+
+        if (!characterShards[character]) {
+            characterShards[character] = { shards: 0, image: images[character]['shards'] || 'images/upgrade_tokens.webp' };
+        }
+
+        bonusData.forEach(item => {
+            if (item.level > startLevel && item.level <= endLevel) {
+                Object.keys(item).forEach(key => {
+                    if (key !== 'level') {
+                        totalMaterials[key] = (totalMaterials[key] || 0) + item[key];
+                        if (key === 'shards') {
+                            characterShards[character].shards += item[key];
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    let resultText = `<h3 class="pb-5">Total cost for all characters:</h3><div class="flex flex-wrap justify-center gap-4">`;
+
+    // Display total materials
+    Object.keys(totalMaterials).forEach(material => {
+        if (material == 'upgrade_tokens'){
+            const formattedNumber = new Intl.NumberFormat().format(totalMaterials[material]);
+
+        resultText += `<div class="card bg-black bg-opacity-50 text-white rounded-lg p-4 shadow-lg">
+                    <img src="images/${material}.webp" alt="${material}" class="w-20 h-20 mx-auto"> <!-- Adjust with real material images -->
+                    <div class="text-center mt-2">${formattedNumber}</div>
+                </div>`;
+            }
+    });
+
+    // Display shards per character images
+    Object.keys(characterShards).forEach(character => {
+        const { shards, image } = characterShards[character];
+        resultText += `<div class="card bg-black bg-opacity-50 text-white rounded-lg p-4 shadow-lg">
+                    <img src="${image}" alt="Shards for ${character}" class="w-20 h-20 mx-auto">
+                    <div class="text-center mt-2">${shards} shards</div>
+                </div>`;
+    });
+
+    resultText += '</div>';
+    document.getElementById('result').innerHTML = resultText;
+}
+
+
+
+
+
+// Initial call to add the first character input fields
+addCharacterField();
+</script>
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<!-- Popup Modal -->
+    <div id="donationPopup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="p-10 max-w-sm w-full text-center relative" style="background-color: #152540;color: #fff">
+            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-900" onclick="closePopup()">&times;</button>
+            <h2 class="text-2xl font-bold mb-4">Support on Ko-fi!</h2>
+            <p class="flex justify-center"><img src="logo_transparant.png" style="width: 70px"></p>
+            <br/>
+            <p class="mb-4">To keep this site running <b>beyond February 2025</b>, we need to raise <b>€70</b> in donations. Without your support, we'll sadly have to close. If you enjoy the content and find value here, please consider donating to help us reach our goal. Every bit helps, and we're grateful for your support!</p>
+            <p>Also earn your <b style=color:#ef4444;>supporters</b> role on the discord to show everyone you are keeping this alive !</p><br/>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                <div class="bg-red-500 h-4 rounded-full" style="width: 12%;" id="progressBar"></div>
+            </div>
+            <p class="mb-4">12% of €70 goal</p>
+
+            <a href="https://ko-fi.com/doobelator" target="_blank" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition duration-300">Donate on Ko-fi</a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+<footer class="bg-gray-900 text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+
+<!-- Cookie Banner -->
+<div id="cookieBanner" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 text-center" style="display: none;">
+    <p class="mb-2">We use cookies to ensure that we give you the best experience on our website. By continuing to browse, you agree to our <a href="privacy-policy" class="underline text-blue-400">Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Accept</button>
+</div>
+
+<script>
+    // Check if the user has already accepted cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+
+    // Event listener to accept cookies
+    document.getElementById('acceptCookies').addEventListener('click', function () {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+    });
+</script>
+
+
+<body>
+</html>

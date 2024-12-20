@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home - Doobelator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo_transparant.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/main.css?v=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6921311404181626"
+            crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-800 text-white">
+<div class="content-wrapper">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="logo_transparant.png" style="width: 70px">
+            <a class="text-white py-2 px-4" href="index" style="font-size:23px;">Doobelator</a>
+        </div>
+        <div class="hidden md:flex">
+            <ul class="flex items-center">
+                <li class="mr-6">
+                    <a class="text-white" href="index">Home</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Calculators</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials <img class="inline-block w-10" src="images/upgrade_tokens.webp"></a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards <img class="inline-block w-10" src="images/Diamond.webp"></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="tierlist">Tierlist maker</a>
+                </li>
+                <li class="mr-6 relative group dropdown">
+                    <a class="text-white cursor-pointer hover:bg-gray-700 px-2 py-1 rounded">Tournament tools</a>
+                    <div class="dropdown-menu absolute hidden group-hover:block bg-gray-700 text-white right-0 w-96 mt-2 py-2 shadow-2xl z-50 rounded-sm">
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="setup">Racetrack & racer setup 🎟</a>
+                        <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="wheel">Wheel randomizer 🎡</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="text-white" href="support">Join the crew 🏎</a>
+                </li>
+                <li class="discord ml-10">
+                    <a href="https://discord.gg/JHye5n645S" target="_blank" style="width:200px;"
+                       class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 md:px-4 rounded flex items-center gap-2 text-sm md:text-base">
+                        <span><img style="width: 30px;" src="logo_transparant.png"></span> Join the Discord
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="md:hidden text-white focus:outline-none" id="menuToggle">
+            <svg class="w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="md:hidden hidden" id="mobileMenu">
+        <ul class="">
+            <li class="active">
+                <a class="text-white block px-4 py-2 text-sm" href="/">Home</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="#" id="mobileCalculatorsDropdown">Calculators</a>
+                <div class="dropdown-menu absolute hidden bg-gray-700 text-white w-80 mt-2 py-2 shadow-2xl z-50 rounded-lg">
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="upgrade-materials-s7">Upgrade materials</a>
+                    <a class="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white hover:font-semibold" href="ranked-rewards">Ranked rewards</a>
+                </div>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="tierlist">Tierlist maker</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="wheel">Wheel randomizer 🎡️</a>
+            </li>
+            <li>
+                <a class="text-white block px-4 py-2 text-sm" href="support">Join the crew 🏎️</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+// Toggle the mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(event) {
+    document.getElementById('mobileMenu').classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Toggle desktop dropdowns
+document.querySelectorAll('.dropdown > a').forEach(dropdownTrigger => {
+    dropdownTrigger.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.target.nextElementSibling.classList.toggle('hidden');
+        event.stopPropagation();
+    });
+});
+
+// Toggle mobile dropdown
+document.getElementById('mobileCalculatorsDropdown').addEventListener('click', function(event) {
+    event.preventDefault();
+    event.target.nextElementSibling.classList.toggle('hidden');
+    event.stopPropagation();
+});
+
+// Close menus when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+    if (!mobileMenu.contains(event.target) && !event.target.matches('#menuToggle')) {
+        mobileMenu.classList.add('hidden');
+    }
+
+    dropdownMenus.forEach(menu => {
+        if (!menu.parentNode.contains(event.target)) {
+            menu.classList.add('hidden');
+        }
+    });
+});
+</script>
+
+    <div class="page-banner page-banner-small page-banner-bg-1 w-full p-10 opacity-95  flex justify-center items-center">
+        <div class="container">
+            <h1 class="text-5xl mb-6">Tierlist maker</h1>
+        </div>
+    </div>
+
+    <div class="page-section-medium-dark w-full mb-10 md:p-10 opacity-95 flex justify-center">
+        <div class="container mx-auto p-4 bg-gray-800 text-white">
+            <div id="characterPool" class="tier p-4 mb-4 bg-gray-700 rounded-lg"></div>
+            <div id="tierlist-container" class="bg-gray-800 text-white">
+                <div id="tierListName" contenteditable="true" class="text-center text-2xl font-bold mb-4 p-6 bg-gray-900 rounded-lg" data-ph="Tier list name"></div>
+                <!-- S Tier -->
+                <div class="flex items-center items-stretch mb-2">
+                    <div class="tier-name flex items-center justify-center w-20 md:w-32 text-center p-2 bg-gray-700 rounded-l-lg" style="min-height: 80px;" contenteditable="true" data-ph="Tier name">S Tier</div>
+                    <div class="tier mobile-resize-tier flex-grow p-1 bg-gray-600 rounded-r-lg" style="min-height: 60px;" id="tierS">
+                        <div class="sortable">
+                        <!--<input type="color" class="color-picker absolute right-0 top-0 w-6 h-6" data-target="#tierS">-->
+                    </div></div>
+                </div>
+    
+                <!-- A Tier -->
+                <div class="flex items-center items-stretch mb-2">
+                    <div class="tier-name flex items-center justify-center w-20 md:w-32 text-center p-2 bg-gray-700 rounded-l-lg" style="min-height: 80px;" contenteditable="true" data-ph="Tier name">A Tier</div>
+                    <div class="tier mobile-resize-tier flex-grow p-1 bg-gray-600 rounded-r-lg" style="min-height: 60px;" id="tierA">
+                        <!--<input type="color" class="color-picker absolute right-0 top-0 w-6 h-6" data-target="#tierA">-->
+                    </div>
+                </div>
+                <!-- Repeat for other tiers as necessary -->
+            </div>
+            <button id="addTier" class="mt-4 py-2 px-4 bg-green-500 hover:bg-green-700 text-white font-bold rounded">Add Tier</button>
+            <button id="saveTierList" class="mt-4 py-2 px-4 bg-blue-500 hover:bg-green-700 text-white font-bold rounded">Copy image to clipboard</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-section-dark text-white p-4">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Doobelator. All rights reserved.</p>
+        <a href="privacy-policy" class="text-white hover:underline">Privacy Policy</a>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- Include Touch Punch after jQuery UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<script src="https://unpkg.com/html2canvas@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
+<script src="assets/tierlist.js"></script>
+
+<style>
+.character {
+    padding: 5px;
+    margin: 5px;
+    border: 3px solid #1f2937;
+    display: inline-block;
+    cursor: move; /* Indicates the item is movable */
+    width: 80px;
+}
+
+[contenteditable=true]:empty:not(:focus):before{
+  content:attr(data-ph);
+  color:grey;
+  
+}
+/* Mobile devices */
+@media (max-width: 768px) {
+    .mobile-resize-tier .character {
+        width: 50px; /* Example size, adjust as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+</style>
+<!-- Cookie Banner -->
+<div id="cookieBanner" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 text-center" style="display: none;">
+    <p class="mb-2">We use cookies to ensure that we give you the best experience on our website. By continuing to browse, you agree to our <a href="privacy-policy" class="underline text-blue-400">Privacy Policy</a>.</p>
+    <button id="acceptCookies" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Accept</button>
+</div>
+
+<script>
+    // Check if the user has already accepted cookies
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+
+    // Event listener to accept cookies
+    document.getElementById('acceptCookies').addEventListener('click', function () {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookieBanner').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
