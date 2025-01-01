@@ -106,6 +106,10 @@ body {
       background-image: url(../backgrounds/background-8.jpeg);
 }
 
+.page-banner-bg-9::before {
+      background-image: url(../backgrounds/background-9.jpeg);
+}
+
 
 .page-banner .container {
   position: relative; /* Ensure the text is above the pseudo-element */
