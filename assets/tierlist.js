@@ -74,7 +74,14 @@ const character_images = [
     { "name": "Jack Skellington", "shards": "racer_shards/jack_skellington.png", "id": 72 },
     { "name": "Oogie Boogie", "shards": "racer_shards/oogie_boogie.png", "id": 73 },
     { "name": "Sally", "shards": "racer_shards/sally.png", "id": 74 },
-    { "name": "Rapunzel", "shards": "racer_shards/rapunzel.png", "id": 74 }
+    { "name": "Rapunzel", "shards": "racer_shards/rapunzel.png", "id": 75 },
+    { "name": "Dash", "shards": "racer_shards/dash.png", "id": 76 },
+    { "name": "Ms Incredible", "shards": "racer_shards/ms_incredible.png", "id": 77 },
+    { "name": "Violet":, "shards": "racer_shards/violet.png", "id": 78 },
+    { "name": "Frozone", "shards": "racer_shards/frozone.png", "id": 79 },
+    { "name": "Maui", "shards": "racer_shards/maui.png", "id": 80 },
+    { "name": "Moana", "shards": "racer_shards/moana.png", "id": 81 },
+    { "name": "Mr Incredible", "shards": "racer_shards/mr_incredible.png", "id": 82 }
 ];
 
 
